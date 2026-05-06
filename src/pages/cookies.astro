@@ -3,6 +3,7 @@
 import LegalLayout from '../layouts/LegalLayout.astro';
 
 const locale = 'en';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const lastUpdated = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
 const toc = [
   { id: 'what', label: 'What are cookies?' },
@@ -40,9 +41,9 @@ const toc = [
     </tbody>
   </table>
 
-  <p>This data only exists in your browser, is not sent to Baldurion or third parties, and you can delete it at any time from your browser settings or from the <a href="/en/preferences/">preferences page</a>.</p>
+  <p>This data only exists in your browser, is not sent to Baldurion or third parties, and you can delete it at any time from your browser settings or from the <a href={`${base}preferences/`}>preferences page</a>.</p>
 
   <h2 id="embeds">Third-party embeds</h2>
   <p>YouTube, Spotify, Twitter and Instagram embeds <strong>can set cookies</strong> when you activate them. That is why they do not load automatically. They only activate if you consciously click on each one.</p>
-  <p>For more information on data handling, see our <a href="/en/privacy/">Privacy Policy</a>.</p>
+  <p>For more information on data handling, see our <a href={`${base}privacy/`}>Privacy Policy</a>.</p>
 </LegalLayout>

@@ -30,8 +30,9 @@ const {
 
 const t = useTranslations(locale);
 const rt = readingTime ?? calculateReadingTime(body);
-const prefix = locale === 'en' ? '' : `/${locale}`;
-const href = `${prefix}/articulos/${slug}/`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
+const href = `${lp}articulos/${slug}/`;
 
 const bgHex = { lime: '#D4E84A', lilac: '#D9C2F0', beige: '#F4ECE0' }[bgColor];
 const categoryLabel = t.categories[category as keyof typeof t.categories] ?? category;
@@ -65,7 +66,7 @@ const categoryLabel = t.categories[category as keyof typeof t.categories] ?? cat
     <div class="pt-4 flex flex-col gap-2 mt-2" style="border-top: 1px solid rgba(10,10,10,0.12);">
       {relatedArticles.slice(0, 2).map(({ title: rTitle, slug: rSlug }) => (
         <a
-          href={`${prefix}/articulos/${rSlug}/`}
+          href={`${lp}articulos/${rSlug}/`}
           class="flex items-center justify-between gap-2 text-xs font-semibold transition-opacity duration-150 hover:opacity-60"
           style="color: rgba(10,10,10,0.7);"
         >

@@ -33,7 +33,7 @@ const articulos = source
 <BaseLayout title={`${categoryLabel} — Baldurion`} description={`All Baldurion articles on ${categoryLabel.toLowerCase()}.`} locale={locale}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="mb-10">
-      <a href="/articulos/" class="text-xs font-bold text-[var(--color-text-muted)] flex items-center gap-1 mb-4 hover:text-[var(--color-text)] transition-colors duration-200">
+      <a href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}articulos/`} class="text-xs font-bold text-[var(--color-text-muted)] flex items-center gap-1 mb-4 hover:text-[var(--color-text)] transition-colors duration-200">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6H2M2 6L5 3M2 6L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         {t.article.backToArticles}
       </a>

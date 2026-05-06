@@ -8,8 +8,9 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const prefix = locale === 'en' ? '' : `/${locale}`;
-const cookiesHref = `${prefix}/cookies/`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
+const cookiesHref = `${lp}cookies/`;
 ---
 
 <div id="consent-banner" role="region" aria-label={t.banner.title}>

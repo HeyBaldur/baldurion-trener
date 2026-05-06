@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h1 class="font-display text-3xl md:text-4xl mt-4 mb-4" style="font-family: var(--font-display);">PÁGINA NO ENCONTRADA</h1>
     <p class="text-[var(--color-text-muted)] mb-8">Esta página no existe o fue movida a otra URL.</p>
     <a
-      href="/es/"
+      href={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}es/`}
       class="inline-flex items-center gap-2 bg-[var(--color-text)] text-[var(--color-bg)] font-bold px-8 py-4 rounded-full hover:opacity-80 transition-opacity duration-200"
     >
       Volver al inicio

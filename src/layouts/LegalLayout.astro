@@ -18,7 +18,8 @@ interface Props {
 
 const { title, description, locale, lastUpdated, toc } = Astro.props;
 const t = useTranslations(locale);
-const prefix = locale === 'en' ? '' : `/${locale}`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
 ---
 
 <BaseLayout title={title} description={description} locale={locale}>
@@ -63,7 +64,7 @@ const prefix = locale === 'en' ? '' : `/${locale}`;
 
     <div class="mt-14 pt-6 border-t border-[var(--color-border)]">
       <a
-        href={`${prefix}/`}
+        href={lp}
         class="inline-flex items-center gap-2 text-sm font-bold opacity-70 hover:opacity-100 transition-opacity duration-200"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 7H2.5M2.5 7L6.5 3M2.5 7L6.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>

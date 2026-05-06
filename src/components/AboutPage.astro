@@ -35,8 +35,8 @@ interface Props {
 }
 
 const { t, locale } = Astro.props;
-const prefix = locale === 'en' ? '' : `/${locale}`;
-const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
 ---
 
 <div class="about-page">
@@ -73,8 +73,8 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
       <p class="about-cta__subtitle">{t.cta.subtitle}</p>
     </div>
     <div class="about-cta__actions">
-      <a href={`${prefix}/coaching/`} class="btn-dark rounded-full">{t.cta.primaryAction}</a>
-      <a href={`${prefix}/contacto/`} class="btn-outline-dark rounded-full">{t.cta.secondaryAction}</a>
+      <a href={`${lp}coaching/`} class="btn-dark rounded-full">{t.cta.primaryAction}</a>
+      <a href={`${lp}contacto/`} class="btn-outline-dark rounded-full">{t.cta.secondaryAction}</a>
     </div>
   </section>
 

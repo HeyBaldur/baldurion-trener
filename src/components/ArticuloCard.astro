@@ -32,8 +32,9 @@ const {
 
 const t = useTranslations(locale);
 const rt = readingTime ?? calculateReadingTime(body);
-const prefix = locale === 'en' ? '' : `/${locale}`;
-const href = `${prefix}/articulos/${slug}/`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
+const href = `${lp}articulos/${slug}/`;
 const formattedDate = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : locale === 'pl' ? 'pl-PL' : 'en-US', {
   year: 'numeric',
   month: 'short',

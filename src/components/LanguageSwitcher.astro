@@ -8,6 +8,8 @@ interface Props {
 
 const { currentPath } = Astro.props;
 const currentLocale = (Astro.currentLocale ?? Astro.props.currentLocale) as Locale;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/'); // always has trailing slash
+const baseSlug = base.slice(0, -1); // strip trailing slash for prefix matching
 
 const languages = [
   { code: 'es', label: 'ES' },
@@ -18,15 +20,19 @@ const languages = [
 const DEFAULT_LOCALE = 'en';
 
 function getAlternatePath(targetLocale: string, path: string, currentLocale: string): string {
-  // EN is served at root (no prefix), other locales have /${locale}/ prefix
+  // Strip base prefix from path before processing locale segments
+  const pathWithoutBase = path.startsWith(baseSlug)
+    ? path.slice(baseSlug.length) || '/'
+    : path;
+
   const cleanPath = currentLocale === DEFAULT_LOCALE
-    ? path
-    : (path.replace(new RegExp(`^/${currentLocale}`), '') || '/');
+    ? pathWithoutBase
+    : (pathWithoutBase.replace(new RegExp(`^/${currentLocale}`), '') || '/');
 
   if (targetLocale === DEFAULT_LOCALE) {
-    return cleanPath || '/';
+    return cleanPath === '/' ? base : `${base}${cleanPath.slice(1)}`;
   }
-  return `/${targetLocale}${cleanPath === '/' ? '' : cleanPath}`;
+  return `${base}${targetLocale}${cleanPath === '/' ? '/' : cleanPath}`;
 }
 ---
 

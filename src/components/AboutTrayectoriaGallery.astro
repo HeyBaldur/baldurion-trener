@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { t } = Astro.props;
-const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <section class="trayectoria-gallery">

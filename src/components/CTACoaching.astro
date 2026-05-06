@@ -9,7 +9,8 @@ interface Props {
 
 const { locale, variant = 'lime' } = Astro.props;
 const t = useTranslations(locale);
-const prefix = locale === 'en' ? '' : `/${locale}`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
 
 const bgMap = {
   lime: 'bg-[var(--color-accent-lime)]',
@@ -23,7 +24,7 @@ const bgMap = {
   </h2>
   <p class="text-black/70 mb-6 max-w-prose">{t.cta.coachingBody}</p>
   <a
-    href={`${prefix}/coaching/`}
+    href={`${lp}coaching/`}
     class="inline-flex items-center gap-2 bg-black text-white font-bold px-6 py-3 rounded-full hover:opacity-80 transition-opacity duration-200"
   >
     {t.cta.coachingButton}

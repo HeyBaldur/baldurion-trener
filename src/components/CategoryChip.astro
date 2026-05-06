@@ -13,8 +13,9 @@ const { category, locale, size = 'md', linkToCategory = true } = Astro.props;
 const t = useTranslations(locale);
 const label = t.categories[category as keyof typeof t.categories] ?? category;
 const sizeClass = size === 'sm' ? 'text-[10px] px-2.5 py-0.5' : 'text-[11px] px-3 py-1';
-const prefix = locale === 'en' ? '' : `/${locale}`;
-const href = `${prefix}/categoria/${category}/`;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const lp = locale === 'en' ? base : `${base}${locale}/`;
+const href = `${lp}categoria/${category}/`;
 
 const chipColors: Record<string, string> = {
   entrenamiento: 'background-color:#D4E84A;color:#0A0A0A',

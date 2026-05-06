@@ -3,6 +3,7 @@
 import LegalLayout from '../../layouts/LegalLayout.astro';
 
 const locale = 'es';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
 const toc = [
   { id: 'que-son', label: '¿Qué son las cookies?' },
@@ -40,9 +41,9 @@ const toc = [
     </tbody>
   </table>
 
-  <p>Estos datos solo existen en tu navegador, no se envían a Baldurion ni a terceros, y puedes borrarlos cuando quieras desde la configuración de tu navegador o desde la <a href="/es/preferencias/">página de preferencias</a>.</p>
+  <p>Estos datos solo existen en tu navegador, no se envían a Baldurion ni a terceros, y puedes borrarlos cuando quieras desde la configuración de tu navegador o desde la <a href={`${base}es/preferencias/`}>página de preferencias</a>.</p>
 
   <h2 id="embebidos">Los embebidos de terceros</h2>
   <p>Los embebidos de YouTube, Spotify, Twitter e Instagram <strong>sí pueden poner cookies</strong> cuando los activas. Por eso no se cargan automáticamente. Solo se activan si tú haces click conscientemente en cada uno.</p>
-  <p>Para más información sobre el tratamiento de tus datos, consulta nuestra <a href="/es/privacidad/">Política de Privacidad</a>.</p>
+  <p>Para más información sobre el tratamiento de tus datos, consulta nuestra <a href={`${base}es/privacidad/`}>Política de Privacidad</a>.</p>
 </LegalLayout>
