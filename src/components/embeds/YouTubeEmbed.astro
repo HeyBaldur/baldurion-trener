@@ -1,0 +1,95 @@
+﻿---
+interface Props {
+  videoId: string;
+  title: string;
+}
+const { videoId, title } = Astro.props;
+const locale = (Astro.currentLocale ?? 'en') as 'es' | 'en' | 'pl';
+const labels = {
+  es: { load: `VÃ­deo de YouTube Â· Click para cargar`, warning: 'Al cargar aceptas las cookies de YouTube' },
+  en: { load: `YouTube video Â· Click to load`, warning: 'By loading you accept YouTube cookies' },
+  pl: { load: `Film YouTube Â· Kliknij, aby zaÅ‚adowaÄ‡`, warning: 'ÅadujÄ…c, akceptujesz pliki cookie YouTube' },
+}[locale];
+const thumbSrc = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<div
+  class="yt-embed"
+  data-provider="youtube"
+  data-id={videoId}
+  data-locale={locale}
+  style="position:relative;border-radius:1rem;overflow:hidden;background:#1a1a1a;"
+>
+  <div
+    class="yt-placeholder"
+    role="button"
+    tabindex="0"
+    aria-label={`${labels.load}: ${title}`}
+    style="cursor:pointer;display:block;position:relative;aspect-ratio:16/9;"
+  >
+    <img
+      src={thumbSrc}
+      alt={title}
+      loading="lazy"
+      decoding="async"
+      style="width:100%;height:100%;object-fit:cover;display:block;"
+    />
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,0.35);">
+      <div style="width:64px;height:64px;border-radius:50%;background:#D4E84A;display:flex;align-items:center;justify-content:center;transition:transform 150ms ease;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5.5L19 12L8 18.5V5.5Z" fill="#0A0A0A"/></svg>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.85);font-family:var(--font-body);text-align:center;padding:0 12px;">{labels.load}</p>
+      <p style="margin-top:4px;font-size:10px;color:rgba(255,255,255,0.5);font-family:var(--font-body);text-align:center;">{labels.warning}</p>
+    </div>
+  </div>
+  <div class="yt-frame" style="display:none;aspect-ratio:16/9;"></div>
+  <div aria-live="polite" aria-atomic="true" class="sr-only"></div>
+</div>
+
+<script>
+import { hasLoadedEmbed, markEmbedLoaded } from '../../scripts/consent';
+
+function loadYouTube(container: HTMLElement, id: string) {
+  const placeholder = container.querySelector<HTMLElement>('.yt-placeholder')!;
+  const frame = container.querySelector<HTMLElement>('.yt-frame')!;
+  const live = container.querySelector('[aria-live]')!;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+  iframe.title = placeholder.getAttribute('aria-label') ?? '';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'width:100%;height:100%;border:none;';
+  frame.appendChild(iframe);
+  placeholder.style.display = 'none';
+  frame.style.display = 'block';
+  live.textContent = 'VÃ­deo cargado.';
+}
+
+document.querySelectorAll<HTMLElement>('[data-provider="youtube"]').forEach(container => {
+  const id = container.dataset.id!;
+  if (hasLoadedEmbed('youtube', id)) {
+    loadYouTube(container, id);
+    return;
+  }
+  const placeholder = container.querySelector<HTMLElement>('.yt-placeholder')!;
+  const activate = () => { markEmbedLoaded('youtube', id); loadYouTube(container, id); };
+  placeholder.addEventListener('click', activate);
+  placeholder.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+</script>
+
+<style>
+.yt-placeholder:hover div[style*="border-radius:50%"] {
+  transform: scale(1.08);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+</style>

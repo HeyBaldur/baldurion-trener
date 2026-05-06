@@ -1,0 +1,50 @@
+---
+// UWAGA: Wygenerowany szablon. Przed produkcją przejrzeć i zatwierdzić prawnie.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'pl';
+const lastUpdated = new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'tozsamosc', label: 'Tożsamość operatora' },
+  { id: 'charakter', label: 'Charakter strony' },
+  { id: 'wlasnosc', label: 'Własność intelektualna' },
+  { id: 'odpowiedzialnosc', label: 'Ograniczenie odpowiedzialności' },
+  { id: 'coaching', label: 'Usługi coachingu' },
+  { id: 'prawo', label: 'Prawo właściwe' },
+];
+---
+
+<LegalLayout
+  title="Nota Prawna"
+  description="Informacje prawne o Baldurion: tożsamość operatora, własność intelektualna i odpowiedzialność."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="tozsamosc">1. Tożsamość operatora</h2>
+  <ul>
+    <li><strong>Operator:</strong> Rodolfo A. Calvo Jaubert</li>
+    <li><strong>Lokalizacja:</strong> Katowice, Polska</li>
+    <li><strong>Email:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Strona internetowa:</strong> https://baldurion.com</li>
+  </ul>
+
+  <h2 id="charakter">2. Charakter strony</h2>
+  <p>Baldurion to osobisty projekt edukacyjny poświęcony treningowi, nauce o ćwiczeniach i żywieniu sportowemu. Oferuje również usługi coachingu personalnego na żądanie. Strona jest prowadzona przez osobę fizyczną i nie stanowi zarejestrowanej firmy.</p>
+
+  <h2 id="wlasnosc">3. Własność intelektualna</h2>
+  <p>Wszystkie treści opublikowane w Baldurion (artykuły, własne zdjęcia, projekt strony, marka "Baldurion" i awatar postaci) są chronione prawem autorskim.</p>
+  <ul>
+    <li><strong>Dozwolone:</strong> cytowanie artykułów z linkiem do źródła, udostępnianie linków w mediach społecznościowych, używanie krótkich fragmentów z podaniem źródła.</li>
+    <li><strong>Niedozwolone:</strong> reprodukowanie pełnych artykułów na innych stronach, tłumaczenie bez zezwolenia, używanie awatara lub marki do innych celów, używanie treści do trenowania modeli AI bez wyraźnego zezwolenia.</li>
+  </ul>
+
+  <h2 id="odpowiedzialnosc">4. Ograniczenie odpowiedzialności</h2>
+  <p>Treści Baldurion mają charakter <strong>edukacyjny i informacyjny</strong>. Nie zastępują profesjonalnej porady medycznej, fizjoterapeutycznej ani wykwalifikowanego dietetyka. Przed zastosowaniem jakiegokolwiek protokołu treningowego lub żywieniowego skonsultuj się z odpowiednim specjalistą.</p>
+
+  <h2 id="coaching">5. Usługi coachingu</h2>
+  <p>Usługi coachingu personalnego są regulowane odrębną umową zawieraną przed rozpoczęciem usługi. Warunki tej umowy mają pierwszeństwo przed informacjami opublikowanymi na stronie.</p>
+
+  <h2 id="prawo">6. Prawo właściwe</h2>
+  <p>Niniejsza nota prawna podlega prawu polskiemu oraz, w zakresie praw użytkowników europejskich, Rozporządzeniu o Ochronie Danych Osobowych (RODO). W przypadku sporów właściwe będą sądy w Katowicach.</p>
+</LegalLayout>

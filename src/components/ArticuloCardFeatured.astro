@@ -1,0 +1,78 @@
+---
+import type { Locale } from '../i18n/index';
+import { useTranslations, calculateReadingTime } from '../i18n/index';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  readingTime?: number;
+  body?: string;
+  locale: Locale;
+  bgColor?: 'lime' | 'lilac' | 'beige';
+  relatedArticles?: Array<{ title: string; slug: string }>;
+  animationDelay?: number;
+}
+
+const {
+  title,
+  description,
+  slug,
+  category,
+  readingTime,
+  body = '',
+  locale,
+  bgColor = 'lime',
+  relatedArticles = [],
+  animationDelay = 0,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const rt = readingTime ?? calculateReadingTime(body);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+const href = `${prefix}/articulos/${slug}/`;
+
+const bgHex = { lime: '#D4E84A', lilac: '#D9C2F0', beige: '#F4ECE0' }[bgColor];
+const categoryLabel = t.categories[category as keyof typeof t.categories] ?? category;
+---
+
+<article
+  class="animate-in group rounded-3xl overflow-hidden p-6 flex flex-col gap-4 hover:-translate-y-0.5 transition-all duration-200"
+  style={`background-color: ${bgHex}; animation-delay: ${animationDelay}ms;`}
+>
+  <div class="flex items-center gap-1.5" style="color: rgba(10,10,10,0.5);">
+    <span class="text-[11px] font-bold uppercase tracking-[0.06em]">{categoryLabel}</span>
+    <span class="text-[11px]">&middot;</span>
+    <span class="text-[11px] font-bold uppercase tracking-[0.06em]">{rt} {t.article.readingTime}</span>
+  </div>
+  <h2 class="font-display text-2xl md:text-3xl leading-none" style="font-family: var(--font-display); color: #0A0A0A;">
+    <a href={href} class="hover:opacity-70 transition-opacity duration-200">
+      {title.toUpperCase()}
+    </a>
+  </h2>
+  <p class="text-sm line-clamp-3 flex-1" style="color: rgba(10,10,10,0.65);">{description}</p>
+  <a
+    href={href}
+    class="inline-flex items-center gap-1.5 text-sm font-bold hover:opacity-60 transition-opacity duration-200 mt-auto"
+    style="color: #0A0A0A;"
+  >
+    {t.article.readMore}
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  {relatedArticles.length > 0 && (
+    <div class="pt-4 flex flex-col gap-2 mt-2" style="border-top: 1px solid rgba(10,10,10,0.12);">
+      {relatedArticles.slice(0, 2).map(({ title: rTitle, slug: rSlug }) => (
+        <a
+          href={`${prefix}/articulos/${rSlug}/`}
+          class="flex items-center justify-between gap-2 text-xs font-semibold transition-opacity duration-150 hover:opacity-60"
+          style="color: rgba(10,10,10,0.7);"
+        >
+          <span class="line-clamp-1">{rTitle}</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0"><path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      ))}
+    </div>
+  )}
+</article>

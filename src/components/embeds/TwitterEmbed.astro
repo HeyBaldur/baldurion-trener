@@ -1,0 +1,86 @@
+﻿---
+interface Props {
+  tweetId: string;
+  username: string;
+}
+const { tweetId, username } = Astro.props;
+const locale = (Astro.currentLocale ?? 'en') as 'es' | 'en' | 'pl';
+const labels = {
+  es: { load: `@${username} Â· Click para cargar tweet`, warning: 'Al cargar aceptas las cookies de X/Twitter' },
+  en: { load: `@${username} Â· Click to load tweet`, warning: 'By loading you accept X/Twitter cookies' },
+  pl: { load: `@${username} Â· Kliknij, aby zaÅ‚adowaÄ‡ tweet`, warning: 'ÅadujÄ…c, akceptujesz pliki cookie X/Twitter' },
+}[locale];
+---
+
+<div
+  class="tw-embed"
+  data-provider="twitter"
+  data-id={tweetId}
+  data-username={username}
+  style="border-radius:1rem;overflow:hidden;background:#1a1a1a;"
+>
+  <div
+    class="tw-placeholder"
+    role="button"
+    tabindex="0"
+    aria-label={labels.load}
+    style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:12px;"
+  >
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zM17.083 19.77h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+    </svg>
+    <p style="font-size:13px;color:rgba(255,255,255,0.8);font-family:var(--font-body);text-align:center;margin:0;">{labels.load}</p>
+    <p style="font-size:10px;color:rgba(255,255,255,0.4);font-family:var(--font-body);text-align:center;margin:0;">{labels.warning}</p>
+  </div>
+  <div class="tw-frame" style="display:none;padding:12px;"></div>
+  <div aria-live="polite" aria-atomic="true" class="sr-only"></div>
+</div>
+
+<script>
+import { hasLoadedEmbed, markEmbedLoaded } from '../../scripts/consent';
+
+function loadTwitter(container: HTMLElement, tweetId: string, username: string) {
+  const placeholder = container.querySelector<HTMLElement>('.tw-placeholder')!;
+  const frame = container.querySelector<HTMLElement>('.tw-frame')!;
+  const live = container.querySelector('[aria-live]')!;
+
+  const blockquote = document.createElement('blockquote');
+  blockquote.className = 'twitter-tweet';
+  blockquote.setAttribute('data-dnt', 'true');
+  const a = document.createElement('a');
+  a.href = `https://twitter.com/${username}/status/${tweetId}`;
+  blockquote.appendChild(a);
+  frame.appendChild(blockquote);
+
+  if (!document.querySelector('script[src*="platform.twitter.com"]')) {
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.async = true;
+    script.charset = 'utf-8';
+    document.body.appendChild(script);
+  } else {
+    (window as { twttr?: { widgets?: { load: (el: HTMLElement) => void } } }).twttr?.widgets?.load(frame);
+  }
+
+  placeholder.style.display = 'none';
+  frame.style.display = 'block';
+  live.textContent = 'Tweet loaded.';
+}
+
+document.querySelectorAll<HTMLElement>('[data-provider="twitter"]').forEach(container => {
+  const id = container.dataset.id!;
+  const username = container.dataset.username!;
+  if (hasLoadedEmbed('twitter', id)) {
+    loadTwitter(container, id, username);
+    return;
+  }
+  const placeholder = container.querySelector<HTMLElement>('.tw-placeholder')!;
+  const activate = () => { markEmbedLoaded('twitter', id); loadTwitter(container, id, username); };
+  placeholder.addEventListener('click', activate);
+  placeholder.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+</script>
+
+<style>
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+</style>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/index';
+
+const locale = 'en';
+const t = useTranslations(locale);
+---
+
+<BaseLayout
+  title={`${t.preferences.title} — Baldurion`}
+  description={t.preferences.subtitle}
+  locale={locale}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 pb-20">
+
+    <div class="mb-10">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-text-muted)] mb-4">
+        {t.legal.category}
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl leading-none mb-3" style="font-family:var(--font-display);">
+        {t.preferences.title.toUpperCase()}
+      </h1>
+      <p class="text-[var(--color-text-muted)]">{t.preferences.subtitle}</p>
+    </div>
+
+    <div class="flex flex-col gap-4 mb-12">
+
+      <div class="rounded-2xl border border-[var(--color-border)] p-5">
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex-1">
+            <h2 class="font-display text-lg mb-1" style="font-family:var(--font-display);">{t.preferences.sitePrefTitle.toUpperCase()}</h2>
+            <p class="text-sm text-[var(--color-text-muted)]">{t.preferences.sitePrefBody}</p>
+          </div>
+          <span class="shrink-0 text-xs font-bold px-3 py-1 rounded-full" style="background-color:#D4E84A;color:#0A0A0A;">
+            {t.preferences.sitePrefStatus}
+          </span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-[var(--color-border)] p-5">
+        <div class="flex items-start justify-between gap-4 mb-4">
+          <div class="flex-1">
+            <h2 class="font-display text-lg mb-1" style="font-family:var(--font-display);">{t.preferences.embedsTitle.toUpperCase()}</h2>
+            <p class="text-sm text-[var(--color-text-muted)]">{t.preferences.embedsBody}</p>
+            <p id="embed-count" class="text-sm text-[var(--color-text-muted)] mt-2"></p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="clear-embeds-btn" class="text-sm font-bold px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-text)] transition-colors duration-150">
+            {t.preferences.embedsClear}
+          </button>
+          <span id="clear-confirm" class="text-sm text-[var(--color-text-muted)] hidden">{t.preferences.embedsCleared}</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-[var(--color-border)] p-5">
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex-1">
+            <h2 class="font-display text-lg mb-1" style="font-family:var(--font-display);">{t.preferences.trackingTitle.toUpperCase()}</h2>
+            <p class="text-sm text-[var(--color-text-muted)]">{t.preferences.trackingBody}</p>
+          </div>
+          <span class="shrink-0 text-xs font-bold px-3 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)]">
+            {t.preferences.trackingStatus}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-border)]/30 p-6">
+      <h2 class="font-display text-lg mb-3" style="font-family:var(--font-display);">{t.preferences.rightsTitle.toUpperCase()}</h2>
+      <p class="text-sm text-[var(--color-text-muted)]">{t.preferences.rightsBody}</p>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+import { getEmbedCount, clearAllEmbeds } from '../scripts/consent';
+const countEl = document.getElementById('embed-count');
+const clearBtn = document.getElementById('clear-embeds-btn');
+const confirmEl = document.getElementById('clear-confirm');
+function updateCount() {
+  const n = getEmbedCount();
+  if (countEl) countEl.textContent = n > 0 ? `You have activated ${n} embed(s) on this device.` : '';
+}
+updateCount();
+clearBtn?.addEventListener('click', () => {
+  clearAllEmbeds(); updateCount();
+  confirmEl?.classList.remove('hidden');
+  setTimeout(() => confirmEl?.classList.add('hidden'), 3000);
+});
+</script>

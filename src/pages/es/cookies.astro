@@ -1,0 +1,48 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'es';
+const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'que-son', label: '¿Qué son las cookies?' },
+  { id: 'usa-cookies', label: '¿Usa Baldurion cookies?' },
+  { id: 'localstorage', label: 'Qué guarda Baldurion en tu navegador' },
+  { id: 'embebidos', label: 'Los embebidos de terceros' },
+];
+---
+
+<LegalLayout
+  title="Política de Cookies"
+  description="Baldurion no usa cookies. Descubre qué guardamos en tu navegador y por qué."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="que-son">¿Qué son las cookies?</h2>
+  <p>Las cookies son pequeños archivos que algunos sitios web guardan en tu navegador para recordar información (preferencias, sesiones, tracking). Hay distintos tipos según su finalidad y duración.</p>
+
+  <h2 id="usa-cookies">¿Usa Baldurion cookies?</h2>
+  <p><strong>No usamos cookies de ningún tipo.</strong> Ni propias ni de terceros. Ni necesarias, ni de tracking, ni de marketing.</p>
+
+  <h2 id="localstorage">¿Qué guarda Baldurion en tu navegador?</h2>
+  <p>Usamos <code>localStorage</code>, que <strong>NO es una cookie</strong>. Es una API moderna del navegador que permite guardar preferencias sin enviarlas a ningún servidor.</p>
+
+  <table>
+    <thead>
+      <tr><th>Clave</th><th>Contenido</th><th>Finalidad</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>baldurion_theme</code></td><td>"light" o "dark"</td><td>Recordar tu tema preferido</td></tr>
+      <tr><td><code>baldurion_locale</code></td><td>"es", "en" o "pl"</td><td>Recordar tu idioma</td></tr>
+      <tr><td><code>baldurion_loaded_embeds</code></td><td>JSON con IDs</td><td>No volver a pedir activación de embebidos</td></tr>
+      <tr><td><code>baldurion_banner_dismissed</code></td><td>"true"</td><td>No mostrar el banner informativo de nuevo</td></tr>
+    </tbody>
+  </table>
+
+  <p>Estos datos solo existen en tu navegador, no se envían a Baldurion ni a terceros, y puedes borrarlos cuando quieras desde la configuración de tu navegador o desde la <a href="/es/preferencias/">página de preferencias</a>.</p>
+
+  <h2 id="embebidos">Los embebidos de terceros</h2>
+  <p>Los embebidos de YouTube, Spotify, Twitter e Instagram <strong>sí pueden poner cookies</strong> cuando los activas. Por eso no se cargan automáticamente. Solo se activan si tú haces click conscientemente en cada uno.</p>
+  <p>Para más información sobre el tratamiento de tus datos, consulta nuestra <a href="/es/privacidad/">Política de Privacidad</a>.</p>
+</LegalLayout>

@@ -1,0 +1,52 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'es';
+const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'aceptacion', label: 'Aceptación' },
+  { id: 'permitido', label: 'Uso permitido' },
+  { id: 'no-permitido', label: 'Uso no permitido' },
+  { id: 'coaching', label: 'Servicios de coaching' },
+  { id: 'modificaciones', label: 'Modificaciones' },
+  { id: 'ley', label: 'Ley aplicable' },
+];
+---
+
+<LegalLayout
+  title="Términos y Condiciones"
+  description="Términos y condiciones de uso del sitio Baldurion."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="aceptacion">1. Aceptación</h2>
+  <p>Al usar Baldurion (en adelante, "el Sitio"), aceptas estos términos. Si no estás de acuerdo, deja de usar el Sitio.</p>
+
+  <h2 id="permitido">2. Uso permitido</h2>
+  <ul>
+    <li>Leer el contenido publicado libremente</li>
+    <li>Compartir enlaces a artículos en redes sociales o por mensajería privada</li>
+    <li>Citar fragmentos breves en otros contextos siempre que atribuyas la fuente</li>
+    <li>Contactar al titular para servicios de coaching o consultas</li>
+  </ul>
+
+  <h2 id="no-permitido">3. Uso no permitido</h2>
+  <ul>
+    <li>Reproducir artículos completos en otros sitios sin permiso explícito</li>
+    <li>Hacer ingeniería inversa del código del sitio</li>
+    <li>Intentar acceder a áreas no públicas del Sitio</li>
+    <li>Usar el contenido para entrenar modelos de IA sin permiso explícito</li>
+    <li>Suplantar la identidad del autor o la marca Baldurion</li>
+  </ul>
+
+  <h2 id="coaching">4. Servicios de coaching</h2>
+  <p>Si contratas servicios de coaching personal, se establecerá un contrato específico antes de empezar. Las condiciones, precios, métodos de pago y duración se acuerdan individualmente. Tienes derecho de desistimiento de 14 días según la directiva UE de servicios digitales, salvo en casos donde el servicio ya haya empezado con tu consentimiento explícito.</p>
+
+  <h2 id="modificaciones">5. Modificaciones</h2>
+  <p>El titular puede modificar estos términos. Los cambios significativos se anunciarán en la home del sitio. La fecha de "Última actualización" arriba refleja la versión vigente.</p>
+
+  <h2 id="ley">6. Ley aplicable</h2>
+  <p>Estos términos se rigen por la legislación polaca y, donde proceda, por la normativa europea de consumidores y RGPD.</p>
+</LegalLayout>

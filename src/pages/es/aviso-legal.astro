@@ -1,0 +1,53 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'es';
+const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'identidad', label: 'Identidad del responsable' },
+  { id: 'naturaleza', label: 'Naturaleza del sitio' },
+  { id: 'propiedad', label: 'Propiedad intelectual' },
+  { id: 'responsabilidad', label: 'Limitación de responsabilidad' },
+  { id: 'coaching', label: 'Servicios de coaching' },
+  { id: 'legislacion', label: 'Legislación aplicable' },
+];
+---
+
+<LegalLayout
+  title="Aviso Legal"
+  description="Información legal sobre Baldurion: identidad del titular, propiedad intelectual y responsabilidad."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="identidad">1. Identidad del responsable</h2>
+  <ul>
+    <li><strong>Titular:</strong> Rodolfo A. Calvo Jaubert</li>
+    <li><strong>Ubicación:</strong> Katowice, Polonia</li>
+    <li><strong>Email:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Sitio web:</strong> https://baldurion.com</li>
+  </ul>
+
+  <h2 id="naturaleza">2. Naturaleza del sitio</h2>
+  <p>Baldurion es un proyecto personal de divulgación sobre entrenamiento, ciencia del ejercicio y nutrición deportiva. Ofrece también servicios de coaching personal a contratar bajo demanda.</p>
+  <p>El sitio es operado por una persona física a título personal y no constituye una empresa registrada en el momento de esta versión del aviso legal. Si esto cambia, este documento será actualizado con los nuevos datos fiscales.</p>
+
+  <h2 id="propiedad">3. Propiedad intelectual</h2>
+  <p>Todo el contenido publicado en Baldurion (artículos, imágenes propias, diseño del sitio, marca "Baldurion" y avatar del personaje) está protegido por derechos de autor.</p>
+  <ul>
+    <li><strong>Permitido:</strong> citar artículos enlazando a la fuente original, compartir links en redes sociales, usar fragmentos breves con atribución.</li>
+    <li><strong>No permitido:</strong> reproducir artículos completos en otros sitios, traducirlos sin permiso, usar el avatar o la marca para otros fines, usar el contenido para entrenar modelos de IA sin permiso explícito.</li>
+  </ul>
+  <p>Las imágenes de stock provenientes de Unsplash u otras fuentes libres mantienen las licencias de sus autores originales.</p>
+
+  <h2 id="responsabilidad">4. Limitación de responsabilidad</h2>
+  <p>El contenido de Baldurion es <strong>divulgativo y educativo</strong>. No sustituye consejo médico profesional, fisioterapéutico ni de un nutricionista cualificado. Antes de aplicar cualquier protocolo de entrenamiento, dieta o suplementación, consulta con un profesional de la salud.</p>
+  <p>Baldurion y su autor no se hacen responsables de lesiones derivadas de la aplicación incorrecta del contenido, decisiones nutricionales basadas exclusivamente en lo leído aquí, ni de resultados de entrenamiento que dependen de múltiples factores individuales.</p>
+
+  <h2 id="coaching">5. Servicios de coaching</h2>
+  <p>Los servicios de coaching personal contratados directamente con Rudolf están sujetos a un contrato específico que se firma antes del inicio del servicio. Las condiciones de dicho contrato priman sobre cualquier información publicada en el sitio.</p>
+
+  <h2 id="legislacion">6. Legislación aplicable</h2>
+  <p>Este aviso legal se rige por la legislación polaca y, en lo que respecta a derechos del usuario europeo, por el Reglamento General de Protección de Datos (RGPD) de la UE. Para cualquier disputa, los tribunales competentes serán los de Katowice, Polonia, salvo que la legislación de protección al consumidor establezca un foro distinto.</p>
+</LegalLayout>

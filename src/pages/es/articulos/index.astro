@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArticuloCard from '../../../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../../i18n/index';
+
+const locale = 'es';
+const t = useTranslations(locale);
+
+const allArticulos = await getCollection('articulos', ({ id, data }) => {
+  return id.startsWith('es/') && !data.draft;
+});
+
+const articulos = allArticulos
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map(a => ({
+    title: a.data.title,
+    description: a.data.description,
+    slug: a.id.replace('es/', ''),
+    category: a.data.category,
+    pubDate: a.data.pubDate,
+    heroImage: a.data.heroImage,
+    heroImageAlt: a.data.heroImageAlt,
+    readingTime: a.data.readingTime,
+    body: a.body ?? '',
+  }));
+
+const categories = ['entrenamiento', 'nutricion', 'lesiones', 'metodologia', 'ciencia', 'casos-de-estudio'];
+---
+
+<BaseLayout
+  title="Artículos — Baldurion"
+  description="Todos los artículos de Baldurion sobre entrenamiento, nutrición, lesiones y metodología deportiva."
+  locale={locale}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-10">
+      <h1 class="font-display text-4xl md:text-5xl mb-6" style="font-family: var(--font-display);">
+        {t.nav.articles.toUpperCase()}
+      </h1>
+      <div class="flex flex-wrap gap-2" id="category-filters">
+        <button
+          data-category="all"
+          class="category-filter-btn text-xs font-bold px-4 py-2 rounded-full border-2 border-[var(--color-text)] bg-[var(--color-text)] text-[var(--color-bg)] transition-all duration-150"
+        >
+          {t.filter.all}
+        </button>
+        {categories.map(cat => (
+          <button
+            data-category={cat}
+            class="category-filter-btn text-xs font-bold px-4 py-2 rounded-full border-2 border-[var(--color-border)] hover:border-[var(--color-text)] transition-all duration-150"
+          >
+            {t.categories[cat as keyof typeof t.categories]}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="articles-grid">
+      {articulos.map((art, i) => (
+        <div data-category={art.category} class="article-item">
+          <ArticuloCard
+            title={art.title}
+            description={art.description}
+            slug={art.slug}
+            category={art.category}
+            pubDate={art.pubDate}
+            heroImage={art.heroImage}
+            heroImageAlt={art.heroImageAlt}
+            readingTime={art.readingTime}
+            body={art.body}
+            locale={locale}
+            animationDelay={i * 60}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.category-filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.article-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.category ?? 'all';
+
+      buttons.forEach(b => {
+        b.classList.remove('bg-[var(--color-text)]', 'text-[var(--color-bg)]', 'border-[var(--color-text)]');
+        b.classList.add('border-[var(--color-border)]');
+      });
+      btn.classList.add('bg-[var(--color-text)]', 'text-[var(--color-bg)]', 'border-[var(--color-text)]');
+      btn.classList.remove('border-[var(--color-border)]');
+
+      items.forEach(item => {
+        if (cat === 'all' || item.dataset.category === cat) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      const url = new URL(window.location.href);
+      if (cat === 'all') {
+        url.searchParams.delete('categoria');
+      } else {
+        url.searchParams.set('categoria', cat);
+      }
+      window.history.replaceState({}, '', url.toString());
+    });
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const initialCat = params.get('categoria');
+  if (initialCat) {
+    const btn = document.querySelector<HTMLButtonElement>(`[data-category="${initialCat}"]`);
+    btn?.click();
+  }
+</script>

@@ -1,0 +1,205 @@
+---
+import type { Locale } from '../i18n/index';
+
+interface Props {
+  t: {
+    eyebrow: string;
+    title: string;
+    leadParagraph: string;
+    body: string[];
+    calendlyButtonLabel: string;
+    calendlyHelpText: string;
+    altContactLabel: string;
+    altContactEmail: string;
+  };
+  locale: Locale;
+}
+
+const { t } = Astro.props;
+const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
+---
+
+<section class="contact">
+  <div class="contact__intro">
+    <span class="contact__eyebrow">{t.eyebrow}</span>
+    <h1 class="contact__title">{t.title}</h1>
+  </div>
+
+  <div class="contact__body">
+    <p class="contact__lead">{t.leadParagraph}</p>
+    {t.body.map((paragraph) => (
+      <p set:html={paragraph} />
+    ))}
+  </div>
+
+  <div class="contact__cta">
+    <a
+      href={calendlyUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact__button rounded-full"
+    >
+      {t.calendlyButtonLabel}
+      <span class="contact__button-arrow">→</span>
+    </a>
+    <p class="contact__cta-help">{t.calendlyHelpText}</p>
+  </div>
+
+  <div class="contact__alt">
+    <span class="contact__alt-label">{t.altContactLabel}</span>
+    <a href={`mailto:${t.altContactEmail}`} class="contact__alt-email">
+      {t.altContactEmail}
+    </a>
+  </div>
+</section>
+
+<style>
+  .contact {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+
+  .contact__intro {
+    margin-bottom: 64px;
+  }
+
+  .contact__eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  :global([data-theme="dark"]) .contact__eyebrow { color: #D4E84A; }
+  :global([data-theme="light"]) .contact__eyebrow { color: #444444; }
+
+  .contact__title {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    text-transform: none;
+    margin: 0;
+  }
+  :global([data-theme="dark"]) .contact__title { color: #FFFFFF; }
+  :global([data-theme="light"]) .contact__title { color: #0A0A0A; }
+
+  .contact__body {
+    margin-bottom: 56px;
+  }
+
+  .contact__lead {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.2;
+    padding-left: 20px;
+    border-left: 3px solid #D4E84A;
+    margin-bottom: 32px;
+  }
+  :global([data-theme="dark"]) .contact__lead { color: #FFFFFF; }
+  :global([data-theme="light"]) .contact__lead { color: #0A0A0A; }
+
+  .contact__body p:not(.contact__lead) {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  :global([data-theme="dark"]) .contact__body p:not(.contact__lead) { color: #CCCCCC; }
+  :global([data-theme="light"]) .contact__body p:not(.contact__lead) { color: #555555; }
+
+  .contact__body :global(strong) { font-weight: 700; }
+  :global([data-theme="dark"]) .contact__body :global(strong) { color: #D4E84A; }
+  :global([data-theme="light"]) .contact__body :global(strong) { color: #0A0A0A; }
+
+  .contact__cta {
+    background: linear-gradient(135deg, #D4E84A 0%, #C5D944 100%);
+    border-radius: 24px;
+    padding: 48px;
+    text-align: center;
+  }
+
+  .contact__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #0A0A0A;
+    color: #D4E84A;
+    padding: 20px 40px;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid #0A0A0A;
+    transition: background 200ms, color 200ms, transform 200ms;
+  }
+  .contact__button:hover {
+    background: transparent;
+    color: #0A0A0A;
+    transform: translateY(-2px);
+  }
+
+  .contact__button-arrow {
+    font-size: 18px;
+    display: inline-block;
+    transition: transform 200ms;
+  }
+  .contact__button:hover .contact__button-arrow {
+    transform: translateX(4px);
+  }
+
+  .contact__cta-help {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #0A0A0A;
+    font-weight: 500;
+    opacity: 0.65;
+    margin-bottom: 0;
+  }
+
+  .contact__alt {
+    margin-top: 56px;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  :global([data-theme="dark"]) .contact__alt { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+  :global([data-theme="light"]) .contact__alt { border-top: 1px solid rgba(0, 0, 0, 0.08); }
+
+  .contact__alt-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  :global([data-theme="dark"]) .contact__alt-label { color: #CCCCCC; }
+  :global([data-theme="light"]) .contact__alt-label { color: #555555; }
+
+  .contact__alt-email {
+    font-family: var(--font-body);
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 200ms;
+  }
+  :global([data-theme="dark"]) .contact__alt-email { color: #FFFFFF; }
+  :global([data-theme="light"]) .contact__alt-email { color: #0A0A0A; }
+  .contact__alt-email:hover { color: #D4E84A; }
+
+  @media (max-width: 640px) {
+    .contact { padding: 56px 20px 80px; }
+    .contact__title { font-size: 44px; }
+    .contact__lead { font-size: 24px; }
+    .contact__cta { padding: 32px 24px; }
+    .contact__button { padding: 16px 28px; font-size: 14px; }
+  }
+</style>

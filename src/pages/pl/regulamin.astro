@@ -1,0 +1,52 @@
+---
+// UWAGA: Wygenerowany szablon. Przed produkcją przejrzeć i zatwierdzić prawnie.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'pl';
+const lastUpdated = new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'akceptacja', label: 'Akceptacja' },
+  { id: 'dozwolone', label: 'Dozwolone użytkowanie' },
+  { id: 'niedozwolone', label: 'Niedozwolone użytkowanie' },
+  { id: 'coaching', label: 'Usługi coachingu' },
+  { id: 'zmiany', label: 'Zmiany' },
+  { id: 'prawo', label: 'Prawo właściwe' },
+];
+---
+
+<LegalLayout
+  title="Regulamin"
+  description="Regulamin korzystania ze strony Baldurion."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="akceptacja">1. Akceptacja</h2>
+  <p>Korzystając z Baldurion ("Strona"), akceptujesz niniejszy regulamin. Jeśli nie zgadzasz się, przestań korzystać ze Strony.</p>
+
+  <h2 id="dozwolone">2. Dozwolone użytkowanie</h2>
+  <ul>
+    <li>Swobodne czytanie opublikowanych treści</li>
+    <li>Udostępnianie linków do artykułów w mediach społecznościowych lub prywatnych wiadomościach</li>
+    <li>Cytowanie krótkich fragmentów z podaniem źródła</li>
+    <li>Kontaktowanie się z operatorem w sprawie usług coachingu lub zapytań</li>
+  </ul>
+
+  <h2 id="niedozwolone">3. Niedozwolone użytkowanie</h2>
+  <ul>
+    <li>Reprodukowanie pełnych artykułów na innych stronach bez wyraźnego zezwolenia</li>
+    <li>Inżynieria wsteczna kodu strony</li>
+    <li>Próby dostępu do niepublicznych obszarów Strony</li>
+    <li>Używanie treści do trenowania modeli AI bez wyraźnego zezwolenia</li>
+    <li>Podszywanie się pod autora lub markę Baldurion</li>
+  </ul>
+
+  <h2 id="coaching">4. Usługi coachingu</h2>
+  <p>Przy zakupie usług coachingu personalnego zawierana jest odrębna umowa. Warunki, ceny i metody płatności są uzgadniane indywidualnie. Masz prawo do odstąpienia od umowy w ciągu 14 dni zgodnie z unijną dyrektywą o usługach cyfrowych, chyba że usługa już się rozpoczęła za Twoją wyraźną zgodą.</p>
+
+  <h2 id="zmiany">5. Zmiany</h2>
+  <p>Operator może zmieniać niniejszy regulamin. Istotne zmiany zostaną ogłoszone na stronie głównej.</p>
+
+  <h2 id="prawo">6. Prawo właściwe</h2>
+  <p>Niniejszy regulamin podlega prawu polskiemu oraz, w stosownych przypadkach, europejskim przepisom dotyczącym konsumentów i RODO.</p>
+</LegalLayout>

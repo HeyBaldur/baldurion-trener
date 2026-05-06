@@ -1,0 +1,100 @@
+---
+import ArticuloCardLarge from './ArticuloCardLarge.astro';
+import ArticuloCardFeatured from './ArticuloCardFeatured.astro';
+import ArticuloCard from './ArticuloCard.astro';
+import CategoriesPanel from './CategoriesPanel.astro';
+import type { Locale } from '../i18n/index';
+
+interface ArticuloData {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  pubDate: Date;
+  heroImage: string;
+  heroImageAlt: string;
+  readingTime?: number;
+  body?: string;
+}
+
+interface Props {
+  articles: ArticuloData[];
+  locale: Locale;
+}
+
+const { articles, locale } = Astro.props;
+
+const [main, featured, lilacCard, ...rest] = articles;
+const relatedForFeatured = [lilacCard, ...rest].slice(0, 2).filter(Boolean).map(a => ({ title: a.title, slug: a.slug }));
+---
+
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1.5fr_1fr] gap-6 mb-6">
+    {main && (
+      <ArticuloCardLarge
+        title={main.title}
+        description={main.description}
+        slug={main.slug}
+        category={main.category}
+        heroImage={main.heroImage}
+        heroImageAlt={main.heroImageAlt}
+        readingTime={main.readingTime}
+        body={main.body}
+        locale={locale}
+        animationDelay={0}
+      />
+    )}
+
+    {featured && (
+      <ArticuloCardFeatured
+        title={featured.title}
+        description={featured.description}
+        slug={featured.slug}
+        category={featured.category}
+        readingTime={featured.readingTime}
+        body={featured.body}
+        locale={locale}
+        bgColor="lime"
+        relatedArticles={relatedForFeatured}
+        animationDelay={80}
+      />
+    )}
+
+    <div class="flex flex-col gap-6">
+      {lilacCard && (
+        <ArticuloCardFeatured
+          title={lilacCard.title}
+          description={lilacCard.description}
+          slug={lilacCard.slug}
+          category={lilacCard.category}
+          readingTime={lilacCard.readingTime}
+          body={lilacCard.body}
+          locale={locale}
+          bgColor="lilac"
+          animationDelay={160}
+        />
+      )}
+      <CategoriesPanel locale={locale} animationDelay={240} />
+    </div>
+  </div>
+
+  {rest.length > 0 && (
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {rest.map((article, i) => (
+        <ArticuloCard
+          title={article.title}
+          description={article.description}
+          slug={article.slug}
+          category={article.category}
+          pubDate={article.pubDate}
+          heroImage={article.heroImage}
+          heroImageAlt={article.heroImageAlt}
+          readingTime={article.readingTime}
+          body={article.body}
+          locale={locale}
+          animationDelay={320 + i * 80}
+        />
+      ))}
+    </div>
+  )}
+</section>

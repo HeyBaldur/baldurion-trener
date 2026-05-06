@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticuloCard from '../../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/index';
+
+const locale = 'en';
+const t = useTranslations(locale);
+
+const enArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('en/') && !data.draft);
+const esArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('es/') && !data.draft);
+const source = enArticulos.length > 0 ? enArticulos : esArticulos;
+const localePrefix = enArticulos.length > 0 ? 'en/' : 'es/';
+
+const articulos = source
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map(a => ({
+    title: a.data.title,
+    description: a.data.description,
+    slug: a.id.replace(localePrefix, ''),
+    category: a.data.category,
+    pubDate: a.data.pubDate,
+    heroImage: a.data.heroImage,
+    heroImageAlt: a.data.heroImageAlt,
+    readingTime: a.data.readingTime,
+    body: a.body ?? '',
+  }));
+---
+
+<BaseLayout
+  title="Articles — Baldurion"
+  description="All Baldurion articles on training, nutrition, injuries and sports methodology."
+  locale={locale}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="font-display text-4xl md:text-5xl mb-10" style="font-family: var(--font-display);">
+      {t.nav.articles.toUpperCase()}
+    </h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {articulos.map((art, i) => (
+        <ArticuloCard
+          title={art.title}
+          description={art.description}
+          slug={art.slug}
+          category={art.category}
+          pubDate={art.pubDate}
+          heroImage={art.heroImage}
+          heroImageAlt={art.heroImageAlt}
+          readingTime={art.readingTime}
+          body={art.body}
+          locale={locale}
+          animationDelay={i * 60}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+import type { Locale } from '../i18n/index';
+import { useTranslations, calculateReadingTime } from '../i18n/index';
+
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  heroImage: string;
+  heroImageAlt: string;
+  readingTime?: number;
+  body?: string;
+  locale: Locale;
+  animationDelay?: number;
+  showPlayButton?: boolean;
+}
+
+const {
+  title,
+  description,
+  slug,
+  category,
+  heroImage,
+  heroImageAlt,
+  readingTime,
+  body = '',
+  locale,
+  animationDelay = 0,
+  showPlayButton = false,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const rt = readingTime ?? calculateReadingTime(body);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+const href = `${prefix}/articulos/${slug}/`;
+const categoryLabel = t.categories[category as keyof typeof t.categories] ?? category;
+---
+
+<article
+  class="animate-in group relative rounded-3xl overflow-hidden aspect-[4/5] md:aspect-auto min-h-[420px] cursor-pointer hover:-translate-y-0.5 transition-all duration-200"
+  style={`animation-delay: ${animationDelay}ms;`}
+>
+  <a href={href} class="absolute inset-0">
+    <img
+      src={heroImage}
+      alt={heroImageAlt}
+      width="800"
+      height="600"
+      loading="eager"
+      decoding="async"
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+  </a>
+
+{showPlayButton && (
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: rgba(255,255,255,0.85); backdrop-filter: blur(4px);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M8 5.5L19 12L8 18.5V5.5Z" fill="#0A0A0A"/>
+        </svg>
+      </div>
+    </div>
+  )}
+
+  <div class="absolute bottom-0 left-0 right-0 p-6">
+    <div class="flex items-center gap-1.5 mb-2" style="color: rgba(255,255,255,0.65);">
+      <span class="text-[11px] font-bold uppercase tracking-[0.06em]">{categoryLabel}</span>
+      <span class="text-[11px]">&middot;</span>
+      <span class="text-[11px] font-bold uppercase tracking-[0.06em]">{rt} {t.article.readingTime}</span>
+    </div>
+    <h2 class="font-display text-2xl md:text-3xl leading-tight text-white" style="font-family: var(--font-display);">
+      <a href={href} class="hover:opacity-80 transition-opacity duration-200">
+        {title.toUpperCase()}
+      </a>
+    </h2>
+    <p class="text-white/75 text-sm mt-2 line-clamp-2">{description}</p>
+    <span class="inline-flex items-center gap-1 mt-3 text-sm font-bold text-white/90 hover:text-white transition-colors duration-200">
+      {t.article.readMore}
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7H11.5M11.5 7L7.5 3M11.5 7L7.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+</article>

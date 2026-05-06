@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CoachingPage from '../components/CoachingPage.astro';
+import { en } from '../i18n/en';
+
+const t = en.coaching;
+---
+
+<BaseLayout
+  title={t.metaTitle}
+  description={t.metaDescription}
+  locale="en"
+>
+  <CoachingPage t={t} locale="en" />
+</BaseLayout>

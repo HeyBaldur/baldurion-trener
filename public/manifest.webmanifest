@@ -1,0 +1,14 @@
+{
+  "name": "Baldurion",
+  "short_name": "Baldurion",
+  "description": "Fitness sin pseudociencia — entrenamiento basado en evidencia",
+  "start_url": "/es/",
+  "display": "minimal-ui",
+  "background_color": "#0A0A0A",
+  "theme_color": "#D4E84A",
+  "icons": [
+    { "src": "/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

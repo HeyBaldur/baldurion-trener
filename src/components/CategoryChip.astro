@@ -1,0 +1,45 @@
+---
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+
+interface Props {
+  category: string;
+  locale: Locale;
+  size?: 'sm' | 'md';
+  linkToCategory?: boolean;
+}
+
+const { category, locale, size = 'md', linkToCategory = true } = Astro.props;
+const t = useTranslations(locale);
+const label = t.categories[category as keyof typeof t.categories] ?? category;
+const sizeClass = size === 'sm' ? 'text-[10px] px-2.5 py-0.5' : 'text-[11px] px-3 py-1';
+const prefix = locale === 'en' ? '' : `/${locale}`;
+const href = `${prefix}/categoria/${category}/`;
+
+const chipColors: Record<string, string> = {
+  entrenamiento: 'background-color:#D4E84A;color:#0A0A0A',
+  nutricion: 'background-color:#D9C2F0;color:#0A0A0A',
+  lesiones: 'background-color:#FFDAB9;color:#0A0A0A',
+  metodologia: 'background-color:#B8DFF0;color:#0A0A0A',
+  ciencia: 'background-color:#B8F0CE;color:#0A0A0A',
+  'casos-de-estudio': 'background-color:#F0C8D0;color:#0A0A0A',
+};
+const chipStyle = chipColors[category] ?? 'background-color:#E5E5E0;color:#0A0A0A';
+---
+
+{linkToCategory ? (
+  <a
+    href={href}
+    class:list={['inline-block font-bold rounded-full transition-opacity duration-150 hover:opacity-75', sizeClass]}
+    style={chipStyle}
+  >
+    {label}
+  </a>
+) : (
+  <span
+    class:list={['inline-block font-bold rounded-full', sizeClass]}
+    style={chipStyle}
+  >
+    {label}
+  </span>
+)}

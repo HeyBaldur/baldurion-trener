@@ -1,0 +1,85 @@
+﻿---
+interface Props {
+  postId: string;
+  username: string;
+}
+const { postId, username } = Astro.props;
+const locale = (Astro.currentLocale ?? 'en') as 'es' | 'en' | 'pl';
+const labels = {
+  es: { load: `@${username} Â· Click para cargar post de Instagram`, warning: 'Al cargar aceptas las cookies de Instagram/Meta' },
+  en: { load: `@${username} Â· Click to load Instagram post`, warning: 'By loading you accept Instagram/Meta cookies' },
+  pl: { load: `@${username} Â· Kliknij, aby zaÅ‚adowaÄ‡ post Instagram`, warning: 'ÅadujÄ…c, akceptujesz pliki cookie Instagram/Meta' },
+}[locale];
+---
+
+<div
+  class="ig-embed"
+  data-provider="instagram"
+  data-id={postId}
+  data-username={username}
+  style="border-radius:1rem;overflow:hidden;background:#1a1a1a;"
+>
+  <div
+    class="ig-placeholder"
+    role="button"
+    tabindex="0"
+    aria-label={labels.load}
+    style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:12px;"
+  >
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    </svg>
+    <p style="font-size:13px;color:rgba(255,255,255,0.8);font-family:var(--font-body);text-align:center;margin:0;">{labels.load}</p>
+    <p style="font-size:10px;color:rgba(255,255,255,0.4);font-family:var(--font-body);text-align:center;margin:0;">{labels.warning}</p>
+  </div>
+  <div class="ig-frame" style="display:none;padding:12px;"></div>
+  <div aria-live="polite" aria-atomic="true" class="sr-only"></div>
+</div>
+
+<script>
+import { hasLoadedEmbed, markEmbedLoaded } from '../../scripts/consent';
+
+function loadInstagram(container: HTMLElement, postId: string, username: string) {
+  const placeholder = container.querySelector<HTMLElement>('.ig-placeholder')!;
+  const frame = container.querySelector<HTMLElement>('.ig-frame')!;
+  const live = container.querySelector('[aria-live]')!;
+
+  const blockquote = document.createElement('blockquote');
+  blockquote.className = 'instagram-media';
+  blockquote.setAttribute('data-instgrm-permalink', `https://www.instagram.com/p/${postId}/`);
+  blockquote.setAttribute('data-instgrm-version', '14');
+  frame.appendChild(blockquote);
+
+  if (!document.querySelector('script[src*="instagram.com/embed"]')) {
+    const script = document.createElement('script');
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+  } else {
+    (window as { instgrm?: { Embeds?: { process: () => void } } }).instgrm?.Embeds?.process();
+  }
+
+  placeholder.style.display = 'none';
+  frame.style.display = 'block';
+  live.textContent = 'Instagram post loaded.';
+}
+
+document.querySelectorAll<HTMLElement>('[data-provider="instagram"]').forEach(container => {
+  const id = container.dataset.id!;
+  const username = container.dataset.username!;
+  if (hasLoadedEmbed('instagram', id)) {
+    loadInstagram(container, id, username);
+    return;
+  }
+  const placeholder = container.querySelector<HTMLElement>('.ig-placeholder')!;
+  const activate = () => { markEmbedLoaded('instagram', id); loadInstagram(container, id, username); };
+  placeholder.addEventListener('click', activate);
+  placeholder.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+</script>
+
+<style>
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+</style>

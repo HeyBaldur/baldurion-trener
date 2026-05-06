@@ -1,0 +1,62 @@
+---
+// UWAGA: Wygenerowany szablon. Przed produkcją przejrzeć i zatwierdzić prawnie.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'pl';
+const lastUpdated = new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'administrator', label: 'Administrator danych' },
+  { id: 'dane', label: 'Jakie dane zbieramy' },
+  { id: 'kontakt', label: 'Gdy się z nami kontaktujesz' },
+  { id: 'osadzone', label: 'Osadzone treści zewnętrzne' },
+  { id: 'prawa', label: 'Twoje prawa' },
+  { id: 'organ', label: 'Organ nadzorczy' },
+  { id: 'zmiany', label: 'Zmiany w polityce' },
+];
+---
+
+<LegalLayout
+  title="Polityka Prywatności"
+  description="Jak Baldurion zarządza Twoimi danymi osobowymi. Bez śledzenia, bez marketingowych plików cookie."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="administrator">1. Administrator danych</h2>
+  <p>Baldurion to projekt osobisty prowadzony przez <strong>Rodolfo A. Calvo Jaubert</strong>, zamieszkałego w Katowicach, Polska.</p>
+  <ul>
+    <li><strong>Kontakt:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Cel strony:</strong> publikowanie treści o treningu, odżywianiu i nauce o ćwiczeniach oraz świadczenie usług coachingu personalnego.</li>
+  </ul>
+
+  <h2 id="dane">2. Jakie dane zbieramy</h2>
+  <p>Baldurion <strong>nie zbiera aktywnie danych osobowych</strong>. Nie używamy analityki, nie mamy plików cookie śledzenia, nie udostępniamy danych osobom trzecim.</p>
+  <p>Jedyne dane przechowywane w Twojej przeglądarce (przez <code>localStorage</code>) to:</p>
+  <ul>
+    <li>Twoje preferencje motywu (jasny lub ciemny)</li>
+    <li>Twój preferowany język</li>
+    <li>Lista zewnętrznych osadzeń, które ręcznie aktywowałeś (aby nie pytać ponownie)</li>
+    <li>Czy zamknąłeś baner informacyjny o prywatności</li>
+  </ul>
+  <p>Te dane <strong>nigdy nie opuszczają Twojej przeglądarki</strong>. Nie mamy serwera śledzenia i nie możemy uzyskać do nich dostępu.</p>
+
+  <h2 id="kontakt">3. Gdy się z nami kontaktujesz</h2>
+  <p>Jeśli piszesz do nas e-mailem (formularz kontaktowy lub zapytanie o coaching), otrzymamy Twoje imię, adres e-mail i treść wiadomości. Używamy ich wyłącznie do odpowiedzi na Twoje zapytanie. Przechowujemy je przez maksymalnie 24 miesiące od ostatniej interakcji.</p>
+  <p><strong>Podstawa prawna:</strong> zgoda użytkownika przy wysyłaniu formularza (art. 6 ust. 1 lit. a RODO).</p>
+
+  <h2 id="osadzone">4. Osadzone treści zewnętrzne</h2>
+  <p>Niektóre artykuły mogą zawierać osadzone treści z YouTube, Spotify, Twitter/X lub Instagram. <strong>Domyślnie te osadzone treści NIE ładują się automatycznie.</strong> Zobaczysz placeholder i zostaną aktywowane tylko po kliknięciu. Klikając, akceptujesz, że odpowiedni dostawca zbiera dane zgodnie ze swoją polityką.</p>
+
+  <h2 id="prawa">5. Twoje prawa</h2>
+  <p>Masz prawo do dostępu, sprostowania, usunięcia, sprzeciwu, przenoszenia i ograniczenia przetwarzania Twoich danych. Aby skorzystać z któregokolwiek z tych praw, napisz na <a href="mailto:contact.smartgymapp@gmail.com">contact.smartgymapp@gmail.com</a>. Odpowiemy w ciągu 30 dni.</p>
+
+  <h2 id="organ">6. Organ nadzorczy</h2>
+  <p>Jeśli uważasz, że Twoje prawa nie zostały uszanowane, możesz złożyć skargę do:</p>
+  <ul>
+    <li><strong>W Polsce:</strong> Urząd Ochrony Danych Osobowych (UODO) — <a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer">uodo.gov.pl</a></li>
+    <li><strong>W UE:</strong> lista na <a href="https://edpb.europa.eu" target="_blank" rel="noopener noreferrer">edpb.europa.eu</a></li>
+  </ul>
+
+  <h2 id="zmiany">7. Zmiany w polityce</h2>
+  <p>Możemy aktualizować tę politykę. Znaczące zmiany zostaną ogłoszone na stronie głównej. Data "Ostatnia aktualizacja" zawsze odzwierciedla bieżącą wersję.</p>
+</LegalLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+
+interface TOCItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  lastUpdated: string;
+  toc?: TOCItem[];
+}
+
+const { title, description, locale, lastUpdated, toc } = Astro.props;
+const t = useTranslations(locale);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12 pb-20">
+
+    <div class="mb-10">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-text-muted)] mb-4">
+        {t.legal.category}
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl leading-none mb-4" style="font-family:var(--font-display);">
+        {title.toUpperCase()}
+      </h1>
+      <p class="text-sm text-[var(--color-text-muted)]">
+        {t.legal.lastUpdated}: <strong>{lastUpdated}</strong>
+      </p>
+    </div>
+
+    {toc && toc.length >= 3 && (
+      <nav class="mb-10 p-5 rounded-2xl border border-[var(--color-border)]" aria-label={t.legal.tableOfContents}>
+        <p class="text-xs font-bold uppercase tracking-[0.12em] text-[var(--color-text-muted)] mb-3">
+          {t.legal.tableOfContents}
+        </p>
+        <ol class="flex flex-col gap-1.5 list-none p-0 m-0">
+          {toc.map(({ id, label }, i) => (
+            <li>
+              <a
+                href={`#${id}`}
+                class="text-sm flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-150"
+              >
+                <span class="font-mono text-xs w-4 opacity-40 shrink-0">{i + 1}.</span>
+                {label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
+    <div class="prose-content">
+      <slot />
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-[var(--color-border)]">
+      <a
+        href={`${prefix}/`}
+        class="inline-flex items-center gap-2 text-sm font-bold opacity-70 hover:opacity-100 transition-opacity duration-200"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 7H2.5M2.5 7L6.5 3M2.5 7L6.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {t.error404.back}
+      </a>
+    </div>
+  </div>
+</BaseLayout>

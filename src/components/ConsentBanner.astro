@@ -1,0 +1,234 @@
+---
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+const cookiesHref = `${prefix}/cookies/`;
+---
+
+<div id="consent-banner" role="region" aria-label={t.banner.title}>
+  <button id="consent-close" class="rounded-full" aria-label="Close">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="1" y1="1" x2="13" y2="13"/>
+      <line x1="13" y1="1" x2="1" y2="13"/>
+    </svg>
+  </button>
+
+  <div class="banner-eyebrow">
+    <span class="banner-dot"></span>
+    <span class="banner-eyebrow-text">{t.banner.eyebrow.toUpperCase()}</span>
+  </div>
+
+  <h2 class="banner-title">{t.banner.title}</h2>
+  <p class="banner-body">{t.banner.body}</p>
+
+  <div class="banner-actions">
+    <button id="consent-dismiss" class="banner-primary rounded-full">{t.banner.primaryAction}</button>
+    <a href={cookiesHref} class="banner-secondary">{t.banner.secondaryAction}</a>
+  </div>
+</div>
+
+<style is:global>
+  #consent-banner {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    width: 420px;
+    max-width: calc(100vw - 48px);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #D4E84A;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-theme="dark"] #consent-banner {
+    background-color: #0F0F0F;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 232, 74, 0.1);
+  }
+
+  [data-theme="light"] #consent-banner {
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(212, 232, 74, 0.15);
+  }
+
+  #consent-banner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #consent-banner.is-hiding {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 250ms ease-in, transform 250ms ease-in;
+  }
+
+  /* Close button */
+  #consent-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    transition: color 150ms;
+  }
+
+  [data-theme="dark"] #consent-close:hover { color: #FFFFFF; }
+  [data-theme="light"] #consent-close:hover { color: #0A0A0A; }
+
+  /* Eyebrow */
+  .banner-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .banner-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #D4E84A;
+    flex-shrink: 0;
+  }
+
+  .banner-eyebrow-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1;
+  }
+
+  [data-theme="dark"] .banner-eyebrow-text { color: #D4E84A; }
+  [data-theme="light"] .banner-eyebrow-text { color: #444444; }
+
+  /* Title */
+  .banner-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  [data-theme="dark"] .banner-title { color: #FFFFFF; }
+  [data-theme="light"] .banner-title { color: #0A0A0A; }
+
+  /* Body */
+  .banner-body {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 8px 0 0;
+  }
+
+  [data-theme="dark"] .banner-body { color: #999999; }
+  [data-theme="light"] .banner-body { color: #555555; }
+
+  /* Actions */
+  .banner-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .banner-primary {
+    background-color: #D4E84A;
+    color: #0A0A0A;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: opacity 150ms;
+    white-space: nowrap;
+  }
+
+  .banner-primary:hover { opacity: 0.85; }
+
+  .banner-secondary {
+    font-size: 13px;
+    text-decoration: none;
+    transition: text-decoration 150ms, opacity 150ms;
+  }
+
+  [data-theme="dark"] .banner-secondary { color: #FFFFFF; }
+  [data-theme="light"] .banner-secondary { color: #0A0A0A; }
+
+  .banner-secondary:hover { text-decoration: underline; opacity: 0.7; }
+
+  /* Mobile */
+  @media (max-width: 639px) {
+    #consent-banner {
+      bottom: 16px;
+      right: 16px;
+      left: 16px;
+      width: auto;
+      max-width: none;
+      padding: 20px;
+    }
+
+    .banner-actions {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+
+    .banner-primary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .banner-secondary {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+const banner = document.getElementById('consent-banner') as HTMLElement | null;
+const dismissBtn = document.getElementById('consent-dismiss');
+const closeBtn = document.getElementById('consent-close');
+
+function dismiss() {
+  if (!banner) return;
+  banner.classList.remove('is-visible');
+  banner.classList.add('is-hiding');
+  setTimeout(() => {
+    banner.style.display = 'none';
+    banner.classList.remove('is-hiding');
+  }, 250);
+  localStorage.setItem('baldurion_banner_dismissed', 'true');
+}
+
+if (banner && localStorage.getItem('baldurion_banner_dismissed') !== 'true') {
+  setTimeout(() => {
+    banner.style.display = 'block';
+    banner.getBoundingClientRect(); // force reflow before transition
+    banner.classList.add('is-visible');
+  }, 1200);
+}
+
+dismissBtn?.addEventListener('click', dismiss);
+closeBtn?.addEventListener('click', dismiss);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && banner?.style.display === 'block') dismiss();
+});
+</script>

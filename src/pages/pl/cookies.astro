@@ -1,0 +1,48 @@
+---
+// UWAGA: Wygenerowany szablon. Przed produkcją przejrzeć i zatwierdzić prawnie.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'pl';
+const lastUpdated = new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'czym', label: 'Czym są pliki cookie?' },
+  { id: 'uzywa', label: 'Czy Baldurion używa cookies?' },
+  { id: 'localstorage', label: 'Co Baldurion przechowuje w przeglądarce' },
+  { id: 'osadzone', label: 'Osadzone treści zewnętrzne' },
+];
+---
+
+<LegalLayout
+  title="Polityka Cookies"
+  description="Baldurion nie używa plików cookie. Dowiedz się, co przechowujemy w Twojej przeglądarce i dlaczego."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="czym">Czym są pliki cookie?</h2>
+  <p>Pliki cookie to małe pliki, które niektóre strony internetowe przechowują w Twojej przeglądarce, aby zapamiętać informacje (preferencje, sesje, śledzenie).</p>
+
+  <h2 id="uzywa">Czy Baldurion używa cookies?</h2>
+  <p><strong>Nie używamy żadnych plików cookie.</strong> Ani własnych, ani zewnętrznych. Ani niezbędnych, ani śledzących, ani marketingowych.</p>
+
+  <h2 id="localstorage">Co Baldurion przechowuje w Twojej przeglądarce</h2>
+  <p>Używamy <code>localStorage</code>, który <strong>NIE jest plikiem cookie</strong>. To nowoczesne API przeglądarki pozwalające przechowywać preferencje bez wysyłania ich na serwer.</p>
+
+  <table>
+    <thead>
+      <tr><th>Klucz</th><th>Zawartość</th><th>Cel</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>baldurion_theme</code></td><td>"light" lub "dark"</td><td>Zapamiętanie preferowanego motywu</td></tr>
+      <tr><td><code>baldurion_locale</code></td><td>"es", "en" lub "pl"</td><td>Zapamiętanie języka</td></tr>
+      <tr><td><code>baldurion_loaded_embeds</code></td><td>JSON z identyfikatorami</td><td>Nie pytać ponownie o aktywację osadzeń</td></tr>
+      <tr><td><code>baldurion_banner_dismissed</code></td><td>"true"</td><td>Nie wyświetlać ponownie baneru informacyjnego</td></tr>
+    </tbody>
+  </table>
+
+  <p>Dane te istnieją tylko w Twojej przeglądarce, nie są wysyłane do Baldurion ani podmiotów trzecich. Możesz je usunąć w ustawieniach przeglądarki lub na <a href="/pl/preferencje/">stronie preferencji</a>.</p>
+
+  <h2 id="osadzone">Osadzone treści zewnętrzne</h2>
+  <p>Osadzone treści z YouTube, Spotify, Twitter i Instagram <strong>mogą ustawiać pliki cookie</strong> po ich aktywacji. Dlatego nie ładują się automatycznie. Aktywujesz je świadomie klikając na każdą z nich.</p>
+  <p>Więcej informacji w naszej <a href="/pl/prywatnosc/">Polityce Prywatności</a>.</p>
+</LegalLayout>

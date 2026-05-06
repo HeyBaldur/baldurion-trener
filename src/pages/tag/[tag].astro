@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticuloCard from '../../components/ArticuloCard.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/index';
+
+const locale = 'en';
+const t = useTranslations(locale);
+
+export async function getStaticPaths() {
+  const esArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('es/') && !data.draft);
+  const enArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('en/') && !data.draft);
+  const allTags = [...new Set([...esArticulos, ...enArticulos].flatMap(a => a.data.tags))];
+  return allTags.map(tag => ({ params: { tag } }));
+}
+
+const { tag } = Astro.params;
+
+const enArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('en/') && !data.draft && data.tags.includes(tag));
+const esArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('es/') && !data.draft && data.tags.includes(tag));
+const source = enArticulos.length > 0 ? enArticulos : esArticulos;
+const localePrefix = enArticulos.length > 0 ? 'en/' : 'es/';
+
+const articulos = source.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).map(a => ({
+  title: a.data.title, description: a.data.description, slug: a.id.replace(localePrefix, ''), category: a.data.category,
+  pubDate: a.data.pubDate, heroImage: a.data.heroImage, heroImageAlt: a.data.heroImageAlt, readingTime: a.data.readingTime, body: a.body ?? '',
+}));
+---
+
+<BaseLayout title={`#${tag} — Baldurion`} description={`Articles tagged with ${tag}.`} locale={locale}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-10">
+      <a href="/articulos/" class="text-xs font-bold text-[var(--color-text-muted)] flex items-center gap-1 mb-4 hover:text-[var(--color-text)] transition-colors duration-200">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6H2M2 6L5 3M2 6L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {t.article.backToArticles}
+      </a>
+      <h1 class="font-display text-4xl md:text-5xl leading-none" style="font-family: var(--font-display);">#{tag.toUpperCase()}</h1>
+      <p class="text-[var(--color-text-muted)] mt-2">{articulos.length} article{articulos.length !== 1 ? 's' : ''}</p>
+    </div>
+    {articulos.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {articulos.map((art, i) => (
+          <ArticuloCard title={art.title} description={art.description} slug={art.slug} category={art.category} pubDate={art.pubDate} heroImage={art.heroImage} heroImageAlt={art.heroImageAlt} readingTime={art.readingTime} body={art.body} locale={locale} animationDelay={i * 60} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-[var(--color-text-muted)]">No articles with this tag yet.</p>
+    )}
+  </div>
+</BaseLayout>

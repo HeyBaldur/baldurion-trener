@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BentoGrid from '../components/BentoGrid.astro';
+import { getCollection } from 'astro:content';
+
+const locale = 'en';
+
+const enArticulos = await getCollection('articulos', ({ id, data }) => {
+  return id.startsWith('en/') && !data.draft;
+});
+
+const esArticulos = await getCollection('articulos', ({ id, data }) => {
+  return id.startsWith('es/') && !data.draft;
+});
+
+const source = enArticulos.length > 0 ? enArticulos : esArticulos;
+const localePrefix = enArticulos.length > 0 ? 'en/' : 'es/';
+
+const articulos = source
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 7)
+  .map(a => ({
+    title: a.data.title,
+    description: a.data.description,
+    slug: a.id.replace(localePrefix, ''),
+    category: a.data.category,
+    pubDate: a.data.pubDate,
+    heroImage: a.data.heroImage,
+    heroImageAlt: a.data.heroImageAlt,
+    readingTime: a.data.readingTime,
+    body: a.body ?? '',
+  }));
+---
+
+<BaseLayout
+  title="Baldurion — Science-Based Fitness"
+  description="Training, nutrition and sports methodology articles written with scientific rigor. No pseudoscience."
+  locale={locale}
+>
+  <BentoGrid articles={articulos} locale={locale} />
+</BaseLayout>

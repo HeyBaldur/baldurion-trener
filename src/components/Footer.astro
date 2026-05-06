@@ -1,0 +1,390 @@
+---
+import Logo from './Logo.astro';
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getFullYear();
+const prefix = locale === 'en' ? '' : `/${locale}`;
+
+const legalPaths: Record<Locale, { privacy: string; cookies: string; legal: string; terms: string; preferences: string }> = {
+  es: { privacy: 'privacidad', cookies: 'cookies', legal: 'aviso-legal', terms: 'terminos', preferences: 'preferencias' },
+  en: { privacy: 'privacy', cookies: 'cookies', legal: 'legal-notice', terms: 'terms', preferences: 'preferences' },
+  pl: { privacy: 'prywatnosc', cookies: 'cookies', legal: 'nota-prawna', terms: 'regulamin', preferences: 'preferencje' },
+};
+
+const lp = legalPaths[locale];
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+
+    <div class="footer__grid">
+
+      <div class="footer__col footer__col--brand">
+        <a href={`${prefix}/`} aria-label="Baldurion — inicio">
+          <Logo locale={locale} size="s" />
+        </a>
+        <p class="footer__brand-tagline">{t.footer.tagline}</p>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__col-title">{t.footer.navTitle}</p>
+        <nav class="footer__list">
+          <a href={`${prefix}/`}>{t.nav.home}</a>
+          <a href={`${prefix}/articulos/`}>{t.nav.articles}</a>
+          <a href={`${prefix}/coaching/`}>{t.nav.coaching}</a>
+          <a href={`${prefix}/sobre/`}>{t.nav.about}</a>
+          <a href={`${prefix}/contacto/`}>{t.nav.contact}</a>
+        </nav>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__col-title">{t.footer.legalTitle}</p>
+        <nav class="footer__list">
+          <a href={`${prefix}/${lp.privacy}/`}>{t.footer.privacy}</a>
+          <a href={`${prefix}/${lp.cookies}/`}>{t.footer.cookies}</a>
+          <a href={`${prefix}/${lp.legal}/`}>{t.footer.legalNotice}</a>
+          <a href={`${prefix}/${lp.terms}/`}>{t.footer.terms}</a>
+          <a href={`${prefix}/${lp.preferences}/`}>{t.footer.preferences}</a>
+        </nav>
+      </div>
+
+      <div class="footer__col footer__col--institutional">
+        <div class="footer__eu">
+          <svg viewBox="0 0 810 540" width="64" height="42" role="img" aria-label={t.footer.euTitle} class="footer__eu-flag">
+            <rect width="810" height="540" fill="#003399"></rect>
+            <polygon points="405,60 412.05,80.29 433.53,80.73 416.41,93.71 422.63,114.27 405,102 387.37,114.27 393.59,93.71 376.47,80.73 397.95,80.29" fill="#FFCC00"></polygon>
+            <polygon points="495,84.12 502.05,104.41 523.53,104.85 506.41,117.83 512.63,138.39 495,126.12 477.37,138.39 483.59,117.83 466.47,104.85 487.95,104.41" fill="#FFCC00"></polygon>
+            <polygon points="560.88,150 567.93,170.29 589.41,170.73 572.29,183.71 578.51,204.27 560.88,192 543.25,204.27 549.47,183.71 532.35,170.73 553.83,170.29" fill="#FFCC00"></polygon>
+            <polygon points="585,240 592.05,260.29 613.53,260.73 596.41,273.71 602.63,294.27 585,282 567.37,294.27 573.59,273.71 556.47,260.73 577.95,260.29" fill="#FFCC00"></polygon>
+            <polygon points="560.88,330 567.93,350.29 589.41,350.73 572.29,363.71 578.51,384.27 560.88,372 543.25,384.27 549.47,363.71 532.35,350.73 553.83,350.29" fill="#FFCC00"></polygon>
+            <polygon points="495,395.88 502.05,416.17 523.53,416.61 506.41,429.59 512.63,450.15 495,437.88 477.37,450.15 483.59,429.59 466.47,416.61 487.95,416.17" fill="#FFCC00"></polygon>
+            <polygon points="405,420 412.05,440.29 433.53,440.73 416.41,453.71 422.63,474.27 405,462 387.37,474.27 393.59,453.71 376.47,440.73 397.95,440.29" fill="#FFCC00"></polygon>
+            <polygon points="315,395.88 322.05,416.17 343.53,416.61 326.41,429.59 332.63,450.15 315,437.88 297.37,450.15 303.59,429.59 286.47,416.61 307.95,416.17" fill="#FFCC00"></polygon>
+            <polygon points="249.12,330 256.17,350.29 277.65,350.73 260.53,363.71 266.75,384.27 249.12,372 231.49,384.27 237.71,363.71 220.59,350.73 242.07,350.29" fill="#FFCC00"></polygon>
+            <polygon points="225,240 232.05,260.29 253.53,260.73 236.41,273.71 242.63,294.27 225,282 207.37,294.27 213.59,273.71 196.47,260.73 217.95,260.29" fill="#FFCC00"></polygon>
+            <polygon points="249.12,150 256.17,170.29 277.65,170.73 260.53,183.71 266.75,204.27 249.12,192 231.49,204.27 237.71,183.71 220.59,170.73 242.07,170.29" fill="#FFCC00"></polygon>
+            <polygon points="315,84.12 322.05,104.41 343.53,104.85 326.41,117.83 332.63,138.39 315,126.12 297.37,138.39 303.59,117.83 286.47,104.85 307.95,104.41" fill="#FFCC00"></polygon>
+          </svg>
+          <div class="footer__eu-text">
+            <p class="footer__eu-title">{t.footer.euTitle}</p>
+            <p class="footer__eu-subtitle">{t.footer.euSubtitle}</p>
+          </div>
+        </div>
+
+        <a
+          href="#"
+          class="footer__google-play"
+          aria-label={t.footer.googlePlayAriaLabel}
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true" style="flex-shrink:0;">
+            <path d="M3.18 23.76c.32.18.7.2 1.06.02l12.76-7.37-2.93-2.93-10.89 10.28z" fill="#EA4335"></path>
+            <path d="M22.33 10.63l-3.12-1.8-3.25 3.24 3.25 3.25 3.15-1.82c.9-.52.9-1.84-.03-2.87z" fill="#FBBC05"></path>
+            <path d="M2.12 2.24A1.36 1.36 0 002 2.95v18.1c0 .26.04.5.12.71l.06.06L12.32 12v-.24L2.18 2.18l-.06.06z" fill="#4285F4"></path>
+            <path d="M14.07 12l3.05-3.05L4.24 1.6A1.18 1.18 0 003.19 1.6L14.07 12z" fill="#34A853"></path>
+          </svg>
+          <div class="footer__google-play-text">
+            <span class="footer__google-play-kicker">{t.footer.googlePlayKicker}</span>
+            <span class="footer__google-play-label">{t.footer.googlePlayLabel}</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer__tagline-central">
+      {t.footer.taglineCentral}
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">&copy; {year} Baldurion &middot; {t.footer.copyright}</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/baldurion_fitness/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer__social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@BaldurionFitness" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer__social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
+          </svg>
+        </a>
+        <a href={`${prefix}/rss.xml`} aria-label="RSS" class="footer__social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 96px;
+  }
+  :global([data-theme="dark"]) .footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  :global([data-theme="light"]) .footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 32px 32px;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__brand-tagline {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 14px;
+    max-width: 220px;
+  }
+  :global([data-theme="dark"]) .footer__brand-tagline { color: rgba(255, 255, 255, 0.4); }
+  :global([data-theme="light"]) .footer__brand-tagline { color: rgba(0, 0, 0, 0.45); }
+
+  .footer__col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  :global([data-theme="dark"]) .footer__col-title { color: rgba(255, 255, 255, 0.3); }
+  :global([data-theme="light"]) .footer__col-title { color: rgba(0, 0, 0, 0.35); }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer__list a {
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 200ms;
+  }
+  :global([data-theme="dark"]) .footer__list a { color: rgba(255, 255, 255, 0.6); }
+  :global([data-theme="light"]) .footer__list a { color: rgba(0, 0, 0, 0.6); }
+  :global([data-theme="dark"]) .footer__list a:hover { color: #D4E84A; }
+  :global([data-theme="light"]) .footer__list a:hover { color: #0A0A0A; }
+
+  .footer__col--institutional {
+    gap: 20px;
+  }
+
+  .footer__eu {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .footer__eu-flag {
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+  :global([data-theme="dark"]) .footer__eu-flag { border: 1px solid rgba(255, 255, 255, 0.06); }
+  :global([data-theme="light"]) .footer__eu-flag { border: 1px solid rgba(0, 0, 0, 0.08); }
+
+  .footer__eu-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__eu-title {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 3px;
+  }
+  :global([data-theme="dark"]) .footer__eu-title { color: rgba(255, 255, 255, 0.8); }
+  :global([data-theme="light"]) .footer__eu-title { color: rgba(0, 0, 0, 0.8); }
+
+  .footer__eu-subtitle {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0 0 8px;
+  }
+  :global([data-theme="dark"]) .footer__eu-subtitle { color: rgba(255, 255, 255, 0.4); }
+  :global([data-theme="light"]) .footer__eu-subtitle { color: rgba(0, 0, 0, 0.45); }
+
+  .footer__eu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 600;
+    width: fit-content;
+    background: rgba(0, 51, 153, 0.3);
+    border: 1px solid rgba(0, 51, 153, 0.5);
+    color: #6ba3ff;
+  }
+  :global([data-theme="light"]) .footer__eu-badge {
+    background: rgba(0, 51, 153, 0.08);
+    color: #003399;
+  }
+
+  .footer__google-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 18px;
+    background: #000000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 200ms, border-color 200ms, transform 200ms;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    width: fit-content;
+  }
+  .footer__google-play:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: scale(1.03);
+  }
+  .footer__google-play:active { transform: scale(0.97); }
+
+  .footer__google-play-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+  }
+
+  .footer__google-play-kicker {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .footer__google-play-label {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .footer__tagline-central {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 28px 0;
+    margin-bottom: 24px;
+  }
+  :global([data-theme="dark"]) .footer__tagline-central {
+    color: rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  :global([data-theme="light"]) .footer__tagline-central {
+    color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer__copyright {
+    font-size: 12px;
+    margin: 0;
+  }
+  :global([data-theme="dark"]) .footer__copyright { color: rgba(255, 255, 255, 0.3); }
+  :global([data-theme="light"]) .footer__copyright { color: rgba(0, 0, 0, 0.35); }
+
+  .footer__social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer__social-link {
+    display: flex;
+    transition: color 200ms;
+  }
+  :global([data-theme="dark"]) .footer__social-link { color: rgba(255, 255, 255, 0.35); }
+  :global([data-theme="light"]) .footer__social-link { color: rgba(0, 0, 0, 0.4); }
+  :global([data-theme="dark"]) .footer__social-link:hover { color: rgba(255, 255, 255, 0.9); }
+  :global([data-theme="light"]) .footer__social-link:hover { color: #0A0A0A; }
+
+  @media (max-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .footer__col--institutional {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: center;
+      padding-top: 32px;
+    }
+    :global([data-theme="dark"]) .footer__col--institutional {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    :global([data-theme="light"]) .footer__col--institutional {
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer { margin-top: 64px; }
+    .footer__inner { padding: 48px 20px 24px; }
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .footer__col--institutional {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 0;
+      border-top: none !important;
+    }
+    .footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const locale = 'en';
+const lastUpdated = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'identity', label: 'Identity of the operator' },
+  { id: 'nature', label: 'Nature of the site' },
+  { id: 'ip', label: 'Intellectual property' },
+  { id: 'liability', label: 'Limitation of liability' },
+  { id: 'coaching', label: 'Coaching services' },
+  { id: 'law', label: 'Applicable law' },
+];
+---
+
+<LegalLayout
+  title="Legal Notice"
+  description="Legal information about Baldurion: operator identity, intellectual property and liability."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="identity">1. Identity of the operator</h2>
+  <ul>
+    <li><strong>Operator:</strong> Rodolfo A. Calvo Jaubert</li>
+    <li><strong>Location:</strong> Katowice, Poland</li>
+    <li><strong>Email:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Website:</strong> https://baldurion.com</li>
+  </ul>
+
+  <h2 id="nature">2. Nature of the site</h2>
+  <p>Baldurion is a personal educational project covering training, exercise science and sports nutrition. It also offers personal coaching services on demand. The site is operated by an individual and does not constitute a registered company at the time of this version of the legal notice.</p>
+
+  <h2 id="ip">3. Intellectual property</h2>
+  <p>All content published on Baldurion (articles, original images, site design, the "Baldurion" brand and character avatar) is protected by copyright.</p>
+  <ul>
+    <li><strong>Permitted:</strong> quoting articles with a link to the original source, sharing links on social media, using short excerpts with attribution.</li>
+    <li><strong>Not permitted:</strong> reproducing complete articles on other sites, translating them without permission, using the avatar or brand for other purposes, using content to train AI models without explicit permission.</li>
+  </ul>
+  <p>Stock images from Unsplash or other free sources retain the licences of their original authors.</p>
+
+  <h2 id="liability">4. Limitation of liability</h2>
+  <p>Baldurion content is <strong>educational and informational</strong>. It does not replace professional medical, physiotherapy or qualified nutritionist advice. Before applying any training protocol, diet or supplementation read here, consult a qualified health professional.</p>
+
+  <h2 id="coaching">5. Coaching services</h2>
+  <p>Personal coaching services contracted directly with Rudolf are subject to a specific agreement signed before the service begins. The terms of that agreement take precedence over any information published on the site.</p>
+
+  <h2 id="law">6. Applicable law</h2>
+  <p>This legal notice is governed by Polish law and, as regards European user rights, by the General Data Protection Regulation (GDPR). For any dispute, the competent courts shall be those of Katowice, Poland, unless consumer protection legislation establishes a different forum.</p>
+</LegalLayout>

@@ -1,0 +1,198 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CategoryChip from '../components/CategoryChip.astro';
+import CTACoaching from '../components/CTACoaching.astro';
+import ArticuloCard from '../components/ArticuloCard.astro';
+import type { Locale } from '../i18n/index';
+import { useTranslations, calculateReadingTime } from '../i18n/index';
+
+interface RelatedArticle {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  pubDate: Date;
+  heroImage: string;
+  heroImageAlt: string;
+  readingTime?: number;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  category: string;
+  tags: string[];
+  heroImage: string;
+  heroImageAlt: string;
+  readingTime?: number;
+  rawBody?: string;
+  locale: Locale;
+  slug: string;
+  relatedArticles?: RelatedArticle[];
+  alternates?: Record<string, string>;
+  isTranslationFallback?: boolean;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author,
+  category,
+  tags,
+  heroImage,
+  heroImageAlt,
+  readingTime,
+  rawBody = '',
+  locale,
+  slug,
+  relatedArticles = [],
+  alternates = {},
+  isTranslationFallback = false,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const rt = readingTime ?? calculateReadingTime(rawBody);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+
+const formattedPubDate = new Intl.DateTimeFormat(
+  locale === 'es' ? 'es-ES' : locale === 'pl' ? 'pl-PL' : 'en-US',
+  { year: 'numeric', month: 'long', day: 'numeric' }
+).format(pubDate);
+
+const formattedUpdatedDate = updatedDate
+  ? new Intl.DateTimeFormat(
+      locale === 'es' ? 'es-ES' : locale === 'pl' ? 'pl-PL' : 'en-US',
+      { year: 'numeric', month: 'long', day: 'numeric' }
+    ).format(updatedDate)
+  : null;
+
+const siteURL = 'https://baldurion.com';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: `${siteURL}${heroImage}`,
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: author,
+    url: `${siteURL}${prefix}/sobre/`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Baldurion',
+    url: siteURL,
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  locale={locale}
+  image={heroImage}
+  type="article"
+  alternates={alternates}
+  schema={schema}
+>
+  {isTranslationFallback && (
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 mt-6">
+      <div class="rounded-xl border border-amber-300 bg-amber-50 text-amber-800 px-4 py-3 text-sm font-medium">
+        {t.article.notTranslated}
+      </div>
+    </div>
+  )}
+
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 pt-10 pb-20">
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <CategoryChip category={category} locale={locale} />
+        <span class="text-sm text-[var(--color-text-muted)]">{rt} {t.article.readingTime}</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-4xl md:text-5xl leading-none mb-4" style="font-family: var(--font-display);">
+        {title.toUpperCase()}
+      </h1>
+
+      <p class="text-lg text-[var(--color-text-muted)] mb-6">{description}</p>
+
+      <div class="flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-muted)] pb-6 border-b border-[var(--color-border)]">
+        <span>{t.article.by} <strong class="text-[var(--color-text)]">{author}</strong></span>
+        <span>{t.article.publishedOn} {formattedPubDate}</span>
+        {formattedUpdatedDate && (
+          <span>{t.article.updatedOn} {formattedUpdatedDate}</span>
+        )}
+      </div>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden mb-8 aspect-video bg-[var(--color-border)]">
+      <img
+        src={heroImage}
+        alt={heroImageAlt}
+        width="900"
+        height="506"
+        loading="eager"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="prose-content">
+      <slot />
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-10 pt-6 border-t border-[var(--color-border)]">
+      {tags.map(tag => (
+        <a
+          href={`${prefix}/tag/${tag}/`}
+          class="text-xs px-3 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-text)] hover:text-[var(--color-text)] transition-colors duration-150"
+        >
+          #{tag}
+        </a>
+      ))}
+    </div>
+
+    <CTACoaching locale={locale} />
+
+    {relatedArticles.length > 0 && (
+      <div class="mt-16">
+        <h2 class="font-display text-2xl mb-6" style="font-family: var(--font-display);">
+          {t.article.relatedArticles.toUpperCase()}
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {relatedArticles.slice(0, 2).map(art => (
+            <ArticuloCard
+              title={art.title}
+              description={art.description}
+              slug={art.slug}
+              category={art.category}
+              pubDate={art.pubDate}
+              heroImage={art.heroImage}
+              heroImageAlt={art.heroImageAlt}
+              readingTime={art.readingTime}
+              locale={locale}
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="mt-10">
+      <a
+        href={`${prefix}/articulos/`}
+        class="inline-flex items-center gap-2 text-sm font-bold opacity-70 hover:opacity-100 transition-opacity duration-200"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 7H2.5M2.5 7L6.5 3M2.5 7L6.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {t.article.backToArticles}
+      </a>
+    </div>
+  </article>
+</BaseLayout>

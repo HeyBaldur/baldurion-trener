@@ -1,0 +1,64 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const locale = 'en';
+const lastUpdated = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'controller', label: 'Data controller' },
+  { id: 'data', label: 'What data we collect' },
+  { id: 'contact', label: 'When you contact us' },
+  { id: 'embeds', label: 'Third-party embeds' },
+  { id: 'rights', label: 'Your rights' },
+  { id: 'authority', label: 'Supervisory authority' },
+  { id: 'changes', label: 'Changes to this policy' },
+];
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  description="How Baldurion handles your personal data. No tracking, no marketing cookies."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="controller">1. Data controller</h2>
+  <p>Baldurion is a personal project operated by <strong>Rodolfo A. Calvo Jaubert</strong>, residing in Katowice, Poland.</p>
+  <ul>
+    <li><strong>Contact:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Site purpose:</strong> publishing content on training, nutrition and exercise science, and offering personal coaching services.</li>
+  </ul>
+
+  <h2 id="data">2. What data we collect</h2>
+  <p>Baldurion <strong>does not actively collect personal data</strong>. We use no analytics, no tracking cookies, and we share no data with third parties.</p>
+  <p>The only data stored in your browser (via <code>localStorage</code>) are:</p>
+  <ul>
+    <li>Your visual theme preference (light or dark)</li>
+    <li>Your preferred language</li>
+    <li>The list of third-party embeds you have manually activated (so we don't ask again)</li>
+    <li>Whether you have dismissed the privacy information banner</li>
+  </ul>
+  <p>This data <strong>never leaves your browser</strong>. We have no tracking server; it never reaches us and we cannot access it.</p>
+
+  <h2 id="contact">3. When you contact us</h2>
+  <p>If you write to us via email (contact form or coaching enquiry), we will receive your name, email address and message content. We use these solely to respond to your enquiry — we do not add them to any marketing list or share them. We retain them for a maximum of 24 months after the last interaction.</p>
+  <p><strong>Legal basis:</strong> user consent upon submitting the form (Art. 6.1.a GDPR).</p>
+
+  <h2 id="embeds">4. Third-party embeds</h2>
+  <p>Some articles may contain embeds from YouTube, Spotify, Twitter/X or Instagram. These services are operated by external companies with their own privacy and cookie policies.</p>
+  <p><strong>By default, these embeds do NOT load automatically.</strong> You will see a placeholder and they will only activate if you click. By clicking, you accept that the relevant provider collects data under its own policy.</p>
+  <p>We recommend reading the policies of <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google/YouTube</a>, <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Spotify</a>, <a href="https://twitter.com/privacy" target="_blank" rel="noopener noreferrer">Twitter/X</a> and <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">Meta/Instagram</a>.</p>
+
+  <h2 id="rights">5. Your rights</h2>
+  <p>As a user of this site you have the right to access, rectification, erasure, objection, portability and restriction of the processing of your data. To exercise any of these rights, write to <a href="mailto:contact.smartgymapp@gmail.com">contact.smartgymapp@gmail.com</a>. We will respond within 30 days.</p>
+
+  <h2 id="authority">6. Supervisory authority</h2>
+  <p>If you consider that your rights have not been respected, you may lodge a complaint with:</p>
+  <ul>
+    <li><strong>In Poland:</strong> Urząd Ochrony Danych Osobowych (UODO) — <a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer">uodo.gov.pl</a></li>
+    <li><strong>In the EU:</strong> consult the list at <a href="https://edpb.europa.eu" target="_blank" rel="noopener noreferrer">edpb.europa.eu</a></li>
+  </ul>
+
+  <h2 id="changes">7. Changes to this policy</h2>
+  <p>We may update this policy. Significant changes will be announced on the site home. The "Last updated" date at the top always reflects the current version.</p>
+</LegalLayout>

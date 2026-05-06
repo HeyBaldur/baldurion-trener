@@ -1,0 +1,83 @@
+---
+import type { Locale } from '../i18n/index';
+
+interface Props {
+  currentLocale: Locale;
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const currentLocale = (Astro.currentLocale ?? Astro.props.currentLocale) as Locale;
+
+const languages = [
+  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN' },
+  { code: 'pl', label: 'PL' },
+] as const;
+
+const DEFAULT_LOCALE = 'en';
+
+function getAlternatePath(targetLocale: string, path: string, currentLocale: string): string {
+  // EN is served at root (no prefix), other locales have /${locale}/ prefix
+  const cleanPath = currentLocale === DEFAULT_LOCALE
+    ? path
+    : (path.replace(new RegExp(`^/${currentLocale}`), '') || '/');
+
+  if (targetLocale === DEFAULT_LOCALE) {
+    return cleanPath || '/';
+  }
+  return `/${targetLocale}${cleanPath === '/' ? '' : cleanPath}`;
+}
+---
+
+<div class="relative" id="lang-switcher">
+  <button
+    id="lang-btn"
+    class="flex items-center gap-1 px-3 py-1.5 rounded-full border border-[var(--color-border)] text-sm font-semibold hover:bg-[var(--color-border)] transition-colors duration-200"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+  >
+    {currentLocale.toUpperCase()}
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div
+    id="lang-menu"
+    role="listbox"
+    class="absolute right-0 top-full mt-2 min-w-[80px] rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] shadow-lg overflow-hidden z-50 hidden"
+  >
+    {languages.map(({ code, label }) => (
+      <a
+        href={getAlternatePath(code, currentPath, currentLocale)}
+        role="option"
+        aria-selected={code === currentLocale}
+        class:list={[
+          'block px-4 py-2 text-sm font-semibold hover:bg-[var(--color-border)] transition-colors duration-150',
+          code === currentLocale ? 'opacity-50 pointer-events-none' : '',
+        ]}
+      >
+        {label}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('lang-btn');
+  const menu = document.getElementById('lang-menu');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('lang-switcher')?.contains(e.target as Node)) {
+      menu?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

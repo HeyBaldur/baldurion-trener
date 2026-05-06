@@ -1,0 +1,65 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../../layouts/LegalLayout.astro';
+
+const locale = 'es';
+const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'responsable', label: 'Responsable del tratamiento' },
+  { id: 'datos', label: 'Qué datos recogemos' },
+  { id: 'contacto', label: 'Si nos contactas' },
+  { id: 'embebidos', label: 'Embebidos de terceros' },
+  { id: 'derechos', label: 'Tus derechos' },
+  { id: 'autoridad', label: 'Autoridad de control' },
+  { id: 'cambios', label: 'Cambios en esta política' },
+];
+---
+
+<LegalLayout
+  title="Política de Privacidad"
+  description="Cómo Baldurion gestiona tus datos personales. Sin tracking ni cookies de marketing."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="responsable">1. Responsable del tratamiento</h2>
+  <p>Baldurion es un proyecto personal operado por <strong>Rodolfo A. Calvo Jaubert</strong>, residente en Katowice, Polonia.</p>
+  <ul>
+    <li><strong>Contacto:</strong> contact.smartgymapp@gmail.com</li>
+    <li><strong>Finalidad del sitio:</strong> divulgación de contenido sobre entrenamiento, nutrición y ciencia del ejercicio, así como ofrecer servicios de coaching personal.</li>
+  </ul>
+
+  <h2 id="datos">2. Qué datos recogemos</h2>
+  <p>Baldurion <strong>no recoge datos personales de forma activa</strong>. No usamos analítica, no tenemos cookies de tracking, no compartimos datos con terceros.</p>
+  <p>Lo único que se almacena en tu navegador (mediante <code>localStorage</code>) son:</p>
+  <ul>
+    <li>Tu preferencia de tema visual (claro u oscuro)</li>
+    <li>Tu idioma preferido</li>
+    <li>La lista de embebidos de terceros que has cargado manualmente (para no preguntarte de nuevo)</li>
+    <li>Si has cerrado el banner informativo de privacidad</li>
+  </ul>
+  <p>Estos datos <strong>no salen de tu navegador</strong>. No tenemos servidor de tracking, no llegan a nosotros, no podemos acceder a ellos.</p>
+
+  <h2 id="contacto">3. Si nos contactas</h2>
+  <p>Si nos escribes por email (formulario de contacto o coaching), recibiremos tu nombre, tu dirección de email y el contenido del mensaje. Estos datos los usamos exclusivamente para responder a tu consulta. No los añadimos a ninguna lista de marketing ni los compartimos. Los conservamos durante un máximo de 24 meses tras la última interacción.</p>
+  <p><strong>Base legal:</strong> consentimiento del usuario al enviar el formulario (Art. 6.1.a RGPD).</p>
+
+  <h2 id="embebidos">4. Embebidos de terceros</h2>
+  <p>Algunos artículos pueden contener embebidos de YouTube, Spotify, Twitter/X o Instagram. Estos servicios pertenecen a empresas externas con sus propias políticas de privacidad y cookies.</p>
+  <p><strong>Por defecto, estos embebidos NO se cargan automáticamente.</strong> Verás un placeholder y solo se activarán si haces click. Al hacer click, aceptas que el proveedor correspondiente recoja datos según su política propia.</p>
+  <p>Te recomendamos consultar las políticas de <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google/YouTube</a>, <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Spotify</a>, <a href="https://twitter.com/privacy" target="_blank" rel="noopener noreferrer">Twitter/X</a> y <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer">Meta/Instagram</a>.</p>
+
+  <h2 id="derechos">5. Tus derechos</h2>
+  <p>Como usuario del sitio, tienes derecho a acceso, rectificación, supresión, oposición, portabilidad y limitación del tratamiento de tus datos. Para ejercer cualquiera de estos derechos, escríbenos a <a href="mailto:contact.smartgymapp@gmail.com">contact.smartgymapp@gmail.com</a>. Responderemos en un máximo de 30 días.</p>
+
+  <h2 id="autoridad">6. Autoridad de control</h2>
+  <p>Si consideras que tus derechos no han sido respetados, puedes reclamar ante:</p>
+  <ul>
+    <li><strong>En Polonia:</strong> Urząd Ochrony Danych Osobowych (UODO) — <a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer">uodo.gov.pl</a></li>
+    <li><strong>En España:</strong> Agencia Española de Protección de Datos (AEPD) — <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">aepd.es</a></li>
+    <li><strong>En la UE:</strong> consulta el listado en <a href="https://edpb.europa.eu" target="_blank" rel="noopener noreferrer">edpb.europa.eu</a></li>
+  </ul>
+
+  <h2 id="cambios">7. Cambios en esta política</h2>
+  <p>Podemos actualizar esta política. Si los cambios son significativos, lo anunciaremos en la home del sitio. La fecha de "Última actualización" arriba refleja siempre la versión vigente.</p>
+</LegalLayout>

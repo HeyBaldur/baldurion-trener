@@ -1,0 +1,51 @@
+---
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+
+interface Props {
+  locale: Locale;
+  animationDelay?: number;
+}
+
+const { locale, animationDelay = 0 } = Astro.props;
+const t = useTranslations(locale);
+const prefix = locale === 'en' ? '' : `/${locale}`;
+
+const categories = [
+  { key: 'entrenamiento', bg: '#D4E84A' },
+  { key: 'nutricion', bg: '#D9C2F0' },
+  { key: 'lesiones', bg: '#FFDAB9' },
+  { key: 'metodologia', bg: '#B8DFF0' },
+  { key: 'ciencia', bg: '#B8F0CE' },
+  { key: 'casos-de-estudio', bg: '#F0C8D0' },
+] as const;
+---
+
+<div
+  class="animate-in rounded-3xl overflow-hidden p-5 flex flex-col gap-4 border border-[var(--color-border)] bg-[var(--color-bg)]"
+  style={`animation-delay: ${animationDelay}ms;`}
+>
+  <p class="text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--color-text-muted)]">
+    {t.filter.filterBy}
+  </p>
+  <div class="flex flex-col gap-2">
+    {categories.map(({ key, bg }) => (
+      <a
+        href={`${prefix}/categoria/${key}/`}
+        class="flex items-center justify-between px-3 py-2 rounded-full font-semibold text-xs transition-opacity duration-150 hover:opacity-80"
+        style={`background-color: ${bg}; color: #0A0A0A;`}
+      >
+        <span>{t.categories[key]}</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6H10M10 6L7 3M10 6L7 9" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    ))}
+  </div>
+  <a
+    href={`${prefix}/articulos/`}
+    class="text-xs font-bold flex items-center gap-1 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors duration-200 mt-auto"
+  >
+    {t.filter.all} →
+  </a>
+</div>

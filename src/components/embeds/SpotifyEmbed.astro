@@ -1,0 +1,78 @@
+﻿---
+interface Props {
+  type: 'track' | 'album' | 'playlist' | 'episode' | 'show';
+  id: string;
+  title: string;
+}
+const { type, id, title } = Astro.props;
+const locale = (Astro.currentLocale ?? 'en') as 'es' | 'en' | 'pl';
+const labels = {
+  es: { load: 'Click para cargar en Spotify', warning: 'Al cargar aceptas las cookies de Spotify' },
+  en: { load: 'Click to load on Spotify', warning: 'By loading you accept Spotify cookies' },
+  pl: { load: 'Kliknij, aby zaÅ‚adowaÄ‡ Spotify', warning: 'ÅadujÄ…c, akceptujesz pliki cookie Spotify' },
+}[locale];
+const iframeHeight = type === 'track' || type === 'episode' ? '152' : '380';
+---
+
+<div
+  class="sp-embed"
+  data-provider="spotify"
+  data-id={id}
+  data-type={type}
+  data-height={iframeHeight}
+  style={`position:relative;border-radius:1rem;overflow:hidden;background:#1a1a1a;height:${iframeHeight}px;`}
+>
+  <div
+    class="sp-placeholder"
+    role="button"
+    tabindex="0"
+    aria-label={`${labels.load}: ${title}`}
+    style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;padding:20px;"
+  >
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="#1DB954" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+    </svg>
+    <div style="text-align:center;">
+      <p style="font-size:14px;font-weight:600;color:rgba(255,255,255,0.9);font-family:var(--font-body);margin:0 0 4px;">{title}</p>
+      <p style="font-size:12px;color:rgba(255,255,255,0.6);font-family:var(--font-body);margin:0;">{labels.load}</p>
+      <p style="font-size:10px;color:rgba(255,255,255,0.35);font-family:var(--font-body);margin-top:4px;">{labels.warning}</p>
+    </div>
+  </div>
+  <div class="sp-frame" style="display:none;height:100%;"></div>
+  <div aria-live="polite" aria-atomic="true" class="sr-only"></div>
+</div>
+
+<script>
+import { hasLoadedEmbed, markEmbedLoaded } from '../../scripts/consent';
+
+function loadSpotify(container: HTMLElement, type: string, id: string) {
+  const placeholder = container.querySelector<HTMLElement>('.sp-placeholder')!;
+  const frame = container.querySelector<HTMLElement>('.sp-frame')!;
+  const live = container.querySelector('[aria-live]')!;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://open.spotify.com/embed/${type}/${id}`;
+  iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+  iframe.style.cssText = 'width:100%;height:100%;border:none;border-radius:1rem;';
+  frame.appendChild(iframe);
+  placeholder.style.display = 'none';
+  frame.style.display = 'block';
+  live.textContent = 'Spotify loaded.';
+}
+
+document.querySelectorAll<HTMLElement>('[data-provider="spotify"]').forEach(container => {
+  const id = container.dataset.id!;
+  const type = container.dataset.type!;
+  if (hasLoadedEmbed('spotify', id)) {
+    loadSpotify(container, type, id);
+    return;
+  }
+  const placeholder = container.querySelector<HTMLElement>('.sp-placeholder')!;
+  const activate = () => { markEmbedLoaded('spotify', id); loadSpotify(container, type, id); };
+  placeholder.addEventListener('click', activate);
+  placeholder.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+</script>
+
+<style>
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0; }
+</style>

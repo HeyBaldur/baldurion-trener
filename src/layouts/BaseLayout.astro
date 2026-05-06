@@ -1,0 +1,103 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import type { Locale } from '../i18n/index';
+import { locales } from '../i18n/index';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  image?: string;
+  type?: 'website' | 'article';
+  canonicalURL?: string;
+  alternates?: Record<string, string>;
+  schema?: object;
+}
+
+const {
+  title,
+  description,
+  locale,
+  image = '/og-default.png',
+  type = 'website',
+  canonicalURL = Astro.url.href,
+  alternates = {},
+  schema,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const siteURL = 'https://baldurion.com';
+const fullTitle = title.includes('Baldurion') ? title : `${title} — Baldurion`;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={`${siteURL}${image}`} />
+    <meta property="og:site_name" content="Baldurion" />
+    <meta property="og:locale" content={locale === 'es' ? 'es_ES' : locale === 'pl' ? 'pl_PL' : 'en_US'} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteURL}${image}`} />
+
+    {locales.map(l => (
+      <link
+        rel="alternate"
+        hreflang={l === 'es' ? 'es-ES' : l === 'pl' ? 'pl-PL' : 'en-US'}
+        href={alternates[l] ?? (l === 'en' ? `${siteURL}/` : `${siteURL}/${l}/`)}
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${siteURL}/`} />
+
+    <link rel="alternate" type="application/rss+xml" title="Baldurion RSS" href={locale === 'en' ? '/rss.xml' : `/${locale}/rss.xml`} />
+
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/anton-latin-400-normal.woff2" crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/manrope-latin-wght-normal.woff2" crossorigin="anonymous" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#D4E84A" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <Header locale={locale} currentPath={currentPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <ConsentBanner locale={locale} />
+  </body>
+</html>

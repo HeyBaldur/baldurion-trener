@@ -1,0 +1,52 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const locale = 'en';
+const lastUpdated = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'acceptance', label: 'Acceptance' },
+  { id: 'permitted', label: 'Permitted use' },
+  { id: 'prohibited', label: 'Prohibited use' },
+  { id: 'coaching', label: 'Coaching services' },
+  { id: 'modifications', label: 'Modifications' },
+  { id: 'law', label: 'Applicable law' },
+];
+---
+
+<LegalLayout
+  title="Terms and Conditions"
+  description="Terms and conditions of use for the Baldurion website."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="acceptance">1. Acceptance</h2>
+  <p>By using Baldurion (the "Site"), you accept these terms. If you do not agree, please stop using the Site.</p>
+
+  <h2 id="permitted">2. Permitted use</h2>
+  <ul>
+    <li>Reading published content freely</li>
+    <li>Sharing links to articles on social media or private messaging</li>
+    <li>Quoting short excerpts in other contexts provided you attribute the source</li>
+    <li>Contacting the operator for coaching services or enquiries</li>
+  </ul>
+
+  <h2 id="prohibited">3. Prohibited use</h2>
+  <ul>
+    <li>Reproducing complete articles on other sites without explicit permission</li>
+    <li>Reverse engineering the site code</li>
+    <li>Attempting to access non-public areas of the Site</li>
+    <li>Using content to train AI models without explicit permission</li>
+    <li>Impersonating the author or the Baldurion brand</li>
+  </ul>
+
+  <h2 id="coaching">4. Coaching services</h2>
+  <p>If you contract personal coaching services, a specific agreement will be established before starting. Conditions, pricing, payment methods and duration are agreed individually. You have a 14-day withdrawal right under the EU digital services directive, except where the service has already started with your explicit consent.</p>
+
+  <h2 id="modifications">5. Modifications</h2>
+  <p>The operator may modify these terms. Significant changes will be announced on the site home. The "Last updated" date above reflects the current version.</p>
+
+  <h2 id="law">6. Applicable law</h2>
+  <p>These terms are governed by Polish law and, where applicable, by European consumer and GDPR regulations.</p>
+</LegalLayout>

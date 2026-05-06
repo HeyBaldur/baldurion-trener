@@ -1,0 +1,48 @@
+---
+// NOTE: Generated template. Review and validate legally before production.
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const locale = 'en';
+const lastUpdated = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const toc = [
+  { id: 'what', label: 'What are cookies?' },
+  { id: 'uses', label: 'Does Baldurion use cookies?' },
+  { id: 'localstorage', label: 'What Baldurion stores in your browser' },
+  { id: 'embeds', label: 'Third-party embeds' },
+];
+---
+
+<LegalLayout
+  title="Cookie Policy"
+  description="Baldurion uses no cookies. Find out what we store in your browser and why."
+  locale={locale}
+  lastUpdated={lastUpdated}
+  toc={toc}
+>
+  <h2 id="what">What are cookies?</h2>
+  <p>Cookies are small files that some websites store in your browser to remember information (preferences, sessions, tracking). There are different types depending on their purpose and duration.</p>
+
+  <h2 id="uses">Does Baldurion use cookies?</h2>
+  <p><strong>We use no cookies of any kind.</strong> Neither first-party nor third-party. Neither necessary, nor tracking, nor marketing.</p>
+
+  <h2 id="localstorage">What Baldurion stores in your browser</h2>
+  <p>We use <code>localStorage</code>, which is <strong>not a cookie</strong>. It is a modern browser API that allows storing preferences without sending them to any server.</p>
+
+  <table>
+    <thead>
+      <tr><th>Key</th><th>Content</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>baldurion_theme</code></td><td>"light" or "dark"</td><td>Remember your preferred theme</td></tr>
+      <tr><td><code>baldurion_locale</code></td><td>"es", "en" or "pl"</td><td>Remember your language</td></tr>
+      <tr><td><code>baldurion_loaded_embeds</code></td><td>JSON with IDs</td><td>Not ask you to activate embeds again</td></tr>
+      <tr><td><code>baldurion_banner_dismissed</code></td><td>"true"</td><td>Not show the information banner again</td></tr>
+    </tbody>
+  </table>
+
+  <p>This data only exists in your browser, is not sent to Baldurion or third parties, and you can delete it at any time from your browser settings or from the <a href="/en/preferences/">preferences page</a>.</p>
+
+  <h2 id="embeds">Third-party embeds</h2>
+  <p>YouTube, Spotify, Twitter and Instagram embeds <strong>can set cookies</strong> when you activate them. That is why they do not load automatically. They only activate if you consciously click on each one.</p>
+  <p>For more information on data handling, see our <a href="/en/privacy/">Privacy Policy</a>.</p>
+</LegalLayout>
