@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { t } = Astro.props;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
 ---
 
 <section class="trayectoria-gallery">
@@ -28,7 +29,7 @@ const { t } = Astro.props;
   <div class="trayectoria-gallery__grid">
 
     <div class="bento-item bento-item--patada">
-      <img src="/images/about/trayectoria/02-patada-saco.jpg" alt={t.photos.patada.title} loading="lazy" />
+      <img src={`${base}images/about/trayectoria/02-patada-saco.jpg`} alt={t.photos.patada.title} loading="lazy" />
       <div class="bento-item__caption">
         <div class="bento-item__caption-title">{t.photos.patada.title}</div>
         <div class="bento-item__caption-meta">{t.photos.patada.meta}</div>
@@ -36,7 +37,7 @@ const { t } = Astro.props;
     </div>
 
     <div class="bento-item bento-item--kungfu">
-      <img src="/images/about/trayectoria/01-kung-fu-maestro.jpg" alt={t.photos.kungfu.title} loading="lazy" />
+      <img src={`${base}images/about/trayectoria/01-kung-fu-maestro.jpg`} alt={t.photos.kungfu.title} loading="lazy" />
       <div class="bento-item__caption">
         <div class="bento-item__caption-title">{t.photos.kungfu.title}</div>
         <div class="bento-item__caption-meta">{t.photos.kungfu.meta}</div>
@@ -44,7 +45,7 @@ const { t } = Astro.props;
     </div>
 
     <div class="bento-item bento-item--coach">
-      <img src="/images/about/trayectoria/04-coach-gym.jpg" alt={t.photos.coach.title} loading="lazy" />
+      <img src={`${base}images/about/trayectoria/04-coach-gym.jpg`} alt={t.photos.coach.title} loading="lazy" />
       <div class="bento-item__caption">
         <div class="bento-item__caption-title">{t.photos.coach.title}</div>
         <div class="bento-item__caption-meta">{t.photos.coach.meta}</div>
@@ -52,7 +53,7 @@ const { t } = Astro.props;
     </div>
 
     <div class="bento-item bento-item--sparring">
-      <img src="/images/about/trayectoria/03-sparring-grupo.jpg" alt={t.photos.sparring.title} loading="lazy" />
+      <img src={`${base}images/about/trayectoria/03-sparring-grupo.jpg`} alt={t.photos.sparring.title} loading="lazy" />
       <div class="bento-item__caption">
         <div class="bento-item__caption-title">{t.photos.sparring.title}</div>
         <div class="bento-item__caption-meta">{t.photos.sparring.meta}</div>
@@ -60,7 +61,7 @@ const { t } = Astro.props;
     </div>
 
     <div class="bento-item bento-item--certificado">
-      <img src="/images/about/trayectoria/05-certificado-fitacademy.jpg" alt={t.photos.certificado.title} loading="lazy" />
+      <img src={`${base}images/about/trayectoria/05-certificado-fitacademy.jpg`} alt={t.photos.certificado.title} loading="lazy" />
       <div class="bento-item__caption">
         <div class="bento-item__caption-title">{t.photos.certificado.title}</div>
         <div class="bento-item__caption-meta">{t.photos.certificado.meta}</div>

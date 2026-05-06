@@ -36,6 +36,7 @@ interface Props {
 
 const { t, locale } = Astro.props;
 const prefix = locale === 'en' ? '' : `/${locale}`;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
 ---
 
 <div class="about-page">
@@ -49,7 +50,7 @@ const prefix = locale === 'en' ? '' : `/${locale}`;
     </div>
     <img
       class="about-hero__photo"
-      src="/images/about/rudolf-cutout.png"
+      src={`${base}images/about/rudolf-cutout.png`}
       alt={t.photoAlt}
       loading="eager"
       fetchpriority="high"

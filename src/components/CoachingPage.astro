@@ -57,6 +57,7 @@ interface Props {
 
 const { t } = Astro.props;
 const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
+const base = (import.meta.env.BASE_URL ?? '/').replace(/([^/])$/, '$1/');
 ---
 
 <section class="coaching-hero">
@@ -65,7 +66,7 @@ const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 
   <div class="coaching-hero__photo-area">
     <img
-      src="/images/coaching/placeholder-hero.jpg"
+      src={`${base}images/coaching/placeholder-hero.jpg`}
       alt={t.hero.titleLine1}
       loading="eager"
       fetchpriority="high"
