@@ -19,187 +19,57 @@ const { t } = Astro.props;
 const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 ---
 
-<section class="contact">
-  <div class="contact__intro">
-    <span class="contact__eyebrow">{t.eyebrow}</span>
-    <h1 class="contact__title">{t.title}</h1>
+<section class="max-w-[760px] mx-auto px-[32px] pt-[80px] pb-[120px] max-[640px]:px-[20px] max-[640px]:pt-[56px] max-[640px]:pb-[80px]">
+
+  <div class="mb-[64px]">
+    <span class="block text-[12px] font-bold tracking-[0.25em] uppercase mb-[16px] text-[#444444] dark:text-[#D4E84A]" style="font-family: var(--font-body);">
+      {t.eyebrow}
+    </span>
+    <h1 class="text-[64px] leading-[1] m-0 text-[#0A0A0A] dark:text-white max-[640px]:text-[44px]" style="font-family: var(--font-display); text-transform: none;">
+      {t.title}
+    </h1>
   </div>
 
-  <div class="contact__body">
-    <p class="contact__lead">{t.leadParagraph}</p>
+  <div class="mb-[56px]">
+    <p class="text-[28px] leading-[1.2] pl-[20px] border-l-[3px] border-[#D4E84A] mb-[32px] text-[#0A0A0A] dark:text-white max-[640px]:text-[24px]" style="font-family: var(--font-display);">
+      {t.leadParagraph}
+    </p>
     {t.body.map((paragraph) => (
-      <p set:html={paragraph} />
+      <p
+        class="text-[17px] leading-[1.7] mb-[20px] text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-[#0A0A0A] dark:[&_strong]:text-[#D4E84A]"
+        style="font-family: var(--font-body);"
+        set:html={paragraph}
+      />
     ))}
   </div>
 
-  <div class="contact__cta">
+  <div class="rounded-[24px] p-[48px] text-center max-[640px]:p-[32px] max-[640px]:px-[24px]" style="background: linear-gradient(135deg, #D4E84A 0%, #C5D944 100%);">
     <a
       href={calendlyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="contact__button rounded-full"
+      class="group rounded-full inline-flex items-center gap-[12px] bg-[#0A0A0A] text-[#D4E84A] px-[40px] py-[20px] font-extrabold text-[15px] tracking-[0.05em] uppercase no-underline border-2 border-[#0A0A0A] transition-all duration-200 hover:bg-transparent hover:text-[#0A0A0A] hover:-translate-y-[2px] max-[640px]:px-[28px] max-[640px]:py-[16px] max-[640px]:text-[14px]"
+      style="font-family: var(--font-body);"
     >
       {t.calendlyButtonLabel}
-      <span class="contact__button-arrow">→</span>
+      <span class="text-[18px] inline-block transition-transform duration-200 group-hover:translate-x-[4px]">→</span>
     </a>
-    <p class="contact__cta-help">{t.calendlyHelpText}</p>
+    <p class="mt-[16px] text-[13px] text-[#0A0A0A] font-medium opacity-65 mb-0" style="font-family: var(--font-body);">
+      {t.calendlyHelpText}
+    </p>
   </div>
 
-  <div class="contact__alt">
-    <span class="contact__alt-label">{t.altContactLabel}</span>
-    <a href={`mailto:${t.altContactEmail}`} class="contact__alt-email">
+  <div class="mt-[56px] pt-[32px] flex flex-col gap-[8px] items-start border-t border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
+    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-[#555555] dark:text-[#CCCCCC]" style="font-family: var(--font-body);">
+      {t.altContactLabel}
+    </span>
+    <a
+      href={`mailto:${t.altContactEmail}`}
+      class="text-[18px] no-underline border-b border-current pb-[2px] transition-colors duration-200 text-[#0A0A0A] dark:text-white hover:text-[#D4E84A]"
+      style="font-family: var(--font-body);"
+    >
       {t.altContactEmail}
     </a>
   </div>
+
 </section>
-
-<style>
-  .contact {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 80px 32px 120px;
-  }
-
-  .contact__intro {
-    margin-bottom: 64px;
-  }
-
-  .contact__eyebrow {
-    display: block;
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  :global([data-theme="dark"]) .contact__eyebrow { color: #D4E84A; }
-  :global([data-theme="light"]) .contact__eyebrow { color: #444444; }
-
-  .contact__title {
-    font-family: var(--font-display);
-    font-size: 64px;
-    line-height: 1;
-    text-transform: none;
-    margin: 0;
-  }
-  :global([data-theme="dark"]) .contact__title { color: #FFFFFF; }
-  :global([data-theme="light"]) .contact__title { color: #0A0A0A; }
-
-  .contact__body {
-    margin-bottom: 56px;
-  }
-
-  .contact__lead {
-    font-family: var(--font-display);
-    font-size: 28px;
-    line-height: 1.2;
-    padding-left: 20px;
-    border-left: 3px solid #D4E84A;
-    margin-bottom: 32px;
-  }
-  :global([data-theme="dark"]) .contact__lead { color: #FFFFFF; }
-  :global([data-theme="light"]) .contact__lead { color: #0A0A0A; }
-
-  .contact__body p:not(.contact__lead) {
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-  :global([data-theme="dark"]) .contact__body p:not(.contact__lead) { color: #CCCCCC; }
-  :global([data-theme="light"]) .contact__body p:not(.contact__lead) { color: #555555; }
-
-  .contact__body :global(strong) { font-weight: 700; }
-  :global([data-theme="dark"]) .contact__body :global(strong) { color: #D4E84A; }
-  :global([data-theme="light"]) .contact__body :global(strong) { color: #0A0A0A; }
-
-  .contact__cta {
-    background: linear-gradient(135deg, #D4E84A 0%, #C5D944 100%);
-    border-radius: 24px;
-    padding: 48px;
-    text-align: center;
-  }
-
-  .contact__button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: #0A0A0A;
-    color: #D4E84A;
-    padding: 20px 40px;
-    font-family: var(--font-body);
-    font-weight: 800;
-    font-size: 15px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 2px solid #0A0A0A;
-    transition: background 200ms, color 200ms, transform 200ms;
-  }
-  .contact__button:hover {
-    background: transparent;
-    color: #0A0A0A;
-    transform: translateY(-2px);
-  }
-
-  .contact__button-arrow {
-    font-size: 18px;
-    display: inline-block;
-    transition: transform 200ms;
-  }
-  .contact__button:hover .contact__button-arrow {
-    transform: translateX(4px);
-  }
-
-  .contact__cta-help {
-    margin-top: 16px;
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: #0A0A0A;
-    font-weight: 500;
-    opacity: 0.65;
-    margin-bottom: 0;
-  }
-
-  .contact__alt {
-    margin-top: 56px;
-    padding-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-  :global([data-theme="dark"]) .contact__alt { border-top: 1px solid rgba(255, 255, 255, 0.08); }
-  :global([data-theme="light"]) .contact__alt { border-top: 1px solid rgba(0, 0, 0, 0.08); }
-
-  .contact__alt-label {
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-  }
-  :global([data-theme="dark"]) .contact__alt-label { color: #CCCCCC; }
-  :global([data-theme="light"]) .contact__alt-label { color: #555555; }
-
-  .contact__alt-email {
-    font-family: var(--font-body);
-    font-size: 18px;
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-    transition: color 200ms;
-  }
-  :global([data-theme="dark"]) .contact__alt-email { color: #FFFFFF; }
-  :global([data-theme="light"]) .contact__alt-email { color: #0A0A0A; }
-  .contact__alt-email:hover { color: #D4E84A; }
-
-  @media (max-width: 640px) {
-    .contact { padding: 56px 20px 80px; }
-    .contact__title { font-size: 44px; }
-    .contact__lead { font-size: 24px; }
-    .contact__cta { padding: 32px 24px; }
-    .contact__button { padding: 16px 28px; font-size: 14px; }
-  }
-</style>

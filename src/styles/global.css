@@ -1,9 +1,20 @@
 @import "tailwindcss";
 @import "@fontsource/playfair-display/400-italic.css";
 
+/* dark: modifier targets data-theme attribute (not prefers-color-scheme) */
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --font-display: 'Anton', sans-serif;
   --font-body: 'Manrope Variable', 'Manrope', sans-serif;
+
+  /* Brand color primitives for use as Tailwind utilities (bg-lime, text-dark, etc.) */
+  --color-lime: #D4E84A;
+  --color-lime-2: #C5D944;
+  --color-dark: #0A0A0A;
+  --color-dark-card: #141414;
+  --color-light: #FAFAF7;
+  --color-canvas: #f5f5f0;
 }
 
 :root {
