@@ -29,7 +29,7 @@ const articulos = source
 
 <BaseLayout title="Artykuły — Baldurion" description="Wszystkie artykuły Baldurion." locale={locale}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="font-display text-4xl md:text-5xl mb-10" style="font-family: var(--font-display);">{t.nav.articles.toUpperCase()}</h1>
+    <h1 class="font-display text-4xl md:text-5xl mb-10">{t.nav.articles.toUpperCase()}</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {articulos.map((art, i) => (
         <ArticuloCard title={art.title} description={art.description} slug={art.slug} category={art.category} pubDate={art.pubDate} heroImage={art.heroImage} heroImageAlt={art.heroImageAlt} readingTime={art.readingTime} body={art.body} locale={locale} animationDelay={i * 60} />

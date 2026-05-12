@@ -22,14 +22,6 @@
 </button>
 
 <script>
-  function initTheme() {
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored ?? (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-    updateIcons(theme);
-  }
-
   function updateIcons(theme: string) {
     const sun = document.getElementById('icon-sun');
     const moon = document.getElementById('icon-moon');
@@ -42,7 +34,7 @@
     }
   }
 
-  initTheme();
+  updateIcons(document.documentElement.getAttribute('data-theme') ?? 'light');
 
   document.getElementById('theme-toggle')?.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme') ?? 'light';

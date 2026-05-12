@@ -21,7 +21,7 @@ const calendlyUrl = "https://calendly.com/smart-gym-app-assistance/30min";
 ---
 
 <section
-  class="relative max-w-[1400px] mx-auto mt-6 rounded-3xl overflow-hidden bg-[#0A0A0A] h-[600px] max-[1024px]:h-auto max-[1024px]:min-h-[520px] max-[768px]:min-h-[500px]"
+  class="relative max-w-[1400px] mx-auto mt-6 rounded-3xl overflow-hidden bg-dark h-[600px] max-[1024px]:h-auto max-[1024px]:min-h-[520px] max-[768px]:min-h-[500px]"
 >
   <!-- Background photo -->
   <div class="absolute inset-0 z-0">
@@ -46,8 +46,7 @@ const calendlyUrl = "https://calendly.com/smart-gym-app-assistance/30min";
   >
     <!-- Title -->
     <h1
-      class="text-[56px] leading-[1.05] font-bold tracking-[-0.02em] text-[#FAFAF7] mb-6 max-[768px]:text-[36px]"
-      style="font-family: var(--font-display);"
+      class="font-display text-[56px] leading-[1.05] font-bold tracking-[-0.02em] text-light mb-6 max-[768px]:text-[36px]"
     >
       {t.titleLine1}<br />
       {t.titleLine2}
@@ -55,8 +54,7 @@ const calendlyUrl = "https://calendly.com/smart-gym-app-assistance/30min";
 
     <!-- Subtitle -->
     <p
-      class="text-base leading-relaxed text-white/70 max-w-[480px] mb-10"
-      style="font-family: var(--font-body);"
+      class="font-body text-base leading-relaxed text-white/70 max-w-[480px] mb-10"
     >
       {t.subtitle}
     </p>
@@ -66,19 +64,18 @@ const calendlyUrl = "https://calendly.com/smart-gym-app-assistance/30min";
       href={calendlyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2.5 bg-[#D4E84A] text-[#0A0A0A] py-4 px-7 rounded-full font-bold text-[15px] no-underline w-fit mb-4 transition-transform duration-200 hover:-translate-y-0.5"
-      style="font-family: var(--font-body);"
+      class="font-body inline-flex items-center gap-2.5 bg-lime text-dark py-4 px-7 rounded-full font-bold text-[15px] no-underline w-fit mb-4 transition-transform duration-200 hover:-translate-y-0.5"
     >
       <span
-        class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#0A0A0A] text-[#D4E84A] text-xs shrink-0"
+        class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-dark text-lime text-xs shrink-0"
         >▶</span
       >
       {t.ctaText}
     </a>
 
     <!-- CTA byline -->
-    <div class="text-xs text-white/50" style="font-family: var(--font-body);">
-      {t.ctaByline}<span class="text-[#D4E84A] mx-1">●</span>{t.ctaBylineRole}
+    <div class="font-body text-xs text-white/50">
+      {t.ctaByline}<span class="text-lime mx-1">●</span>{t.ctaBylineRole}
     </div>
   </div>
 </section>

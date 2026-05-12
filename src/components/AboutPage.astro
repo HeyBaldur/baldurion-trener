@@ -41,10 +41,10 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
 
 <div class="px-[24px] pt-[48px] pb-[96px] max-[640px]:px-[16px] max-[640px]:pt-[32px] max-[640px]:pb-[72px]">
 
-  <section class="relative max-w-[1280px] mx-auto rounded-[24px] overflow-hidden min-h-[600px] bg-[#FAFAF7] border border-[rgba(0,0,0,0.06)] dark:bg-[#0A0A0A] dark:border-[rgba(255,255,255,0.06)] max-[900px]:min-h-0">
+  <section class="relative max-w-[1280px] mx-auto rounded-[24px] overflow-hidden min-h-[600px] bg-light border border-[rgba(0,0,0,0.06)] dark:bg-dark dark:border-[rgba(255,255,255,0.06)] max-[900px]:min-h-0">
 
     <div
-      class="about-shape absolute top-0 right-0 bottom-0 w-[60%] bg-[#D4E84A] z-[1] max-[900px]:top-auto max-[900px]:h-[50%] max-[900px]:w-full"
+      class="about-shape absolute top-0 right-0 bottom-0 w-[60%] bg-lime z-[1] max-[900px]:top-auto max-[900px]:h-[50%] max-[900px]:w-full"
       style="clip-path: polygon(35% 0, 100% 0, 100% 100%, 5% 100%);"
     ></div>
 
@@ -55,11 +55,10 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
 
     <div class="relative z-[3] px-[64px] py-[96px] max-w-[50%] flex flex-col justify-center min-h-[600px] max-[900px]:max-w-full max-[900px]:px-[32px] max-[900px]:pt-[48px] max-[900px]:pb-0 max-[900px]:min-h-0 max-[640px]:px-[24px] max-[640px]:pt-[32px]">
       <h1
-        class="text-[80px] leading-[0.95] mt-0 mb-[28px] uppercase text-[#0A0A0A] dark:text-white [&_.accent]:text-[#0A0A0A] dark:[&_.accent]:text-[#D4E84A] max-[900px]:text-[48px] max-[640px]:text-[36px]"
-        style="font-family: var(--font-display);"
+        class="font-display text-[80px] leading-[0.95] mt-0 mb-[28px] uppercase text-dark dark:text-white [&_.accent]:text-dark dark:[&_.accent]:text-lime max-[900px]:text-[48px] max-[640px]:text-[36px]"
         set:html={t.heroTitle}
       />
-      <p class="text-[17px] leading-[1.6] max-w-[480px] m-0 text-[#555555] dark:text-[#CCCCCC]" style="font-family: var(--font-body);">
+      <p class="font-body text-[17px] leading-[1.6] max-w-[480px] m-0 text-[#555555] dark:text-[#CCCCCC]">
         {t.heroSubtitle}
       </p>
     </div>
@@ -76,15 +75,13 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
 
   <section class="max-w-[760px] mx-auto mt-[80px] px-[32px] max-[640px]:mt-[56px] max-[640px]:px-[16px]">
     <p
-      class="text-[32px] leading-[1.15] pl-[20px] border-l-[3px] border-[#D4E84A] mt-0 mb-[40px] text-[#0A0A0A] dark:text-white max-[640px]:text-[26px]"
-      style="font-family: var(--font-display);"
+      class="font-display text-[32px] leading-[1.15] pl-[20px] border-l-[3px] border-lime mt-0 mb-[40px] text-dark dark:text-white max-[640px]:text-[26px]"
     >
       {t.body.lead}
     </p>
     {t.body.paragraphs.map((paragraph) => (
       <p
-        class="text-[18px] leading-[1.75] mt-0 mb-[24px] text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-[#0A0A0A] dark:[&_strong]:text-[#D4E84A] max-[640px]:text-[17px]"
-        style="font-family: var(--font-body);"
+        class="font-body text-[18px] leading-[1.75] mt-0 mb-[24px] text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime max-[640px]:text-[17px]"
         set:html={paragraph}
       />
     ))}
@@ -97,28 +94,26 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
     style="background: linear-gradient(135deg, #D4E84A 0%, #C5D944 100%);"
   >
     <div>
-      <div class="text-[11px] font-extrabold tracking-[0.3em] uppercase mt-0 mb-[12px] text-[#0A0A0A]" style="font-family: var(--font-body);">
+      <div class="font-body text-[11px] font-extrabold tracking-[0.3em] uppercase mt-0 mb-[12px] text-dark">
         {t.cta.eyebrow.toUpperCase()}
       </div>
-      <h2 class="text-[44px] leading-[1] text-[#0A0A0A] mt-0 mb-[12px] max-[900px]:text-[32px]" style="font-family: var(--font-display);">
+      <h2 class="font-display text-[44px] leading-[1] text-dark mt-0 mb-[12px] max-[900px]:text-[32px]">
         {t.cta.title}
       </h2>
-      <p class="text-[16px] leading-[1.5] font-medium text-[#0A0A0A] m-0 max-w-[540px]" style="font-family: var(--font-body);">
+      <p class="font-body text-[16px] leading-[1.5] font-medium text-dark m-0 max-w-[540px]">
         {t.cta.subtitle}
       </p>
     </div>
     <div class="flex gap-[12px] shrink-0 max-[900px]:flex-col">
       <a
         href={`${lp}coaching/`}
-        class="rounded-full bg-[#0A0A0A] text-[#D4E84A] px-[32px] py-[18px] font-extrabold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-[#0A0A0A] transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-transparent hover:text-[#0A0A0A]"
-        style="font-family: var(--font-body);"
+        class="font-body rounded-full bg-dark text-lime px-[32px] py-[18px] font-extrabold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-dark transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-transparent hover:text-dark"
       >
         {t.cta.primaryAction}
       </a>
       <a
         href={`${lp}contacto/`}
-        class="rounded-full bg-transparent text-[#0A0A0A] px-[32px] py-[18px] font-bold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-[#0A0A0A] transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-[#0A0A0A] hover:text-[#D4E84A]"
-        style="font-family: var(--font-body);"
+        class="font-body rounded-full bg-transparent text-dark px-[32px] py-[18px] font-bold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-dark transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-dark hover:text-lime"
       >
         {t.cta.secondaryAction}
       </a>

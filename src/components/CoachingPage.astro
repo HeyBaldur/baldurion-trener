@@ -59,41 +59,39 @@ const { t } = Astro.props;
 const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
-const sEyebrow = "inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-[#D4E84A]";
-const sTitle = "text-[56px] leading-[0.95] mb-[16px] mt-0 uppercase text-[#0A0A0A] dark:text-[#FAFAF7] max-[768px]:text-[40px]";
+const sEyebrow = "inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime";
+const sTitle = "text-[56px] leading-[0.95] mb-[16px] mt-0 uppercase text-dark dark:text-light max-[768px]:text-[40px]";
 const sSub = "text-[17px] leading-[1.6] m-0 text-[#555] dark:text-[#999]";
 const sHeader = "mb-[48px] text-center max-w-[720px] mx-auto";
 
 const levelNameColors = [
   "text-[#aaa] dark:text-[#666]",
   "text-[#777] dark:text-[#999]",
-  "text-[#0A0A0A] dark:text-[#D4E84A]",
-  "text-[#0A0A0A] dark:text-[#D4E84A]",
+  "text-dark dark:text-lime",
+  "text-dark dark:text-lime",
 ];
 ---
 
 <!-- ===== AUDIENCE ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px] mt-[80px] max-[768px]:mt-[40px]">
   <div class={sHeader}>
-    <span class={sEyebrow} style="font-family: var(--font-body);">{t.audience.sectionEyebrow}</span>
-    <h2 class={sTitle} style="font-family: var(--font-display);">{t.audience.sectionTitle}</h2>
-    <p class={sSub} style="font-family: var(--font-body);">{t.audience.sectionSubtitle}</p>
+    <span class={`font-body ${sEyebrow}`}>{t.audience.sectionEyebrow}</span>
+    <h2 class={`font-display ${sTitle}`}>{t.audience.sectionTitle}</h2>
+    <p class={`font-body ${sSub}`}>{t.audience.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-2 gap-[32px] max-[1024px]:grid-cols-1">
 
     <div class="rounded-[24px] p-[40px] border border-[rgba(212,232,74,0.4)] dark:border-[rgba(212,232,74,0.3)]" style="background: linear-gradient(135deg, rgba(212,232,74,0.07) 0%, rgba(212,232,74,0) 100%);">
       <h3
-        class="text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-[#0A0A0A] dark:text-[#D4E84A]"
-        style="font-family: var(--font-display);"
+        class="font-display text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-dark dark:text-lime"
       >{t.audience.yesTitle}</h3>
       <ul class="list-none flex flex-col gap-[20px] p-0 m-0">
         {t.audience.yesItems.map((item) => (
           <li class="flex gap-[16px] items-start">
-            <div class="shrink-0 w-[32px] h-[32px] rounded-full bg-[#D4E84A] text-[#0A0A0A] flex items-center justify-center text-[16px] font-extrabold">✓</div>
+            <div class="shrink-0 w-[32px] h-[32px] rounded-full bg-lime text-dark flex items-center justify-center text-[16px] font-extrabold">✓</div>
             <p
-              class="text-[16px] leading-[1.5] text-[#333] dark:text-[#E0E0E0] pt-[4px] m-0 [&_strong]:font-bold [&_strong]:text-[#0A0A0A] dark:[&_strong]:text-[#D4E84A]"
-              style="font-family: var(--font-body);"
+              class="font-body text-[16px] leading-[1.5] text-[#333] dark:text-[#E0E0E0] pt-[4px] m-0 [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime"
               set:html={item}
             />
           </li>
@@ -101,18 +99,16 @@ const levelNameColors = [
       </ul>
     </div>
 
-    <div class="rounded-[24px] p-[40px] bg-[#f5f5f0] dark:bg-[#141414] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
+    <div class="rounded-[24px] p-[40px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
       <h3
-        class="text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-[#777] dark:text-[#888]"
-        style="font-family: var(--font-display);"
+        class="font-display text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-[#777] dark:text-[#888]"
       >{t.audience.noTitle}</h3>
       <ul class="list-none flex flex-col gap-[20px] p-0 m-0">
         {t.audience.noItems.map((item) => (
           <li class="flex gap-[16px] items-start">
             <div class="shrink-0 w-[32px] h-[32px] rounded-full bg-[rgba(0,0,0,0.06)] dark:bg-[rgba(255,255,255,0.06)] text-[#999] dark:text-[#666] flex items-center justify-center text-[16px] font-extrabold">✕</div>
             <p
-              class="text-[16px] leading-[1.5] text-[#666] dark:text-[#888] pt-[4px] m-0"
-              style="font-family: var(--font-body);"
+              class="font-body text-[16px] leading-[1.5] text-[#666] dark:text-[#888] pt-[4px] m-0"
               set:html={item}
             />
           </li>
@@ -126,14 +122,14 @@ const levelNameColors = [
 <!-- ===== METHOD ===== -->
 <section id="metodo" class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px]">
   <div class={sHeader}>
-    <span class={sEyebrow} style="font-family: var(--font-body);">{t.method.sectionEyebrow}</span>
-    <h2 class={sTitle} style="font-family: var(--font-display);">{t.method.sectionTitle}</h2>
-    <p class={sSub} style="font-family: var(--font-body);">{t.method.sectionSubtitle}</p>
+    <span class={`font-body ${sEyebrow}`}>{t.method.sectionEyebrow}</span>
+    <h2 class={`font-display ${sTitle}`}>{t.method.sectionTitle}</h2>
+    <p class={`font-body ${sSub}`}>{t.method.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
     {t.method.phases.map((phase) => (
-      <div class="bg-[#f5f5f0] dark:bg-[#141414] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_28px] relative overflow-hidden">
+      <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_28px] relative overflow-hidden">
         <div
           class="absolute top-[24px] right-[24px] text-[rgba(0,0,0,0.05)] dark:text-[rgba(212,232,74,0.08)] z-0 leading-[1]"
           style="font-family: var(--font-display); font-size: 80px;"
@@ -141,29 +137,25 @@ const levelNameColors = [
         >{phase.number}</div>
 
         <span
-          class="relative z-[1] inline-block text-[10px] font-bold tracking-[0.3em] uppercase mb-[16px] px-[10px] py-[4px] border rounded-full text-[#444] border-[rgba(0,0,0,0.15)] bg-[rgba(0,0,0,0.04)] dark:text-[#D4E84A] dark:border-[rgba(212,232,74,0.3)] dark:bg-[rgba(212,232,74,0.05)]"
-          style="font-family: var(--font-body);"
+          class="font-body relative z-[1] inline-block text-[10px] font-bold tracking-[0.3em] uppercase mb-[16px] px-[10px] py-[4px] border rounded-full text-[#444] border-[rgba(0,0,0,0.15)] bg-[rgba(0,0,0,0.04)] dark:text-lime dark:border-[rgba(212,232,74,0.3)] dark:bg-[rgba(212,232,74,0.05)]"
         >{phase.label}</span>
 
         <h3
-          class="relative z-[1] text-[32px] leading-[1] mb-[12px] mt-0 uppercase text-[#0A0A0A] dark:text-[#FAFAF7]"
-          style="font-family: var(--font-display);"
+          class="font-display relative z-[1] text-[32px] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
         >{phase.title}</h3>
 
         <div
-          class="relative z-[1] text-[12px] text-[#444] dark:text-[#D4E84A] font-bold mb-[16px] tracking-[0.1em]"
-          style="font-family: var(--font-body);"
+          class="font-body relative z-[1] text-[12px] text-[#444] dark:text-lime font-bold mb-[16px] tracking-[0.1em]"
         >{phase.duration}</div>
 
         <p
-          class="relative z-[1] text-[14px] leading-[1.6] text-[#666] dark:text-[#999] mb-[16px] mt-0"
-          style="font-family: var(--font-body);"
+          class="font-body relative z-[1] text-[14px] leading-[1.6] text-[#666] dark:text-[#999] mb-[16px] mt-0"
         >{phase.description}</p>
 
         <ul class="relative z-[1] list-none flex flex-col gap-[8px] p-0 m-0">
           {phase.items.map((item) => (
-            <li class="flex gap-[8px] text-[13px] leading-[1.5] text-[#666] dark:text-[#999]" style="font-family: var(--font-body);">
-              <span class="text-[#444] dark:text-[#D4E84A] font-bold shrink-0">→</span>
+            <li class="font-body flex gap-[8px] text-[13px] leading-[1.5] text-[#666] dark:text-[#999]">
+              <span class="text-[#444] dark:text-lime font-bold shrink-0">→</span>
               <span>{item}</span>
             </li>
           ))}
@@ -176,19 +168,18 @@ const levelNameColors = [
 <!-- ===== LEVELS ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px]">
   <div class={sHeader}>
-    <span class={sEyebrow} style="font-family: var(--font-body);">{t.levels.sectionEyebrow}</span>
-    <h2 class={sTitle} style="font-family: var(--font-display);">{t.levels.sectionTitle}</h2>
-    <p class={sSub} style="font-family: var(--font-body);">{t.levels.sectionSubtitle}</p>
+    <span class={`font-body ${sEyebrow}`}>{t.levels.sectionEyebrow}</span>
+    <h2 class={`font-display ${sTitle}`}>{t.levels.sectionTitle}</h2>
+    <p class={`font-body ${sSub}`}>{t.levels.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
     {t.levels.items.map((level, idx) => (
-      <div class="bg-[#f5f5f0] dark:bg-[#141414] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_24px]">
+      <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_24px]">
         <h3
-          class={`text-[28px] leading-[1] mb-[12px] mt-0 uppercase ${levelNameColors[idx] ?? levelNameColors[3]}`}
-          style="font-family: var(--font-display);"
+          class={`font-display text-[28px] leading-[1] mb-[12px] mt-0 uppercase ${levelNameColors[idx] ?? levelNameColors[3]}`}
         >{level.name}</h3>
-        <p class="text-[14px] leading-[1.6] text-[#666] dark:text-[#999] m-0" style="font-family: var(--font-body);">{level.description}</p>
+        <p class="font-body text-[14px] leading-[1.6] text-[#666] dark:text-[#999] m-0">{level.description}</p>
       </div>
     ))}
   </div>
@@ -197,20 +188,18 @@ const levelNameColors = [
 <!-- ===== MODALITIES ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] grid grid-cols-2 gap-[24px] max-[1024px]:grid-cols-1 max-[768px]:px-[16px]">
   {[t.modalities.online, t.modalities.onsite].map((mod) => (
-    <div class="bg-[#f5f5f0] dark:bg-[#141414] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-[40px]">
+    <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-[40px]">
       <span
-        class="inline-block text-[10px] font-bold tracking-[0.25em] uppercase mb-[16px] px-[10px] py-[4px] border rounded-full text-[#444] border-[rgba(0,0,0,0.15)] bg-[rgba(0,0,0,0.04)] dark:text-[#D4E84A] dark:border-[rgba(212,232,74,0.3)] dark:bg-[rgba(212,232,74,0.05)]"
-        style="font-family: var(--font-body);"
+        class="font-body inline-block text-[10px] font-bold tracking-[0.25em] uppercase mb-[16px] px-[10px] py-[4px] border rounded-full text-[#444] border-[rgba(0,0,0,0.15)] bg-[rgba(0,0,0,0.04)] dark:text-lime dark:border-[rgba(212,232,74,0.3)] dark:bg-[rgba(212,232,74,0.05)]"
       >{mod.badge}</span>
       <h3
-        class="text-[36px] leading-[1] mb-[12px] mt-0 uppercase text-[#0A0A0A] dark:text-[#FAFAF7]"
-        style="font-family: var(--font-display);"
+        class="font-display text-[36px] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
       >{mod.title}</h3>
-      <p class="text-[13px] text-[#777] dark:text-[#888] mb-[24px] mt-0 tracking-[0.05em]" style="font-family: var(--font-body);">{mod.location}</p>
+      <p class="font-body text-[13px] text-[#777] dark:text-[#888] mb-[24px] mt-0 tracking-[0.05em]">{mod.location}</p>
       <ul class="list-none flex flex-col gap-[12px] p-0 m-0">
         {mod.features.map((f) => (
-          <li class="flex gap-[10px] text-[14px] leading-[1.5] text-[#333] dark:text-[#E0E0E0]" style="font-family: var(--font-body);">
-            <span class="text-[#0A0A0A] dark:text-[#D4E84A] font-extrabold shrink-0">✓</span>
+          <li class="font-body flex gap-[10px] text-[14px] leading-[1.5] text-[#333] dark:text-[#E0E0E0]">
+            <span class="text-dark dark:text-lime font-extrabold shrink-0">✓</span>
             <span>{f}</span>
           </li>
         ))}
@@ -220,17 +209,15 @@ const levelNameColors = [
 </section>
 
 <!-- ===== INVESTMENT ===== -->
-<section class="max-w-[1280px] mx-auto mb-[80px] px-[48px] py-[64px] bg-[#f5f5f0] dark:bg-[#141414] border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] text-center max-[768px]:px-[24px] max-[768px]:py-[40px]">
+<section class="max-w-[1280px] mx-auto mb-[80px] px-[48px] py-[64px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] text-center max-[768px]:px-[24px] max-[768px]:py-[40px]">
   <h2
-    class="text-[48px] leading-[1] mb-[24px] mt-0 uppercase text-[#0A0A0A] dark:text-[#FAFAF7]"
-    style="font-family: var(--font-display);"
+    class="font-display text-[48px] leading-[1] mb-[24px] mt-0 uppercase text-dark dark:text-light"
   >{t.investment.title}</h2>
   <p
-    class="text-[17px] leading-[1.7] text-[#555] dark:text-[#999] max-w-[640px] mx-auto mb-[16px] mt-0 [&_strong]:font-bold [&_strong]:text-[#0A0A0A] dark:[&_strong]:text-[#D4E84A]"
-    style="font-family: var(--font-body);"
+    class="font-body text-[17px] leading-[1.7] text-[#555] dark:text-[#999] max-w-[640px] mx-auto mb-[16px] mt-0 [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime"
     set:html={t.investment.text}
   />
-  <p class="text-[14px] text-[#888] dark:text-[#666] max-w-[640px] mx-auto m-0" style="font-family: var(--font-body);">{t.investment.detail}</p>
+  <p class="font-body text-[14px] text-[#888] dark:text-[#666] max-w-[640px] mx-auto m-0">{t.investment.detail}</p>
 </section>
 
 <!-- ===== CTA FINAL ===== -->
@@ -239,21 +226,19 @@ const levelNameColors = [
   style="background: linear-gradient(135deg, #D4E84A 0%, #C5D944 100%);"
 >
   <div>
-    <div class="text-[11px] font-extrabold tracking-[0.3em] uppercase mb-[12px] text-[#0A0A0A]" style="font-family: var(--font-body);">
+    <div class="font-body text-[11px] font-extrabold tracking-[0.3em] uppercase mb-[12px] text-dark">
       {t.ctaFinal.eyebrow}
     </div>
     <h2
-      class="text-[44px] leading-[1] mb-[12px] mt-0 uppercase text-[#0A0A0A] max-[768px]:text-[32px]"
-      style="font-family: var(--font-display);"
+      class="font-display text-[44px] leading-[1] mb-[12px] mt-0 uppercase text-dark max-[768px]:text-[32px]"
     >{t.ctaFinal.title}</h2>
-    <p class="text-[16px] leading-[1.5] font-medium text-[#0A0A0A] m-0 max-w-[540px]" style="font-family: var(--font-body);">{t.ctaFinal.subtitle}</p>
+    <p class="font-body text-[16px] leading-[1.5] font-medium text-dark m-0 max-w-[540px]">{t.ctaFinal.subtitle}</p>
   </div>
   <a
     href={calendlyUrl}
     target="_blank"
     rel="noopener noreferrer"
-    class="rounded-full bg-[#0A0A0A] text-[#D4E84A] px-[40px] py-[20px] font-extrabold text-[14px] tracking-[0.05em] uppercase no-underline whitespace-nowrap border-2 border-[#0A0A0A] shrink-0 transition-all duration-200 text-center hover:bg-transparent hover:text-[#0A0A0A] max-[768px]:text-center"
-    style="font-family: var(--font-body);"
+    class="font-body rounded-full bg-dark text-lime px-[40px] py-[20px] font-extrabold text-[14px] tracking-[0.05em] uppercase no-underline whitespace-nowrap border-2 border-dark shrink-0 transition-all duration-200 text-center hover:bg-transparent hover:text-dark max-[768px]:text-center"
   >
     {t.ctaFinal.button}
   </a>

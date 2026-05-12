@@ -22,22 +22,21 @@ const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 <section class="max-w-[760px] mx-auto px-[32px] pt-[80px] pb-[120px] max-[640px]:px-[20px] max-[640px]:pt-[56px] max-[640px]:pb-[80px]">
 
   <div class="mb-[64px]">
-    <span class="block text-[12px] font-bold tracking-[0.25em] uppercase mb-[16px] text-[#444444] dark:text-[#D4E84A]" style="font-family: var(--font-body);">
+    <span class="font-body block text-[12px] font-bold tracking-[0.25em] uppercase mb-[16px] text-[#444444] dark:text-lime">
       {t.eyebrow}
     </span>
-    <h1 class="text-[64px] leading-[1] m-0 text-[#0A0A0A] dark:text-white max-[640px]:text-[44px]" style="font-family: var(--font-display); text-transform: none;">
+    <h1 class="text-[64px] leading-[1] m-0 text-dark dark:text-white max-[640px]:text-[44px]" style="font-family: var(--font-display); text-transform: none;">
       {t.title}
     </h1>
   </div>
 
   <div class="mb-[56px]">
-    <p class="text-[28px] leading-[1.2] pl-[20px] border-l-[3px] border-[#D4E84A] mb-[32px] text-[#0A0A0A] dark:text-white max-[640px]:text-[24px]" style="font-family: var(--font-display);">
+    <p class="font-display text-[28px] leading-[1.2] pl-[20px] border-l-[3px] border-lime mb-[32px] text-dark dark:text-white max-[640px]:text-[24px]">
       {t.leadParagraph}
     </p>
     {t.body.map((paragraph) => (
       <p
-        class="text-[17px] leading-[1.7] mb-[20px] text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-[#0A0A0A] dark:[&_strong]:text-[#D4E84A]"
-        style="font-family: var(--font-body);"
+        class="font-body text-[17px] leading-[1.7] mb-[20px] text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime"
         set:html={paragraph}
       />
     ))}
@@ -48,25 +47,23 @@ const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
       href={calendlyUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="group rounded-full inline-flex items-center gap-[12px] bg-[#0A0A0A] text-[#D4E84A] px-[40px] py-[20px] font-extrabold text-[15px] tracking-[0.05em] uppercase no-underline border-2 border-[#0A0A0A] transition-all duration-200 hover:bg-transparent hover:text-[#0A0A0A] hover:-translate-y-[2px] max-[640px]:px-[28px] max-[640px]:py-[16px] max-[640px]:text-[14px]"
-      style="font-family: var(--font-body);"
+      class="font-body group rounded-full inline-flex items-center gap-[12px] bg-dark text-lime px-[40px] py-[20px] font-extrabold text-[15px] tracking-[0.05em] uppercase no-underline border-2 border-dark transition-all duration-200 hover:bg-transparent hover:text-dark hover:-translate-y-[2px] max-[640px]:px-[28px] max-[640px]:py-[16px] max-[640px]:text-[14px]"
     >
       {t.calendlyButtonLabel}
       <span class="text-[18px] inline-block transition-transform duration-200 group-hover:translate-x-[4px]">→</span>
     </a>
-    <p class="mt-[16px] text-[13px] text-[#0A0A0A] font-medium opacity-65 mb-0" style="font-family: var(--font-body);">
+    <p class="font-body mt-[16px] text-[13px] text-dark font-medium opacity-65 mb-0">
       {t.calendlyHelpText}
     </p>
   </div>
 
   <div class="mt-[56px] pt-[32px] flex flex-col gap-[8px] items-start border-t border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
-    <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-[#555555] dark:text-[#CCCCCC]" style="font-family: var(--font-body);">
+    <span class="font-body text-[11px] font-bold tracking-[0.25em] uppercase text-[#555555] dark:text-[#CCCCCC]">
       {t.altContactLabel}
     </span>
     <a
       href={`mailto:${t.altContactEmail}`}
-      class="text-[18px] no-underline border-b border-current pb-[2px] transition-colors duration-200 text-[#0A0A0A] dark:text-white hover:text-[#D4E84A]"
-      style="font-family: var(--font-body);"
+      class="font-body text-[18px] no-underline border-b border-current pb-[2px] transition-colors duration-200 text-dark dark:text-white hover:text-lime"
     >
       {t.altContactEmail}
     </a>
