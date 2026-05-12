@@ -1,81 +1,119 @@
 ---
 interface Props {
   t: {
-    ratingText: string;
+    eyebrow: string;
     titleLine1: string;
     titleLine2: string;
     subtitle: string;
-    ctaText: string;
-    ctaByline: string;
-    ctaBylineRole: string;
-    chatPillTop: string;
-    chatTime: string;
-    chatBubble1: string;
-    chatBubble2: string;
-    chatBubble3: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    badgeTop: string;
+    badgeBottom: string;
+    stat1Value: string;
+    stat1Label: string;
+    stat2Value: string;
+    stat2Label: string;
+    stat3Value: string;
+    stat3Label: string;
   };
+  base: string;
+  locale: string;
 }
 
-const { t } = Astro.props;
-const calendlyUrl = "https://calendly.com/smart-gym-app-assistance/30min";
+const { t, base, locale } = Astro.props;
+const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
+const lp = locale === 'en' ? base : `${base}${locale}/`;
+const heroImg = `${base}images/brand/banner.jpg`;
 ---
 
-<section
-  class="relative max-w-[1400px] mx-auto mt-6 rounded-3xl overflow-hidden bg-dark h-[600px] max-[1024px]:h-auto max-[1024px]:min-h-[520px] max-[768px]:min-h-[500px]"
->
-  <!-- Background photo -->
-  <div class="absolute inset-0 z-0">
+<section class="relative min-h-[calc(100vh-4rem)] bg-dark flex items-stretch overflow-hidden">
+
+  <!-- Photo side -->
+  <div class="absolute inset-0 lg:left-[55%]">
     <img
-      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&q=80"
-      alt="Lorem ipsum placeholder"
+      src={heroImg}
+      alt="Rudolf Jaubert entrenando"
       class="w-full h-full object-cover object-center"
       loading="eager"
       fetchpriority="high"
+      width="900"
+      height="1200"
     />
-  </div>
-
-  <!-- Gradient overlay -->
-  <div
-    class="absolute inset-0 z-[1] bg-gradient-to-r from-black/95 via-black/70 to-transparent max-[768px]:bg-gradient-to-b max-[768px]:from-black/85 max-[768px]:to-black/60"
-  >
+    <!-- gradient blending left edge into dark bg on desktop -->
+    <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/60 to-dark/10 lg:via-dark/40 lg:to-transparent"></div>
+    <!-- gradient blending bottom on mobile -->
+    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent lg:hidden"></div>
+    <!-- photo bottom fade into dark section below -->
+    <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-dark pointer-events-none"></div>
   </div>
 
   <!-- Content -->
-  <div
-    class="relative z-[2] flex flex-col justify-center h-full max-w-[50%] px-14 py-16 max-[1024px]:max-w-[65%] max-[768px]:max-w-full max-[768px]:px-8 max-[768px]:py-12"
-  >
-    <!-- Title -->
-    <h1
-      class="font-display text-[56px] leading-[1.05] font-bold tracking-[-0.02em] text-light mb-6 max-[768px]:text-[36px]"
-    >
-      {t.titleLine1}<br />
-      {t.titleLine2}
+  <div class="relative z-10 w-full max-w-[1280px] mx-auto px-6 py-12 lg:px-12 lg:py-0 flex flex-col justify-center lg:max-w-[55%] lg:mx-0 lg:ml-[max(3rem,calc((100vw-1280px)/2+3rem))]">
+
+    <!-- Eyebrow -->
+    <p class="text-lime text-[11px] font-bold tracking-[0.3em] uppercase mb-6">
+      {t.eyebrow}
+    </p>
+
+    <!-- Headline -->
+    <h1 class="text-light font-bold text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] tracking-tight mb-6">
+      {t.titleLine1}<br />{t.titleLine2}
     </h1>
 
     <!-- Subtitle -->
-    <p
-      class="font-body text-base leading-relaxed text-white/70 max-w-[480px] mb-10"
-    >
+    <p class="text-light/70 text-[17px] leading-[1.65] max-w-[480px] mb-10">
       {t.subtitle}
     </p>
 
-    <!-- CTA button -->
-    <a
-      href={calendlyUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="font-body inline-flex items-center gap-2.5 bg-lime text-dark py-4 px-7 rounded-full font-bold text-[15px] no-underline w-fit mb-4 transition-transform duration-200 hover:-translate-y-0.5"
-    >
-      <span
-        class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-dark text-lime text-xs shrink-0"
-        >▶</span
+    <!-- CTAs -->
+    <div class="flex flex-wrap gap-3 mb-10">
+      <a
+        href={calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-lime text-dark font-bold text-[14px] tracking-[0.03em] uppercase px-7 py-4 rounded-full no-underline transition-transform duration-200 hover:-translate-y-0.5"
       >
-      {t.ctaText}
-    </a>
+        {t.ctaPrimary}
+      </a>
+      <a
+        href={`${lp}coaching/#metodo`}
+        class="inline-flex items-center gap-2 text-light/80 font-semibold text-[14px] no-underline border border-light/20 px-7 py-4 rounded-full transition-colors duration-200 hover:border-lime/60 hover:text-lime"
+      >
+        {t.ctaSecondary}
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
 
-    <!-- CTA byline -->
-    <div class="font-body text-xs text-white/50">
-      {t.ctaByline}<span class="text-lime mx-1">●</span>{t.ctaBylineRole}
+    <!-- Stats -->
+    <div class="flex flex-wrap gap-x-6 gap-y-3">
+      {[
+        { value: t.stat1Value, label: t.stat1Label },
+        { value: t.stat2Value, label: t.stat2Label },
+        { value: t.stat3Value, label: t.stat3Label },
+      ].map((stat, i) => (
+        <div class="flex items-center gap-3">
+          {i > 0 && <span class="text-light/20 hidden sm:block" aria-hidden="true">|</span>}
+          <div>
+            <div class="text-light font-bold text-[15px] leading-none">{stat.value}</div>
+            <div class="text-light/50 text-[11px] mt-1">{stat.label}</div>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
+
+  <!-- Floating badges (desktop only) -->
+  <div class="hidden lg:block absolute right-[5%] top-[15%] z-20">
+    <div class="flex items-center gap-3 bg-dark/80 border border-light/10 backdrop-blur-sm rounded-2xl px-4 py-3">
+      <span class="text-lime text-lg" aria-hidden="true">◎</span>
+      <span class="text-light text-[13px] font-semibold">{t.badgeTop}</span>
+    </div>
+  </div>
+  <div class="hidden lg:block absolute right-[12%] bottom-[20%] z-20">
+    <div class="flex items-center gap-3 bg-dark/80 border border-light/10 backdrop-blur-sm rounded-2xl px-4 py-3">
+      <span class="text-lime text-lg" aria-hidden="true">◈</span>
+      <span class="text-light text-[13px] font-semibold">{t.badgeBottom}</span>
+    </div>
+  </div>
+
 </section>

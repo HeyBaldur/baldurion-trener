@@ -6,6 +6,7 @@ import { en } from '../i18n/en';
 import { getCollection } from 'astro:content';
 
 const locale = 'en';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const enArticulos = await getCollection('articulos', ({ id, data }) => {
   return id.startsWith('en/') && !data.draft;
@@ -36,9 +37,11 @@ const articulos = source
 
 <BaseLayout
   title="Baldurion — Science-Based Fitness"
-  description="Training, nutrition and sports methodology articles written with scientific rigor. No pseudoscience."
+  description="Personalized training with scientific rigor. Real strength, real capacity. Personal trainer in Katowice."
   locale={locale}
 >
-  <HomeHero t={en.home.hero} />
-  <BentoGrid articles={articulos} locale={locale} />
+  <HomeHero t={en.home.hero} base={base} locale={locale} />
+  <div class="py-6 lg:py-10">
+    <BentoGrid articles={articulos} locale={locale} />
+  </div>
 </BaseLayout>

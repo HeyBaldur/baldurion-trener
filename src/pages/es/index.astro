@@ -6,6 +6,7 @@ import { es } from '../../i18n/es';
 import { getCollection } from 'astro:content';
 
 const locale = 'es';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const allArticulos = await getCollection('articulos', ({ id, data }) => {
   return id.startsWith('es/') && !data.draft;
@@ -29,9 +30,11 @@ const articulos = allArticulos
 
 <BaseLayout
   title="Baldurion — Fitness con base científica"
-  description="Artículos de entrenamiento, nutrición y metodología deportiva escritos con rigor científico. Sin pseudociencia."
+  description="Entrenamiento personalizado con rigor científico. Fuerza real, capacidad real. Entrenador personal en Katowice."
   locale={locale}
 >
-  <HomeHero t={es.home.hero} />
-  <BentoGrid articles={articulos} locale={locale} />
+  <HomeHero t={es.home.hero} base={base} locale={locale} />
+  <div class="py-6 lg:py-10">
+    <BentoGrid articles={articulos} locale={locale} />
+  </div>
 </BaseLayout>

@@ -6,6 +6,7 @@ import { pl } from '../../i18n/pl';
 import { getCollection } from 'astro:content';
 
 const locale = 'pl';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const plArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('pl/') && !data.draft);
 const esArticulos = await getCollection('articulos', ({ id, data }) => id.startsWith('es/') && !data.draft);
@@ -30,9 +31,11 @@ const articulos = source
 
 <BaseLayout
   title="Baldurion — Fitness oparty na nauce"
-  description="Artykuły o treningu, żywieniu i metodologii sportowej pisane z naukowym rygorem."
+  description="Spersonalizowany trening z naukowym rygorem. Prawdziwa siła, prawdziwa moc. Trener personalny w Katowicach."
   locale={locale}
 >
-  <HomeHero t={pl.home.hero} />
-  <BentoGrid articles={articulos} locale={locale} />
+  <HomeHero t={pl.home.hero} base={base} locale={locale} />
+  <div class="py-6 lg:py-10">
+    <BentoGrid articles={articulos} locale={locale} />
+  </div>
 </BaseLayout>
