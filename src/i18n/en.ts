@@ -60,6 +60,22 @@ export const en: Translations = {
     googlePlayLabel: 'Google Play',
     googlePlayAriaLabel: 'Download SmartGym on Google Play',
   },
+  home: {
+    hero: {
+      ratingText: 'Lorem ipsum 12,000+ dolor sit',
+      titleLine1: 'Lorem ipsum dolor',
+      titleLine2: 'sit amet consectetur',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      ctaText: 'Lorem ipsum action',
+      ctaByline: 'With Lorem',
+      ctaBylineRole: 'Lorem ipsum dolor',
+      chatPillTop: 'Lorem ipsum dolor sit',
+      chatTime: 'Lorem · 2:30 PM',
+      chatBubble1: 'Lorem ipsum 👋 dolor sit amet consectetur adipiscing elit?',
+      chatBubble2: 'Lorem ipsum dolor sit amet, consectetur adipiscing.',
+      chatBubble3: 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur.',
+    },
+  },
   coaching: {
     metaTitle: 'Coaching · Baldurion Program',
     metaDescription: 'Baldurion Program. Structured 12-week method for those who take their transformation seriously. Online and in-person in Katowice.',

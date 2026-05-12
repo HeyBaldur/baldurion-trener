@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BentoGrid from '../../components/BentoGrid.astro';
+import HomeHero from '../../components/HomeHero.astro';
+import { pl } from '../../i18n/pl';
 import { getCollection } from 'astro:content';
 
 const locale = 'pl';
@@ -31,5 +33,6 @@ const articulos = source
   description="Artykuły o treningu, żywieniu i metodologii sportowej pisane z naukowym rygorem."
   locale={locale}
 >
+  <HomeHero t={pl.home.hero} />
   <BentoGrid articles={articulos} locale={locale} />
 </BaseLayout>
