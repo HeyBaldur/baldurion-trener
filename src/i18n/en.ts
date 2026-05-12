@@ -62,7 +62,7 @@ export const en: Translations = {
   },
   home: {
     hero: {
-      eyebrow: 'PERSONAL TRAINER · KATOWICE',
+      eyebrow: 'PERSONAL TRAINER · KATOWICE · ONLINE',
       titleLine1: 'Real strength.',
       titleLine2: 'Real capacity.',
       subtitle: 'Personalized training for those who want real results, not shortcuts. Rigorous technical follow-up in Katowice or wherever you are.',
@@ -202,18 +202,6 @@ export const en: Translations = {
         "I've spent years in sports: athletics, gyms, Kung Fu under master Victor On, and years of sparring and combat — first as a practitioner, and now as a certified trainer.",
         "I'm not here to sell you a secret. I'm here to offer you structure and method to build what you already have inside: to feel better about yourself, enjoy the journey, and build your best version.",
       ],
-    },
-    gallery: {
-      sectionEyebrow: 'About Rudolf',
-      sectionTitleStart: 'Years',
-      sectionTitleEm: 'of path',
-      photos: {
-        patada: { title: 'Kick training', meta: 'Sparring · 2021' },
-        kungfu: { title: 'With master Victor On', meta: 'Eastern Arts Center · 2017' },
-        coach: { title: 'Always learning', meta: 'Gym · 2021' },
-        sparring: { title: 'Sparring and combat', meta: 'Combat association' },
-        certificado: { title: 'Personal Trainer & Gym Instructor Certification', meta: 'FitAcademy · Katowice · 2026' },
-      },
     },
     cta: {
       eyebrow: 'Next step',

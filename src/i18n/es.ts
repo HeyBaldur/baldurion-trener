@@ -60,10 +60,10 @@ export const es = {
   },
   home: {
     hero: {
-      eyebrow: 'PERSONAL TRAINER · KATOWICE',
-      titleLine1: 'Fuerza real.',
-      titleLine2: 'Capacidad real.',
-      subtitle: 'Entrenamiento personalizado para quien busca resultados reales, no atajos. Acompañamiento técnico riguroso en Katowice o donde estés.',
+      eyebrow: 'PERSONAL TRAINER · KATOWICE · ONLINE',
+      titleLine1: 'Fitboxing',
+      titleLine2: 'Y entrenador personal.',
+      subtitle: 'Hacer cardio en una banda de correr está bien, pero no es lo mismo que golpear, patear, saltar, esquivar y mover todo el cuerpo.',
       ctaPrimary: 'Agenda llamada gratuita',
       ctaSecondary: 'Conoce el método',
       badgeTop: 'Seguimiento técnico',
@@ -191,8 +191,8 @@ export const es = {
   about: {
     metaTitle: 'Sobre Rudolf · Baldurion',
     metaDescription: 'Rudolf Jaubert, entrenador personal certificado en Katowice. Años de experiencia en deporte, fuerza y artes marciales aplicados a personas reales.',
-    heroTitle: 'Una persona <span class="accent">real</span><br>entrenando<br>personas <span class="accent">reales</span>',
-    heroSubtitle: 'Entrenador personal certificado en Katowice, Polonia.',
+    heroTitle: 'Golpea, salta, esquiva… <span class="accent">no solo corras</span>',
+    heroSubtitle: 'El cardio no tiene que ser aburrido. Puede ser una experiencia que te haga crecer, sentirte mejor, volverte más fuerte y, además, disfrutar el proceso.',
     photoAlt: 'Rudolf Jaubert',
     body: {
       lead: 'Soy Rudolf Jaubert.',
@@ -200,18 +200,6 @@ export const es = {
         'Llevo años en el deporte: atletismo, gimnasios, Kung Fu con el maestro Victor On, y años de sparring y combate, primero como practicante y ahora como entrenador certificado.',
         'No vengo a venderte un secreto. Vengo a ofrecerte estructura y método para construir lo que ya tienes dentro: sentirte mejor contigo mismo, pasar un buen rato en el camino, y construir tu mejor versión.',
       ],
-    },
-    gallery: {
-      sectionEyebrow: 'Sobre Rudolf',
-      sectionTitleStart: 'Años',
-      sectionTitleEm: 'de camino',
-      photos: {
-        patada: { title: 'Entrenamiento de patadas', meta: 'Sparring · 2021' },
-        kungfu: { title: 'Con el maestro Victor On', meta: 'Centro de Artes Orientales · 2017' },
-        coach: { title: 'Aprendiendo siempre', meta: 'Gym · 2021' },
-        sparring: { title: 'Sparring y combate', meta: 'Asociación de combate' },
-        certificado: { title: 'Certificación Personal Trainer & Gym Instructor', meta: 'FitAcademy · Katowice · 2026' },
-      },
     },
     cta: {
       eyebrow: 'Próximo paso',

@@ -60,7 +60,7 @@ const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const sEyebrow = "inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime";
-const sTitle = "text-[56px] leading-[0.95] mb-[16px] mt-0 uppercase text-dark dark:text-light max-[768px]:text-[40px]";
+const sTitle = "font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light";
 const sSub = "text-[17px] leading-[1.6] m-0 text-[#555] dark:text-[#999]";
 const sHeader = "mb-[48px] text-center max-w-[720px] mx-auto";
 
@@ -76,7 +76,7 @@ const levelNameColors = [
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px] mt-[80px] max-[768px]:mt-[40px]">
   <div class={sHeader}>
     <span class={`font-body ${sEyebrow}`}>{t.audience.sectionEyebrow}</span>
-    <h2 class={`font-display ${sTitle}`}>{t.audience.sectionTitle}</h2>
+    <h2 class={`font-7 ${sTitle}`}>{t.audience.sectionTitle}</h2>
     <p class={`font-body ${sSub}`}>{t.audience.sectionSubtitle}</p>
   </div>
 
@@ -211,7 +211,7 @@ const levelNameColors = [
 <!-- ===== INVESTMENT ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[48px] py-[64px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] text-center max-[768px]:px-[24px] max-[768px]:py-[40px]">
   <h2
-    class="font-display text-[48px] leading-[1] mb-[24px] mt-0 uppercase text-dark dark:text-light"
+    class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light"
   >{t.investment.title}</h2>
   <p
     class="font-body text-[17px] leading-[1.7] text-[#555] dark:text-[#999] max-w-[640px] mx-auto mb-[16px] mt-0 [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime"
@@ -230,7 +230,7 @@ const levelNameColors = [
       {t.ctaFinal.eyebrow}
     </div>
     <h2
-      class="font-display text-[44px] leading-[1] mb-[12px] mt-0 uppercase text-dark max-[768px]:text-[32px]"
+      class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark"
     >{t.ctaFinal.title}</h2>
     <p class="font-body text-[16px] leading-[1.5] font-medium text-dark m-0 max-w-[540px]">{t.ctaFinal.subtitle}</p>
   </div>

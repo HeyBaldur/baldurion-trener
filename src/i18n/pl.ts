@@ -203,18 +203,6 @@ export const pl: Translations = {
         'Nie przychodzę sprzedawać Ci sekretu. Przychodzę zaoferować strukturę i metodę, aby zbudować to, co już masz w sobie: poczuć się lepiej z samym sobą, dobrze spędzić czas w tej drodze, i zbudować swoją najlepszą wersję.',
       ],
     },
-    gallery: {
-      sectionEyebrow: 'O Rudolfie',
-      sectionTitleStart: 'Lata',
-      sectionTitleEm: 'drogi',
-      photos: {
-        patada: { title: 'Trening kopnięć', meta: 'Sparring · 2021' },
-        kungfu: { title: 'Z mistrzem Victorem On', meta: 'Centrum Sztuk Wschodnich · 2017' },
-        coach: { title: 'Zawsze się uczę', meta: 'Siłownia · 2021' },
-        sparring: { title: 'Sparring i walka', meta: 'Stowarzyszenie walki' },
-        certificado: { title: 'Certyfikacja Trener Personalny & Instruktor Siłowni', meta: 'FitAcademy · Katowice · 2026' },
-      },
-    },
     cta: {
       eyebrow: 'Następny krok',
       title: 'Gotowy, żeby zacząć?',
