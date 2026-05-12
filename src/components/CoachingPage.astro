@@ -59,11 +59,6 @@ const { t } = Astro.props;
 const calendlyUrl = 'https://calendly.com/smart-gym-app-assistance/30min';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
-const sEyebrow = "inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime";
-const sTitle = "font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light";
-const sSub = "text-[17px] leading-[1.6] m-0 text-[#555] dark:text-[#999]";
-const sHeader = "mb-[48px] text-center max-w-[720px] mx-auto";
-
 const levelNameColors = [
   "text-[#aaa] dark:text-[#666]",
   "text-[#777] dark:text-[#999]",
@@ -74,10 +69,10 @@ const levelNameColors = [
 
 <!-- ===== AUDIENCE ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px] mt-[80px] max-[768px]:mt-[40px]">
-  <div class={sHeader}>
-    <span class={`font-body ${sEyebrow}`}>{t.audience.sectionEyebrow}</span>
-    <h2 class={`font-7 ${sTitle}`}>{t.audience.sectionTitle}</h2>
-    <p class={`font-body ${sSub}`}>{t.audience.sectionSubtitle}</p>
+  <div class="mb-[48px] text-center max-w-[720px] mx-auto">
+    <span class="font-body inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime">{t.audience.sectionEyebrow}</span>
+    <h2 class="font-display font-bold text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] tracking-tight mb-6 mt-0 text-dark dark:text-light">{t.audience.sectionTitle}</h2>
+    <p class="font-body text-[17px] leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.audience.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-2 gap-[32px] max-[1024px]:grid-cols-1">
@@ -121,10 +116,10 @@ const levelNameColors = [
 
 <!-- ===== METHOD ===== -->
 <section id="metodo" class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px]">
-  <div class={sHeader}>
-    <span class={`font-body ${sEyebrow}`}>{t.method.sectionEyebrow}</span>
-    <h2 class={`font-display ${sTitle}`}>{t.method.sectionTitle}</h2>
-    <p class={`font-body ${sSub}`}>{t.method.sectionSubtitle}</p>
+  <div class="mb-[48px] text-center max-w-[720px] mx-auto">
+    <span class="font-body inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime">{t.method.sectionEyebrow}</span>
+    <h2 class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light">{t.method.sectionTitle}</h2>
+    <p class="font-body text-2xl leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.method.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
@@ -167,10 +162,10 @@ const levelNameColors = [
 
 <!-- ===== LEVELS ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] max-[768px]:px-[16px]">
-  <div class={sHeader}>
-    <span class={`font-body ${sEyebrow}`}>{t.levels.sectionEyebrow}</span>
-    <h2 class={`font-display ${sTitle}`}>{t.levels.sectionTitle}</h2>
-    <p class={`font-body ${sSub}`}>{t.levels.sectionSubtitle}</p>
+  <div class="mb-[48px] text-center max-w-[720px] mx-auto">
+    <span class="font-body inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime">{t.levels.sectionEyebrow}</span>
+    <h2 class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light">{t.levels.sectionTitle}</h2>
+    <p class="font-body text-2xl leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.levels.sectionSubtitle}</p>
   </div>
 
   <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
@@ -206,18 +201,6 @@ const levelNameColors = [
       </ul>
     </div>
   ))}
-</section>
-
-<!-- ===== INVESTMENT ===== -->
-<section class="max-w-[1280px] mx-auto mb-[80px] px-[48px] py-[64px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] text-center max-[768px]:px-[24px] max-[768px]:py-[40px]">
-  <h2
-    class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light"
-  >{t.investment.title}</h2>
-  <p
-    class="font-body text-[17px] leading-[1.7] text-[#555] dark:text-[#999] max-w-[640px] mx-auto mb-[16px] mt-0 [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime"
-    set:html={t.investment.text}
-  />
-  <p class="font-body text-[14px] text-[#888] dark:text-[#666] max-w-[640px] mx-auto m-0">{t.investment.detail}</p>
 </section>
 
 <!-- ===== CTA FINAL ===== -->
