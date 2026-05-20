@@ -17,7 +17,6 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const lp = locale === 'en' ? base : `${base}${locale}/`;
 const navLinks = [
   { href: lp, label: t.nav.home },
-  { href: `${lp}articulos/`, label: t.nav.articles },
   { href: `${lp}coaching/`, label: t.nav.coaching },
   { href: `${lp}sobre/`, label: t.nav.about },
   { href: `${lp}contacto/`, label: t.nav.contact },

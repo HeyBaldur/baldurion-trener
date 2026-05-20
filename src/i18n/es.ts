@@ -1,4 +1,4 @@
-export const es = {
+﻿export const es = {
   nav: {
     home: "Inicio",
     articles: "Artículos",
@@ -247,14 +247,14 @@ export const es = {
   about: {
     metaTitle: "Sobre Rudolf · Baldurion",
     metaDescription:
-      "Rudolf Jaubert, entrenador personal certificado en Katowice. Años de experiencia en deporte, fuerza y artes marciales aplicados a personas reales.",
+      "Rodolfo Calvo Jaubert, entrenador personal certificado en Katowice. Años de experiencia en deporte, fuerza y artes marciales aplicados a personas reales.",
     heroTitle:
       'Golpea, salta, esquiva… <span class="accent">no solo corras</span>',
     heroSubtitle:
       "El cardio no tiene que ser aburrido. Puede ser una experiencia que te haga crecer, sentirte mejor, volverte más fuerte y, además, disfrutar el proceso.",
-    photoAlt: "Rudolf Jaubert",
+    photoAlt: "Rodolfo Calvo Jaubert",
     body: {
-      lead: "Soy Rudolf Jaubert.",
+      lead: "Soy Rodolfo Calvo Jaubert.",
       paragraphs: [
         "Llevo años en el deporte: atletismo, gimnasios, Kung Fu con el maestro Victor On, y años de sparring y combate, primero como practicante y ahora como entrenador certificado.",
         "No vengo a venderte un secreto. Vengo a ofrecerte estructura y método para construir lo que ya tienes dentro: sentirte mejor contigo mismo, pasar un buen rato en el camino, y construir tu mejor versión.",
@@ -271,7 +271,7 @@ export const es = {
   contact: {
     metaTitle: "Contacto · Baldurion",
     metaDescription:
-      "Reserva una llamada gratuita de 30 minutos con Rudolf Jaubert para hablar de tus objetivos de entrenamiento.",
+      "Reserva una llamada gratuita de 30 minutos con Rodolfo Calvo Jaubert para hablar de tus objetivos de entrenamiento.",
     eyebrow: "Hablemos",
     title: "¿Empezamos?",
     leadParagraph:

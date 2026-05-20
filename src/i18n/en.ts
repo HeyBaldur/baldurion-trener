@@ -1,4 +1,4 @@
-import type { Translations } from './es';
+﻿import type { Translations } from './es';
 
 export const en: Translations = {
   nav: {
@@ -242,14 +242,14 @@ export const en: Translations = {
   about: {
     metaTitle: 'About Rudolf · Baldurion',
     metaDescription:
-      'Rudolf Jaubert, certified personal trainer in Katowice. Years of experience in sport, strength, and martial arts applied to real people.',
+      'Rodolfo Calvo Jaubert, certified personal trainer in Katowice. Years of experience in sport, strength, and martial arts applied to real people.',
     heroTitle:
       'Punch, jump, dodge… <span class="accent">don\'t just run</span>',
     heroSubtitle:
       "Cardio doesn't have to be boring. It can be an experience that makes you grow, feel better, get stronger and actually enjoy the process.",
-    photoAlt: 'Rudolf Jaubert',
+    photoAlt: 'Rodolfo Calvo Jaubert',
     body: {
-      lead: "I'm Rudolf Jaubert.",
+      lead: "I'm Rodolfo Calvo Jaubert.",
       paragraphs: [
         "I've spent years in sport: athletics, gyms, Kung Fu under master Victor On, and years of sparring and combat — first as a practitioner, and now as a certified trainer.",
         "I'm not here to sell you a secret. I'm here to offer you structure and method to build what you already have inside: to feel better about yourself, enjoy the journey, and build your best version.",
@@ -266,7 +266,7 @@ export const en: Translations = {
   contact: {
     metaTitle: 'Contact · Baldurion',
     metaDescription:
-      'Book a free 30-minute call with Rudolf Jaubert to talk about your training goals.',
+      'Book a free 30-minute call with Rodolfo Calvo Jaubert to talk about your training goals.',
     eyebrow: "Let's talk",
     title: 'Shall we start?',
     leadParagraph: "The best way to know if we're a fit is to talk for 30 minutes.",

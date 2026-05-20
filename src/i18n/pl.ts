@@ -1,4 +1,4 @@
-import type { Translations } from './es';
+﻿import type { Translations } from './es';
 
 export const pl: Translations = {
   nav: {
@@ -242,14 +242,14 @@ export const pl: Translations = {
   about: {
     metaTitle: 'O Rudolfie · Baldurion',
     metaDescription:
-      'Rudolf Jaubert, certyfikowany trener personalny w Katowicach. Lata doświadczenia w sporcie, sile i sztukach walki zastosowane do prawdziwych ludzi.',
+      'Rodolfo Calvo Jaubert, certyfikowany trener personalny w Katowicach. Lata doświadczenia w sporcie, sile i sztukach walki zastosowane do prawdziwych ludzi.',
     heroTitle:
       'Uderzaj, skacz, unikaj… <span class="accent">nie tylko biegaj</span>',
     heroSubtitle:
       'Cardio nie musi być nudne. Może być doświadczeniem, które sprawi, że urośniesz, poczujesz się lepiej, staniesz się silniejszy i przy okazji będziesz się dobrze bawić w trakcie.',
-    photoAlt: 'Rudolf Jaubert',
+    photoAlt: 'Rodolfo Calvo Jaubert',
     body: {
-      lead: 'Jestem Rudolf Jaubert.',
+      lead: 'Jestem Rodolfo Calvo Jaubert.',
       paragraphs: [
         'Od lat jestem w sporcie: lekkoatletyka, siłownie, Kung Fu pod okiem mistrza Victora On, oraz lata sparingu i walki — najpierw jako praktyk, a teraz jako certyfikowany trener.',
         'Nie przychodzę sprzedawać ci sekretu. Przychodzę zaoferować ci strukturę i metodę, żeby zbudować to, co już masz w sobie: poczuć się lepiej ze sobą, dobrze spędzić czas po drodze, i zbudować swoją najlepszą wersję.',
