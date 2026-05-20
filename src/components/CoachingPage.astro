@@ -77,9 +77,9 @@ const levelNameColors = [
 
   <div class="grid grid-cols-2 gap-[32px] max-[1024px]:grid-cols-1">
 
-    <div class="rounded-[24px] p-[40px] border border-[rgba(212,232,74,0.4)] dark:border-[rgba(212,232,74,0.3)]" style="background: linear-gradient(135deg, rgba(212,232,74,0.07) 0%, rgba(212,232,74,0) 100%);">
+    <div class="rounded-[24px] p-[40px] max-[640px]:p-[24px] border border-[rgba(212,232,74,0.4)] dark:border-[rgba(212,232,74,0.3)]" style="background: linear-gradient(135deg, rgba(212,232,74,0.07) 0%, rgba(212,232,74,0) 100%);">
       <h3
-        class="font-display text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-dark dark:text-lime"
+        class="font-display text-[clamp(24px,5vw,36px)] leading-[1] mb-[32px] mt-0 uppercase text-dark dark:text-lime"
       >{t.audience.yesTitle}</h3>
       <ul class="list-none flex flex-col gap-[20px] p-0 m-0">
         {t.audience.yesItems.map((item) => (
@@ -94,9 +94,9 @@ const levelNameColors = [
       </ul>
     </div>
 
-    <div class="rounded-[24px] p-[40px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
+    <div class="rounded-[24px] p-[40px] max-[640px]:p-[24px] bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)]">
       <h3
-        class="font-display text-[36px] leading-[1] mb-[32px] mt-0 uppercase text-[#777] dark:text-[#888]"
+        class="font-display text-[clamp(24px,5vw,36px)] leading-[1] mb-[32px] mt-0 uppercase text-[#777] dark:text-[#888]"
       >{t.audience.noTitle}</h3>
       <ul class="list-none flex flex-col gap-[20px] p-0 m-0">
         {t.audience.noItems.map((item) => (
@@ -119,10 +119,10 @@ const levelNameColors = [
   <div class="mb-[48px] text-center max-w-[720px] mx-auto">
     <span class="font-body inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime">{t.method.sectionEyebrow}</span>
     <h2 class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light">{t.method.sectionTitle}</h2>
-    <p class="font-body text-2xl leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.method.sectionSubtitle}</p>
+    <p class="font-body text-[clamp(16px,4vw,24px)] leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.method.sectionSubtitle}</p>
   </div>
 
-  <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
+  <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1 max-[640px]:gap-[12px]">
     {t.method.phases.map((phase) => (
       <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_28px] relative overflow-hidden">
         <div
@@ -136,7 +136,7 @@ const levelNameColors = [
         >{phase.label}</span>
 
         <h3
-          class="font-display relative z-[1] text-[32px] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
+          class="font-display relative z-[1] text-[clamp(22px,4vw,32px)] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
         >{phase.title}</h3>
 
         <div
@@ -165,10 +165,10 @@ const levelNameColors = [
   <div class="mb-[48px] text-center max-w-[720px] mx-auto">
     <span class="font-body inline-block text-[11px] font-bold tracking-[0.3em] uppercase mb-[16px] text-[#444] dark:text-lime">{t.levels.sectionEyebrow}</span>
     <h2 class="font-display font-bold text-[clamp(1.5rem,3.5vw,2.5rem)] leading-[1.15] tracking-tight mb-4 mt-0 text-dark dark:text-light">{t.levels.sectionTitle}</h2>
-    <p class="font-body text-2xl leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.levels.sectionSubtitle}</p>
+    <p class="font-body text-[clamp(16px,4vw,24px)] leading-[1.6] m-0 text-[#555] dark:text-[#999]">{t.levels.sectionSubtitle}</p>
   </div>
 
-  <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
+  <div class="grid grid-cols-4 gap-[16px] max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1 max-[640px]:gap-[12px]">
     {t.levels.items.map((level, idx) => (
       <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[20px] p-[32px_24px]">
         <h3
@@ -183,12 +183,12 @@ const levelNameColors = [
 <!-- ===== MODALITIES ===== -->
 <section class="max-w-[1280px] mx-auto mb-[80px] px-[32px] grid grid-cols-2 gap-[24px] max-[1024px]:grid-cols-1 max-[768px]:px-[16px]">
   {[t.modalities.online, t.modalities.onsite].map((mod) => (
-    <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-[40px]">
+    <div class="bg-canvas dark:bg-dark-card border border-[rgba(0,0,0,0.08)] dark:border-[rgba(255,255,255,0.08)] rounded-[24px] p-[40px] max-[640px]:p-[24px]">
       <span
         class="font-body inline-block text-[10px] font-bold tracking-[0.25em] uppercase mb-[16px] px-[10px] py-[4px] border rounded-full text-[#444] border-[rgba(0,0,0,0.15)] bg-[rgba(0,0,0,0.04)] dark:text-lime dark:border-[rgba(212,232,74,0.3)] dark:bg-[rgba(212,232,74,0.05)]"
       >{mod.badge}</span>
       <h3
-        class="font-display text-[36px] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
+        class="font-display text-[clamp(24px,5vw,36px)] leading-[1] mb-[12px] mt-0 uppercase text-dark dark:text-light"
       >{mod.title}</h3>
       <p class="font-body text-[13px] text-[#777] dark:text-[#888] mb-[24px] mt-0 tracking-[0.05em]">{mod.location}</p>
       <ul class="list-none flex flex-col gap-[12px] p-0 m-0">
