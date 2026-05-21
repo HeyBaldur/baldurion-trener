@@ -3,8 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://heybaldur.github.io",
-  base: '/baldurion-trener',
+  site: "https://baldurion.com",
   output: "static",
   vite: {
     plugins: [tailwindcss()],
