@@ -57,9 +57,6 @@ export const en: Translations = {
     euTitle: 'European Union',
     euSubtitle: 'Made in Poland · EU Member State',
     gdprBadge: 'GDPR Compliant',
-    googlePlayKicker: 'Get it on',
-    googlePlayLabel: 'Google Play',
-    googlePlayAriaLabel: 'Download SmartGym on Google Play',
   },
   home: {
     hero: {

@@ -57,9 +57,6 @@ export const pl: Translations = {
     euTitle: 'Unia Europejska',
     euSubtitle: 'Zrobione w Polsce · Państwo członkowskie UE',
     gdprBadge: 'Zgodność z RODO',
-    googlePlayKicker: 'Pobierz w',
-    googlePlayLabel: 'Google Play',
-    googlePlayAriaLabel: 'Pobierz SmartGym w Google Play',
   },
   home: {
     hero: {

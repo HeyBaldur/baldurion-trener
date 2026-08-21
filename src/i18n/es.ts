@@ -56,9 +56,6 @@
     euTitle: "Unión Europea",
     euSubtitle: "Hecho en Polonia · Estado miembro de la UE",
     gdprBadge: "Cumplimiento RGPD",
-    googlePlayKicker: "Disponible en",
-    googlePlayLabel: "Google Play",
-    googlePlayAriaLabel: "Descargar SmartGym en Google Play",
   },
   home: {
     hero: {
