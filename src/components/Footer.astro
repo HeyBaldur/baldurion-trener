@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import type { Locale } from '../i18n/index';
-import { useTranslations } from '../i18n/index';
+import { useTranslations, routeSlugs } from '../i18n/index';
 
 interface Props {
   locale: Locale;
@@ -13,10 +13,12 @@ const year = new Date().getFullYear();
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const lp = locale === 'en' ? base : `${base}${locale}/`;
 
-const legalPaths: Record<Locale, { privacy: string; cookies: string; legal: string; terms: string; preferences: string }> = {
-  es: { privacy: 'privacidad', cookies: 'cookies', legal: 'aviso-legal', terms: 'terminos', preferences: 'preferencias' },
-  en: { privacy: 'privacy', cookies: 'cookies', legal: 'legal-notice', terms: 'terms', preferences: 'preferences' },
-  pl: { privacy: 'prywatnosc', cookies: 'cookies', legal: 'nota-prawna', terms: 'regulamin', preferences: 'preferencje' },
+const legalPaths = {
+  privacy: routeSlugs.privacy[locale],
+  cookies: routeSlugs.cookies[locale],
+  legal: routeSlugs.legal[locale],
+  terms: routeSlugs.terms[locale],
+  preferences: routeSlugs.preferences[locale],
 };
 ---
 
@@ -41,10 +43,11 @@ const legalPaths: Record<Locale, { privacy: string; cookies: string; legal: stri
           {t.footer.navTitle}
         </p>
         <nav class="flex flex-col gap-[12px]">
-          <a href={lp} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.home}</a>
-          <a href={`${lp}coaching/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.coaching}</a>
-          <a href={`${lp}sobre/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.about}</a>
-          <a href={`${lp}contacto/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.contact}</a>
+          <a href={lp} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.home}</a>
+          <a href={`${lp}coaching/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.coaching}</a>
+          <a href={`${lp}sobre/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.about}</a>
+          <a href={`${lp}${routeSlugs.researches[locale]}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.researches}</a>
+          <a href={`${lp}contacto/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.contact}</a>
         </nav>
       </div>
 
@@ -54,11 +57,11 @@ const legalPaths: Record<Locale, { privacy: string; cookies: string; legal: stri
           {t.footer.legalTitle}
         </p>
         <nav class="flex flex-col gap-[12px]">
-          <a href={`${lp}${legalPaths[locale].privacy}/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.privacy}</a>
-          <a href={`${lp}${legalPaths[locale].cookies}/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.cookies}</a>
-          <a href={`${lp}${legalPaths[locale].legal}/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.legalNotice}</a>
-          <a href={`${lp}${legalPaths[locale].terms}/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.terms}</a>
-          <a href={`${lp}${legalPaths[locale].preferences}/`} class="text-[14px] no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.preferences}</a>
+          <a href={`${lp}${legalPaths.privacy}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.privacy}</a>
+          <a href={`${lp}${legalPaths.cookies}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.cookies}</a>
+          <a href={`${lp}${legalPaths.legal}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.legalNotice}</a>
+          <a href={`${lp}${legalPaths.terms}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.terms}</a>
+          <a href={`${lp}${legalPaths.preferences}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.footer.preferences}</a>
         </nav>
       </div>
 
@@ -96,7 +99,7 @@ const legalPaths: Record<Locale, { privacy: string; cookies: string; legal: stri
 
     <div class="flex justify-between items-center flex-wrap gap-[16px] max-[640px]:flex-col max-[640px]:items-start">
       <p class="text-[12px] m-0 text-[rgba(0,0,0,0.35)] dark:text-[rgba(255,255,255,0.3)]">
-        &copy; {year} Baldurion &middot; {t.footer.copyright}
+        &copy; {year} Baldurion &middot; {t.footer.rights}
       </p>
       <div class="flex items-center gap-[16px]">
         <a href="https://www.instagram.com/baldurion_fitness/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex transition-colors duration-200 text-[rgba(0,0,0,0.4)] dark:text-[rgba(255,255,255,0.35)] hover:text-dark dark:hover:text-[rgba(255,255,255,0.9)]">

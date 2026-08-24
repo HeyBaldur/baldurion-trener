@@ -9,8 +9,6 @@ interface Props {
     ctaSecondary: string;
     badgeTop: string;
     badgeBottom: string;
-    stat1Value: string;
-    stat1Label: string;
     stat2Value: string;
     stat2Label: string;
     stat3Value: string;
@@ -68,9 +66,9 @@ const heroImg = `${base}images/brand/banner.png`;
 
     <!-- Headline -->
     <h1
-      class="text-light font-bold text-[clamp(2rem,5.5vw,4rem)] leading-[1.05] tracking-tight mb-6"
+      class="hero-title font-bold text-[clamp(2.75rem,6.5vw,5.25rem)] leading-[0.98] tracking-[-0.02em] mb-6"
     >
-      {t.titleLine1}<br />{t.titleLine2}
+      <span class="hero-title-main">{t.titleLine1}</span><br /><span class="hero-title-accent">{t.titleLine2}</span>
     </h1>
 
     <!-- Subtitle -->
@@ -123,7 +121,6 @@ const heroImg = `${base}images/brand/banner.png`;
     <div class="flex flex-wrap gap-x-6 gap-y-3">
       {
         [
-          { value: t.stat1Value, label: t.stat1Label },
           { value: t.stat2Value, label: t.stat2Label },
           { value: t.stat3Value, label: t.stat3Label },
         ].map((stat, i) => (
@@ -145,3 +142,42 @@ const heroImg = `${base}images/brand/banner.png`;
     </div>
   </div>
 </section>
+
+<style>
+  /* Metallic gradient on the headline. Kept in CSS (not utilities) so the
+     @supports fallback can guarantee the text is never invisible. */
+  .hero-title-main,
+  .hero-title-accent {
+    color: var(--color-light);
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-title-main,
+    .hero-title-accent {
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      /* keeps the descenders from being clipped by the gradient box */
+      padding-bottom: 0.06em;
+    }
+
+    .hero-title-main {
+      background-image: linear-gradient(
+        170deg,
+        #ffffff 0%,
+        #f2f2ee 38%,
+        #b9bcb2 78%,
+        #8f9389 100%
+      );
+    }
+
+    .hero-title-accent {
+      background-image: linear-gradient(
+        170deg,
+        #eaf7a2 0%,
+        #d4e84a 48%,
+        #a9c22b 100%
+      );
+    }
+  }
+</style>

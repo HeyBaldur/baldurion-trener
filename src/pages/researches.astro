@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResearchesPage from '../components/ResearchesPage.astro';
+import { useTranslations } from '../i18n/index';
+import { researches } from '../data/researches';
+
+const locale = 'en';
+const t = useTranslations(locale);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t.researches.metaTitle,
+  description: t.researches.metaDescription,
+  inLanguage: locale,
+  hasPart: researches.map(research => ({
+    '@type': 'ScholarlyArticle',
+    headline: research.content[locale].title,
+    abstract: research.content[locale].summary,
+    datePublished: research.date,
+    inLanguage: Object.keys(research.files),
+    author: { '@type': 'Person', name: 'Rodolfo Calvo Jaubert' },
+  })),
+};
+---
+
+<BaseLayout
+  title={t.researches.metaTitle}
+  description={t.researches.metaDescription}
+  locale={locale}
+  schema={schema}
+>
+  <ResearchesPage locale={locale} />
+</BaseLayout>

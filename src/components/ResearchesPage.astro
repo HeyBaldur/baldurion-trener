@@ -1,0 +1,131 @@
+---
+import CTACoaching from './CTACoaching.astro';
+import type { Locale } from '../i18n/index';
+import { useTranslations } from '../i18n/index';
+import { researches, getResearchVersions } from '../data/researches';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const r = t.researches;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const dateLocales: Record<Locale, string> = { es: 'es-ES', en: 'en-US', pl: 'pl-PL' };
+const dateFormatter = new Intl.DateTimeFormat(dateLocales[locale], {
+  year: 'numeric',
+  month: 'long',
+});
+
+/**
+ * One card per translated PDF. Every card of a research shares the same title,
+ * summary and styling — the language badge and the file are the only difference.
+ */
+const cards = [...researches]
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .flatMap(research =>
+    getResearchVersions(research, locale, base).map(version => ({
+      key: `${research.id}-${version.fileLocale}`,
+      research,
+      version,
+      copy: research.content[locale],
+      dateLabel: dateFormatter.format(new Date(research.date)),
+    }))
+  );
+
+const countLabel = cards.length === 1 ? r.countOne : r.countMany;
+---
+
+<div class="px-[24px] pt-[48px] pb-[96px] max-[640px]:px-[16px] max-[640px]:pt-[32px] max-[640px]:pb-[72px]">
+
+  <!-- Hero -->
+  <section class="max-w-[1280px] mx-auto px-[32px] max-[640px]:px-[8px]">
+    <p class="font-body text-[11px] font-extrabold tracking-[0.3em] uppercase mt-0 mb-[16px] text-[rgba(0,0,0,0.45)] dark:text-lime">
+      {r.eyebrow.toUpperCase()}
+    </p>
+    <h1 class="font-display font-bold text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.02] tracking-tight mt-0 mb-[24px] text-dark dark:text-light max-w-[900px]">
+      {r.title}{' '}
+      <span class="text-[#8A8A8A] dark:text-[rgba(255,255,255,0.35)]">{r.titleAccent}</span>
+    </h1>
+    <p class="font-body text-[clamp(17px,2.2vw,20px)] leading-[1.65] m-0 max-w-[620px] text-[#555555] dark:text-[#CCCCCC]">
+      {r.subtitle}
+    </p>
+
+    <div class="flex items-center gap-[12px] mt-[32px]">
+      <span class="font-body text-[12px] font-extrabold tracking-[0.15em] uppercase px-[14px] py-[7px] rounded-full bg-lime text-dark">
+        {cards.length} {countLabel}
+      </span>
+      <span aria-hidden="true" class="h-px flex-1 bg-[rgba(0,0,0,0.08)] dark:bg-[rgba(255,255,255,0.08)]"></span>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <section class="max-w-[1280px] mx-auto mt-[40px] px-[32px] max-[640px]:px-[8px] max-[640px]:mt-[28px]">
+    {cards.length === 0 ? (
+      <p class="font-body text-[17px] text-[#777777] dark:text-[rgba(255,255,255,0.5)] m-0 py-[48px]">
+        {r.empty}
+      </p>
+    ) : (
+      <ul class="list-none m-0 p-0 grid grid-cols-3 gap-[24px] max-[1100px]:grid-cols-2 max-[820px]:grid-cols-1">
+        {cards.map(card => (
+          <li class="contents">
+            <a
+              href={card.version.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              lang={card.version.fileLocale}
+              class="research-card group relative flex flex-col h-full rounded-[24px] p-[32px] no-underline border border-[rgba(0,0,0,0.08)] bg-light text-dark transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-[3px] hover:border-[rgba(0,0,0,0.25)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime dark:bg-[rgba(255,255,255,0.03)] dark:border-[rgba(255,255,255,0.08)] dark:text-light dark:hover:border-lime dark:hover:shadow-[0_18px_40px_rgba(0,0,0,0.45)] max-[640px]:p-[28px_24px]"
+            >
+              <!-- Language badge — the only thing that differs between versions -->
+              <div class="flex items-center gap-[10px] mb-[20px]">
+                <span class="font-body text-[11px] font-extrabold tracking-[0.16em] uppercase px-[12px] py-[6px] rounded-full bg-dark text-lime dark:bg-lime dark:text-dark">
+                  {card.version.fileLocale.toUpperCase()}
+                </span>
+                <span class="font-body text-[13px] font-bold text-[rgba(0,0,0,0.55)] dark:text-[rgba(255,255,255,0.55)]">
+                  {card.version.languageName}
+                </span>
+              </div>
+
+              <h2 class="font-display font-bold text-[clamp(1.35rem,2.2vw,1.75rem)] leading-[1.12] tracking-tight mt-0 mb-[12px]">
+                {card.copy.title}
+              </h2>
+
+              <p class="font-body text-[15px] leading-[1.65] mt-0 mb-[24px] text-[#555555] dark:text-[#BBBBBB]">
+                {card.copy.summary}
+              </p>
+
+              <!-- Meta -->
+              <div class="flex flex-wrap items-center gap-[8px] mb-[20px] font-body text-[11px] font-bold tracking-[0.12em] uppercase text-[rgba(0,0,0,0.4)] dark:text-[rgba(255,255,255,0.35)]">
+                <span>{r.format}</span>
+                <span aria-hidden="true">·</span>
+                <span>{t.categories[card.research.category]}</span>
+                <span aria-hidden="true">·</span>
+                <span>{r.updated} {card.dateLabel}</span>
+              </div>
+
+              <span class="mt-auto inline-flex items-center gap-[10px] font-body text-[13px] font-extrabold tracking-[0.05em] uppercase">
+                {r.openPdf}
+                <svg
+                  width="16" height="16" viewBox="0 0 16 16" fill="none"
+                  aria-hidden="true"
+                  class="transition-transform duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]"
+                >
+                  <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+
+              <span class="sr-only">{card.version.languageName} — {r.newTab}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <section class="max-w-[1280px] mx-auto px-[32px] max-[640px]:px-[8px]">
+    <CTACoaching locale={locale} />
+  </section>
+
+</div>

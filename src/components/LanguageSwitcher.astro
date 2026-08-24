@@ -1,5 +1,6 @@
 ---
 import type { Locale } from '../i18n/index';
+import { translateSlug } from '../i18n/index';
 
 interface Props {
   currentLocale: Locale;
@@ -29,10 +30,18 @@ function getAlternatePath(targetLocale: string, path: string, currentLocale: str
     ? pathWithoutBase
     : (pathWithoutBase.replace(new RegExp(`^/${currentLocale}`), '') || '/');
 
-  if (targetLocale === DEFAULT_LOCALE) {
-    return cleanPath === '/' ? base : `${base}${cleanPath.slice(1)}`;
+  // Routes have their own slug per locale (researches / investigaciones / badania),
+  // so translate the leading segment instead of blindly reusing it.
+  const segments = cleanPath.split('/').filter(Boolean);
+  if (segments.length > 0) {
+    segments[0] = translateSlug(segments[0], currentLocale as Locale, targetLocale as Locale);
   }
-  return `${base}${targetLocale}${cleanPath === '/' ? '/' : cleanPath}`;
+  const localizedPath = segments.length > 0 ? `/${segments.join('/')}/` : '/';
+
+  if (targetLocale === DEFAULT_LOCALE) {
+    return localizedPath === '/' ? base : `${base}${localizedPath.slice(1)}`;
+  }
+  return `${base}${targetLocale}${localizedPath}`;
 }
 ---
 

@@ -3,7 +3,8 @@
     home: "Inicio",
     articles: "Artículos",
     coaching: "Coaching",
-    about: "Sobre",
+    about: "Sobre mí",
+    researches: "Investigaciones",
     contact: "Contacto",
   },
   hero: {
@@ -40,9 +41,9 @@
     coachingButton: "Hablar con Rudolf",
   },
   footer: {
-    tagline: "Hecho con rigor en Katowice.",
-    siteTagline: "Ciencia del entrenamiento. Sin ruido.",
-    taglineCentral: "Ciencia del entrenamiento. Sin ruido.",
+    tagline: "Hecho en Katowice, Polonia.",
+    siteTagline: "Lo que he aprendido a lo largo de casi dos décadas se aplica aquí.",
+    taglineCentral: "Lo que he aprendido a lo largo de casi dos décadas se aplica aquí.",
     navTitle: "Navegación",
     legalTitle: "Legal",
     legal: "Aviso legal",
@@ -52,7 +53,7 @@
     terms: "Términos",
     preferences: "Preferencias",
     rights: "Todos los derechos reservados",
-    copyright: "Hecho con rigor en Katowice.",
+    copyright: "Hecho en Katowice, Polonia.",
     euTitle: "Unión Europea",
     euSubtitle: "Hecho en Polonia · Estado miembro de la UE",
     gdprBadge: "Cumplimiento RGPD",
@@ -60,16 +61,14 @@
   home: {
     hero: {
       eyebrow: "PERSONAL TRAINER · KATOWICE · ONLINE",
-      titleLine1: "Fitboxing",
-      titleLine2: "Y entrenador personal.",
+      titleLine1: "Gym & Fitboxing",
+      titleLine2: "de Alto Nivel",
       subtitle:
         "Hacer cardio en una banda de correr está bien, pero no es lo mismo que golpear, patear, saltar, esquivar y mover todo el cuerpo.",
       ctaPrimary: "Agenda llamada gratuita",
       ctaSecondary: "Conoce el método",
       badgeTop: "Seguimiento técnico",
       badgeBottom: "Plan personalizado",
-      stat1Value: "9+ años",
-      stat1Label: "Artes marciales y combate",
       stat2Value: "12 semanas",
       stat2Label: "Método · 4 niveles",
       stat3Value: "ES · EN · PL",
@@ -253,8 +252,18 @@
     body: {
       lead: "Soy Rodolfo Calvo Jaubert.",
       paragraphs: [
-        "Llevo años en el deporte: atletismo, gimnasios, Kung Fu con el maestro Victor On, y años de sparring y combate, primero como practicante y ahora como entrenador certificado.",
-        "No vengo a venderte un secreto. Vengo a ofrecerte estructura y método para construir lo que ya tienes dentro: sentirte mejor contigo mismo, pasar un buen rato en el camino, y construir tu mejor versión.",
+        "Empecé mi carrera deportiva a los 16 años, cuando comencé en el lanzamiento de disco, participando en competiciones a nivel nacional.",
+        "Con el tiempo, dejé el atletismo para enfocarme un poco más en las artes marciales. Desarrollé una pasión por ellas, entrenando primero en un gimnasio humilde, pero con grandes atletas, donde aprendí Boxeo y <strong>Kodenkan Jujitsu</strong>.",
+        "Más adelante, alrededor de los 25 años, me uní a un centro de artes orientales, donde aprendí Kung-Fu. No a nivel Shaolin, pero sí enfocado en términos de defensa personal.",
+        "A este punto, ya había desarrollado una combinación de tres artes marciales. Sin embargo, por algunos problemas personales, terminé quedándome con el Boxeo y el Kodenkan.",
+        "Cabe destacar que mi actividad física y deportiva en centros fitness ha sido constante hasta el día de hoy, a mis 37 años. Todo esto me ha permitido acumular una gran experiencia en ambos ámbitos.",
+        "Hoy estoy certificado como entrenador personal e instructor de gimnasio, alguien en quien puedes depositar tu confianza.",
+        "Y esto posiblemente sea lo más interesante que vas a encontrar sobre mí:",
+        "<strong>Yo no te voy a entrenar.</strong>",
+        "No te voy a prometer el cielo y la tierra ni te voy a decir que voy a cambiar tu cuerpo en dos semanas. Esto es totalmente tuyo. Además, eso es biológicamente imposible.",
+        "Pero sí te voy a enseñar algo mucho más importante: la <strong>disciplina</strong>, la <strong>constancia</strong> y la recompensa que te esperan cuando desarrollas ambas.",
+        "Te quiero mucho, aunque todavía no te conozca.",
+        "Soy bromista, así que también vas a pasar un buen rato. 😄",
       ],
     },
     cta: {
@@ -332,6 +341,23 @@
     rightsTitle: "Tus derechos GDPR",
     rightsBody:
       "Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición y portabilidad escribiendo a contact.smartgymapp@gmail.com. Respondemos en un máximo de 30 días.",
+  },
+  researches: {
+    metaTitle: "Investigaciones · Baldurion",
+    metaDescription:
+      "Revisiones de evidencia sobre entrenamiento y nutrición. Documentos completos en PDF, gratis y sin registro.",
+    eyebrow: "Biblioteca de evidencia",
+    title: "Investigaciones",
+    titleAccent: "desde la experiencia.",
+    subtitle:
+      "Documentos que nacen de lo que veo entrenando cada día, contrastado con la literatura científica. Lo que funciona con clientes reales, no lo que suena bien en un titular. El documento completo, gratis y sin dejar tu correo.",
+    countOne: "documento",
+    countMany: "documentos",
+    openPdf: "Abrir PDF",
+    newTab: "Se abre en una pestaña nueva",
+    updated: "Actualizado",
+    format: "PDF",
+    empty: "Todavía no hay investigaciones publicadas. Vuelve pronto.",
   },
 };
 

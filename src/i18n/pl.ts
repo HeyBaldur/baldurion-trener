@@ -6,6 +6,7 @@ export const pl: Translations = {
     articles: 'Artykuły',
     coaching: 'Coaching',
     about: 'O mnie',
+    researches: 'Badania',
     contact: 'Kontakt',
   },
   hero: {
@@ -41,9 +42,9 @@ export const pl: Translations = {
     coachingButton: 'Porozmawiaj z Rudolfem',
   },
   footer: {
-    tagline: 'Zrobione z rygorem w Katowicach.',
-    siteTagline: 'Nauka treningu. Bez szumu.',
-    taglineCentral: 'Nauka treningu. Bez szumu.',
+    tagline: 'Zrobione w Katowicach, Polska.',
+    siteTagline: 'Wszystko, czego nauczyłem się przez prawie dwie dekady, stosuję tutaj.',
+    taglineCentral: 'Wszystko, czego nauczyłem się przez prawie dwie dekady, stosuję tutaj.',
     navTitle: 'Nawigacja',
     legalTitle: 'Prawne',
     legal: 'Nota prawna',
@@ -53,7 +54,7 @@ export const pl: Translations = {
     terms: 'Regulamin',
     preferences: 'Preferencje',
     rights: 'Wszelkie prawa zastrzeżone',
-    copyright: 'Zrobione z rygorem w Katowicach.',
+    copyright: 'Zrobione w Katowicach, Polska.',
     euTitle: 'Unia Europejska',
     euSubtitle: 'Zrobione w Polsce · Państwo członkowskie UE',
     gdprBadge: 'Zgodność z RODO',
@@ -61,16 +62,14 @@ export const pl: Translations = {
   home: {
     hero: {
       eyebrow: 'TRENER PERSONALNY · KATOWICE · ONLINE',
-      titleLine1: 'Fitboxing',
-      titleLine2: 'i trener personalny.',
+      titleLine1: 'Gym & Fitboxing',
+      titleLine2: 'na Najwyższym Poziomie',
       subtitle:
         'Cardio na bieżni jest okej, ale to nie to samo co uderzać, kopać, skakać, unikać i ruszać całym ciałem.',
       ctaPrimary: 'Zarezerwuj darmową rozmowę',
       ctaSecondary: 'Poznaj metodę',
       badgeTop: 'Wsparcie techniczne',
       badgeBottom: 'Spersonalizowany plan',
-      stat1Value: '9+ lat',
-      stat1Label: 'Sztuki walki i walka',
       stat2Value: '12 tygodni',
       stat2Label: 'Metoda · 4 poziomy',
       stat3Value: 'ES · EN · PL',
@@ -248,8 +247,18 @@ export const pl: Translations = {
     body: {
       lead: 'Jestem Rodolfo Calvo Jaubert.',
       paragraphs: [
-        'Od lat jestem w sporcie: lekkoatletyka, siłownie, Kung Fu pod okiem mistrza Victora On, oraz lata sparingu i walki — najpierw jako praktyk, a teraz jako certyfikowany trener.',
-        'Nie przychodzę sprzedawać ci sekretu. Przychodzę zaoferować ci strukturę i metodę, żeby zbudować to, co już masz w sobie: poczuć się lepiej ze sobą, dobrze spędzić czas po drodze, i zbudować swoją najlepszą wersję.',
+        "Karierę sportową zacząłem w wieku 16 lat, od rzutu dyskiem, startując w zawodach na poziomie krajowym.",
+        "Z czasem odszedłem od lekkoatletyki, żeby skupić się bardziej na sztukach walki. Rozwinąłem do nich prawdziwą pasję, trenując najpierw w skromnej siłowni, ale u boku świetnych zawodników, gdzie poznałem boks i <strong>Kodenkan Jujitsu</strong>.",
+        "Później, około 25. roku życia, dołączyłem do centrum sztuk orientalnych, gdzie uczyłem się Kung-Fu. Nie na poziomie Shaolin, ale z naciskiem na samoobronę.",
+        "W tym momencie miałem już połączenie trzech sztuk walki. Jednak z powodu spraw osobistych ostatecznie zostałem przy boksie i Kodenkanie.",
+        "Warto dodać, że moja aktywność fizyczna i sportowa w klubach fitness jest nieprzerwana do dziś, w wieku 37 lat. To wszystko pozwoliło mi zebrać duże doświadczenie w obu obszarach.",
+        "Dziś jestem certyfikowanym trenerem personalnym i instruktorem siłowni, kimś, komu możesz zaufać.",
+        "A to jest prawdopodobnie najciekawsza rzecz, jaką o mnie usłyszysz:",
+        "<strong>Ja nie będę Cię trenował.</strong>",
+        "Nie obiecam Ci gruszek na wierzbie ani nie powiem, że zmienię Twoje ciało w dwa tygodnie. To należy wyłącznie do Ciebie. Poza tym jest to biologicznie niemożliwe.",
+        "Nauczę Cię za to czegoś znacznie ważniejszego: <strong>dyscypliny</strong>, <strong>konsekwencji</strong> i nagrody, która czeka, gdy zbudujesz jedno i drugie.",
+        "Bardzo Cię lubię, choć jeszcze Cię nie znam.",
+        "Jestem żartownisiem, więc będzie też dobra zabawa. 😄",
       ],
     },
     cta: {
@@ -324,5 +333,22 @@ export const pl: Translations = {
     rightsTitle: 'Twoje prawa RODO',
     rightsBody:
       'Możesz skorzystać z praw dostępu, sprostowania, usunięcia, sprzeciwu i przenoszenia danych, pisząc na adres contact.smartgymapp@gmail.com. Odpowiadamy w ciągu 30 dni.',
+  },
+  researches: {
+    metaTitle: 'Badania · Baldurion',
+    metaDescription:
+      'Przeglądy dowodów naukowych o treningu i żywieniu. Pełne dokumenty PDF, za darmo, bez rejestracji.',
+    eyebrow: 'Biblioteka dowodów',
+    title: 'Badania',
+    titleAccent: 'oparte na doświadczeniu.',
+    subtitle:
+      'Dokumenty, które wyrastają z tego, co codziennie widzę na treningach, zestawione z literaturą naukową. To, co działa z prawdziwymi klientami, a nie to, co dobrze brzmi w nagłówku. Pełny dokument, za darmo, bez podawania maila.',
+    countOne: 'dokument',
+    countMany: 'dokumenty',
+    openPdf: 'Otwórz PDF',
+    newTab: 'Otwiera się w nowej karcie',
+    updated: 'Aktualizacja',
+    format: 'PDF',
+    empty: 'Nie opublikowano jeszcze żadnych badań. Zajrzyj wkrótce.',
   },
 };

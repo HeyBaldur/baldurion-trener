@@ -53,16 +53,16 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
     </div>
   </section>
 
-  <section class="max-w-[1280px] mx-auto mt-[80px] px-[32px] max-[640px]:mt-[56px] max-[640px]:px-[16px]">
+  <section class="max-w-[720px] mx-auto mt-[80px] px-[32px] max-[640px]:mt-[56px] max-[640px]:px-[16px]">
     <p
-      class="font-display text-[clamp(22px,4vw,32px)] font-semibold leading-[1.15] pl-[20px] border-l-[3px] border-lime mt-0 mb-[40px] text-dark dark:text-white max-w-[700px]"
+      class="font-display text-[clamp(22px,4vw,32px)] font-semibold leading-[1.15] pl-[20px] border-l-[3px] border-lime mt-0 mb-[28px] text-dark dark:text-white"
     >
       {t.body.lead}
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+    <div class="flex flex-col gap-[14px]">
       {t.body.paragraphs.map((paragraph) => (
         <p
-          class="font-body text-[18px] leading-[1.75] mt-0 mb-0 text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime max-[640px]:text-[17px]"
+          class="font-body text-[18px] leading-[1.6] mt-0 mb-0 text-[#555555] dark:text-[#CCCCCC] [&_strong]:font-bold [&_strong]:text-dark dark:[&_strong]:text-lime max-[640px]:text-[17px]"
           set:html={paragraph}
         />
       ))}
@@ -103,10 +103,24 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
 </div>
 
 <style is:global>
-  /* clip-path responsive override for hero shape divs — no Tailwind equivalent */
+  /* Hero shape: absolutely positioned next to the text on desktop, stacked
+     above it on mobile. Both need clip-path, which Tailwind cannot express. */
   @media (max-width: 768px) {
     .about-shape {
-      clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%) !important;
+      position: static !important;
+      width: 100% !important;
+      height: 300px !important;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%) !important;
+    }
+
+    .about-shape img {
+      object-position: top center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-shape {
+      height: 240px !important;
     }
   }
 </style>

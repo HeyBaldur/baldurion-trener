@@ -5,7 +5,8 @@ export const en: Translations = {
     home: 'Home',
     articles: 'Articles',
     coaching: 'Coaching',
-    about: 'About',
+    about: 'About me',
+    researches: 'Researches',
     contact: 'Contact',
   },
   hero: {
@@ -41,9 +42,9 @@ export const en: Translations = {
     coachingButton: 'Talk to Rudolf',
   },
   footer: {
-    tagline: 'Made with rigor in Katowice.',
-    siteTagline: 'Training science. No noise.',
-    taglineCentral: 'Training science. No noise.',
+    tagline: 'Made in Katowice, Poland.',
+    siteTagline: 'Everything I have learned over almost two decades is applied here.',
+    taglineCentral: 'Everything I have learned over almost two decades is applied here.',
     navTitle: 'Navigation',
     legalTitle: 'Legal',
     legal: 'Legal notice',
@@ -53,7 +54,7 @@ export const en: Translations = {
     terms: 'Terms',
     preferences: 'Preferences',
     rights: 'All rights reserved',
-    copyright: 'Made with rigor in Katowice.',
+    copyright: 'Made in Katowice, Poland.',
     euTitle: 'European Union',
     euSubtitle: 'Made in Poland · EU Member State',
     gdprBadge: 'GDPR Compliant',
@@ -61,16 +62,14 @@ export const en: Translations = {
   home: {
     hero: {
       eyebrow: 'PERSONAL TRAINER · KATOWICE · ONLINE',
-      titleLine1: 'Fitboxing',
-      titleLine2: 'and personal training.',
+      titleLine1: 'Gym & Fitboxing',
+      titleLine2: 'at the Highest Level',
       subtitle:
         "Doing cardio on a treadmill is fine, but it's not the same as punching, kicking, jumping, dodging and moving your whole body.",
       ctaPrimary: 'Book your free call',
       ctaSecondary: 'See the method',
       badgeTop: 'Technical follow-up',
       badgeBottom: 'Personalized plan',
-      stat1Value: '9+ years',
-      stat1Label: 'Martial arts and combat',
       stat2Value: '12 weeks',
       stat2Label: 'Method · 4 levels',
       stat3Value: 'ES · EN · PL',
@@ -248,8 +247,18 @@ export const en: Translations = {
     body: {
       lead: "I'm Rodolfo Calvo Jaubert.",
       paragraphs: [
-        "I've spent years in sport: athletics, gyms, Kung Fu under master Victor On, and years of sparring and combat — first as a practitioner, and now as a certified trainer.",
-        "I'm not here to sell you a secret. I'm here to offer you structure and method to build what you already have inside: to feel better about yourself, enjoy the journey, and build your best version.",
+        "I started my sporting career at 16, when I took up discus throwing and competed at national level.",
+        "Over time I left athletics to focus more on martial arts. I developed a real passion for them, training first in a humble gym, but alongside great athletes, where I learned Boxing and <strong>Kodenkan Jujitsu</strong>.",
+        "Later on, around the age of 25, I joined a centre for oriental arts, where I learned Kung-Fu. Not at Shaolin level, but focused on self-defence.",
+        "By that point I had built up a combination of three martial arts. However, because of some personal circumstances, I ended up sticking with Boxing and Kodenkan.",
+        "Worth noting: my physical and sporting activity in fitness centres has been constant to this day, at 37. All of it has allowed me to build deep experience in both worlds.",
+        "Today I am certified as a personal trainer and gym instructor, someone you can place your trust in.",
+        "And this is possibly the most interesting thing you are going to find out about me:",
+        "<strong>I am not going to train you.</strong>",
+        "I am not going to promise you heaven and earth, or tell you I will change your body in two weeks. This is entirely yours. Besides, that is biologically impossible.",
+        "What I will teach you is something far more important: <strong>discipline</strong>, <strong>consistency</strong>, and the reward waiting for you once you build both.",
+        "I care about you a lot, even though I do not know you yet.",
+        "I am a joker, so you are going to have a good time as well. 😄",
       ],
     },
     cta: {
@@ -325,5 +334,22 @@ export const en: Translations = {
     rightsTitle: 'Your GDPR rights',
     rightsBody:
       'You can exercise your rights of access, rectification, erasure, objection and portability by writing to contact.smartgymapp@gmail.com. We respond within 30 days.',
+  },
+  researches: {
+    metaTitle: 'Researches · Baldurion',
+    metaDescription:
+      'Evidence reviews on training and nutrition. Full PDF documents, free, no sign-up.',
+    eyebrow: 'Evidence library',
+    title: 'Research',
+    titleAccent: 'built on experience.',
+    subtitle:
+      'Documents that come out of what I see on the gym floor every day, checked against the scientific literature. What works with real clients, not what sounds good in a headline. The full document, free, without leaving your email.',
+    countOne: 'document',
+    countMany: 'documents',
+    openPdf: 'Open PDF',
+    newTab: 'Opens in a new tab',
+    updated: 'Updated',
+    format: 'PDF',
+    empty: 'No research published yet. Check back soon.',
   },
 };
