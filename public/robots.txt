@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+
+# No admin area exists yet; kept so the path is never indexed if one is added.
 Disallow: /admin/
 
 Sitemap: https://baldurion.com/sitemap-index.xml

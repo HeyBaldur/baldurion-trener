@@ -3,7 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ConsentBanner from '../components/ConsentBanner.astro';
 import type { Locale } from '../i18n/index';
-import { locales } from '../i18n/index';
+import { locales, translateSlug } from '../i18n/index';
 import '../styles/global.css';
 
 interface Props {
@@ -13,25 +13,137 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   canonicalURL?: string;
+  /** Override the auto-generated hreflang map when a page needs custom URLs. */
   alternates?: Record<string, string>;
+  /** Page-specific structured data, merged into the site-wide @graph. */
   schema?: object;
+  /** Set on pages that must not be indexed (404, thank-you pages…). */
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
   locale,
-  image = '/og-default.png',
+  image = '/og-default.jpg',
   type = 'website',
-  canonicalURL = Astro.url.href,
+  canonicalURL,
   alternates = {},
   schema,
+  noindex = false,
 } = Astro.props;
 
-const currentPath = Astro.url.pathname;
-const siteURL = 'https://baldurion.com';
-const fullTitle = title.includes('Baldurion') ? title : `${title} — Baldurion`;
+const SITE_URL = 'https://baldurion.com';
+const SITE_NAME = 'Baldurion';
+const AUTHOR = 'Rodolfo Calvo Jaubert';
+const EMAIL = 'contact.smartgymapp@gmail.com';
+const SOCIALS = [
+  'https://www.instagram.com/baldurion_fitness/',
+  'https://www.youtube.com/@BaldurionFitness',
+  'https://x.com/TheBaldurion',
+];
+
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const currentPath = Astro.url.pathname;
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} — ${SITE_NAME}`;
+
+const ogLocales: Record<Locale, string> = { es: 'es_ES', en: 'en_US', pl: 'pl_PL' };
+const hreflangs: Record<Locale, string> = { es: 'es-ES', en: 'en-US', pl: 'pl-PL' };
+
+/**
+ * Every page exists in three languages under a localized slug, so hreflang has
+ * to be derived from the current route rather than pointing at the home pages.
+ */
+function buildAlternates(): Record<Locale, string> {
+  const segments = currentPath
+    .replace(base, '/')
+    .split('/')
+    .filter(Boolean);
+
+  // drop the language prefix; the default locale has none
+  if (locale !== 'en' && segments[0] === locale) segments.shift();
+
+  const [slug, ...rest] = segments;
+
+  return Object.fromEntries(
+    locales.map(target => {
+      const localizedSlug = slug ? translateSlug(slug, locale, target) : '';
+      const path = [target === 'en' ? '' : target, localizedSlug, ...rest]
+        .filter(Boolean)
+        .join('/');
+      return [target, `${SITE_URL}/${path ? `${path}/` : ''}`];
+    })
+  ) as Record<Locale, string>;
+}
+
+const autoAlternates = buildAlternates();
+const alternateURLs: Record<string, string> = { ...autoAlternates, ...alternates };
+const canonical = canonicalURL ?? alternateURLs[locale];
+const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
+const squareImage = `${SITE_URL}/og-square.jpg`;
+
+const robots = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+
+const business = {
+  '@type': 'ProfessionalService',
+  '@id': `${SITE_URL}/#business`,
+  name: SITE_NAME,
+  url: `${SITE_URL}/`,
+  image: `${SITE_URL}/og-default.jpg`,
+  logo: `${SITE_URL}/icon-512.png`,
+  email: EMAIL,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Katowice',
+    addressRegion: 'Śląskie',
+    addressCountry: 'PL',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Katowice' },
+    { '@type': 'Country', name: 'Poland' },
+  ],
+  availableLanguage: ['es', 'en', 'pl'],
+  serviceType: ['Personal training', 'Fitboxing', 'Strength and conditioning'],
+  founder: {
+    '@type': 'Person',
+    '@id': `${SITE_URL}/#person`,
+    name: AUTHOR,
+    jobTitle: 'Personal Trainer',
+    knowsLanguage: ['es', 'en', 'pl'],
+    sameAs: SOCIALS,
+  },
+  sameAs: SOCIALS,
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: `${SITE_URL}/`,
+  name: SITE_NAME,
+  description,
+  inLanguage: hreflangs[locale],
+  publisher: { '@id': `${SITE_URL}/#business` },
+};
+
+const webPage = {
+  '@type': 'WebPage',
+  '@id': canonical,
+  url: canonical,
+  name: fullTitle,
+  description,
+  inLanguage: hreflangs[locale],
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  about: { '@id': `${SITE_URL}/#business` },
+  primaryImageOfPage: absoluteImage,
+};
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [business, website, webPage, ...(schema ? [schema] : [])],
+};
 ---
 
 <!doctype html>
@@ -43,45 +155,63 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    <meta name="author" content={AUTHOR} />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+    <link rel="canonical" href={canonical} />
 
+    <!-- Local SEO -->
+    <meta name="geo.region" content="PL-SL" />
+    <meta name="geo.placename" content="Katowice" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={`${siteURL}${image}`} />
-    <meta property="og:site_name" content="Baldurion" />
-    <meta property="og:locale" content={locale === 'es' ? 'es_ES' : locale === 'pl' ? 'pl_PL' : 'en_US'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content={ogLocales[locale]} />
+    {locales.filter(l => l !== locale).map(l => (
+      <meta property="og:locale:alternate" content={ogLocales[l]} />
+    ))}
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:secure_url" content={absoluteImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={fullTitle} />
+    <!-- square variant for messaging apps that prefer a 1:1 crop -->
+    <meta property="og:image" content={squareImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
 
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@TheBaldurion" />
+    <meta name="twitter:creator" content="@TheBaldurion" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${siteURL}${image}`} />
+    <meta name="twitter:image" content={absoluteImage} />
+    <meta name="twitter:image:alt" content={fullTitle} />
 
+    <!-- Language alternates -->
     {locales.map(l => (
-      <link
-        rel="alternate"
-        hreflang={l === 'es' ? 'es-ES' : l === 'pl' ? 'pl-PL' : 'en-US'}
-        href={alternates[l] ?? (l === 'en' ? `${siteURL}/` : `${siteURL}/${l}/`)}
-      />
+      <link rel="alternate" hreflang={hreflangs[l]} href={alternateURLs[l]} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${siteURL}/`} />
+    <link rel="alternate" hreflang="x-default" href={alternateURLs.en} />
 
-    <link rel="alternate" type="application/rss+xml" title="Baldurion RSS" href={locale === 'en' ? `${base}rss.xml` : `${base}${locale}/rss.xml`} />
-
-
-
+    <link rel="icon" href={`${base}favicon.ico`} sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}favicon-32x32.png`} />
     <link rel="icon" type="image/png" sizes="16x16" href={`${base}favicon-16x16.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
     <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <meta name="theme-color" content="#D4E84A" />
+    <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
     <link rel="sitemap" href={`${base}sitemap-index.xml`} />
 
-    {schema && (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    )}
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
     <script is:inline>
       (function() {

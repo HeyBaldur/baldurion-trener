@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHero from '../components/HomeHero.astro';
 import { en } from '../i18n/en';
@@ -8,8 +8,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <BaseLayout
-  title="Baldurion — Science-Based Fitness"
-  description="Personalized training with scientific rigor. Real strength, real capacity. Personal trainer in Katowice."
+  title="High-Level Gym & Fitboxing in Katowice | Baldurion"
+  description="Personal training and fitboxing in Katowice and online. A structured 12-week method adapted to your level, with technical follow-up. Book a free call."
   locale={locale}
 >
   <HomeHero t={en.home.hero} base={base} locale={locale} />
