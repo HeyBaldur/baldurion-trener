@@ -5,7 +5,6 @@
  *            public/images/brand/baldurion-personaje.png (icon artwork)
  *
  *   outputs: public/og-default.jpg      1200×630  — Open Graph / Twitter card
- *            public/og-square.jpg       1200×1200 — WhatsApp / messaging previews
  *            public/favicon-16x16.png
  *            public/favicon-32x32.png
  *            public/apple-touch-icon.png 180×180
@@ -44,8 +43,6 @@ async function shareCard(width, height, out, fit = 'cover') {
 }
 
 await shareCard(1200, 630, 'public/og-default.jpg');
-// square crop would cut the wordmark off, so letterbox it on the brand dark instead
-await shareCard(1200, 1200, 'public/og-square.jpg', 'contain');
 
 const icons = [
   [16, 'public/favicon-16x16.png'],

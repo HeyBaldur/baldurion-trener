@@ -80,7 +80,6 @@ const autoAlternates = buildAlternates();
 const alternateURLs: Record<string, string> = { ...autoAlternates, ...alternates };
 const canonical = canonicalURL ?? alternateURLs[locale];
 const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`;
-const squareImage = `${SITE_URL}/og-square.jpg`;
 
 const robots = noindex
   ? 'noindex, nofollow'
@@ -180,11 +179,6 @@ const graph = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={fullTitle} />
-    <!-- square variant for messaging apps that prefer a 1:1 crop -->
-    <meta property="og:image" content={squareImage} />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="1200" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
