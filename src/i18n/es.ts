@@ -57,6 +57,9 @@
     euTitle: "Unión Europea",
     euSubtitle: "Hecho en Polonia · Estado miembro de la UE",
     gdprBadge: "Cumplimiento RGPD",
+    discordTitle: "Únete a la comunidad",
+    discordSubtitle: "Entrenamiento, dudas y comunidad en Discord.",
+    discordCta: "Entrar al Discord",
   },
   home: {
     hero: {

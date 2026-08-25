@@ -58,6 +58,9 @@ export const en: Translations = {
     euTitle: 'European Union',
     euSubtitle: 'Made in Poland · EU Member State',
     gdprBadge: 'GDPR Compliant',
+    discordTitle: 'Join the community',
+    discordSubtitle: 'Training, questions and community on Discord.',
+    discordCta: 'Join the Discord',
   },
   home: {
     hero: {
