@@ -16,6 +16,33 @@ export interface Research {
 
 export const researches: Research[] = [
   {
+    id: 'atlas-sequence',
+    category: 'metodologia',
+    date: '2026-08-28',
+    files: {
+      en: 'at-seq-en.pdf',
+      es: 'at-seq-es.pdf',
+      pl: 'at-seq-pl.pdf',
+    },
+    content: {
+      en: {
+        title: 'Atlas Sequence',
+        summary:
+          'Iso-dynamic complex with asymmetric loading and a bilateral finisher: physiological rationale, practical application, and an honest line between what is demonstrated and what is only plausible.',
+      },
+      es: {
+        title: 'Atlas Sequence',
+        summary:
+          'Complejo iso-dinámico con carga asimétrica y finalización bilateral: fundamentación fisiológica, aplicación práctica y una línea honesta entre lo demostrado y lo solo plausible.',
+      },
+      pl: {
+        title: 'Atlas Sequence',
+        summary:
+          'Kompleks izo-dynamiczny z obciążeniem asymetrycznym i zakończeniem bilateralnym: podstawy fizjologiczne, zastosowanie praktyczne i uczciwa granica między tym, co udowodnione, a tym, co jedynie prawdopodobne.',
+      },
+    },
+  },
+  {
     id: 'creatine',
     category: 'nutricion',
     date: '2026-08-24',
