@@ -309,8 +309,9 @@ export const pl: Translations = {
   banner: {
     eyebrow: 'Prywatność',
     title: 'Twoja prywatność',
-    body: 'Nie używamy analityki, śledzenia ani plików cookie marketingowych. Zapisujemy lokalnie tylko motyw i język. Osadzone treści ładują się tylko po twojej aktywacji.',
-    primaryAction: 'Rozumiem',
+    body: 'Chcielibyśmy używać Google Analytics, aby wiedzieć, które artykuły są czytane. Włącza się wyłącznie po twojej zgodzie i do tego czasu nie zapisuje żadnych plików cookie. Motyw i język zawsze przechowujemy lokalnie, a osadzone treści ładują się tylko po twojej aktywacji.',
+    acceptAction: 'Akceptuję',
+    rejectAction: 'Odrzucam',
     secondaryAction: 'Dowiedz się więcej',
   },
   legal: {
@@ -330,9 +331,14 @@ export const pl: Translations = {
       'YouTube, Spotify, Twitter i Instagram ładują się tylko wtedy, gdy ręcznie je aktywujesz w artykule. Lista aktywowanych osadzeń jest zapisywana lokalnie, żeby nie pytać ponownie.',
     embedsClear: 'Wyczyść osadzone treści',
     embedsCleared: 'Lista osadzonych treści wyczyszczona.',
-    trackingTitle: 'Analityka i śledzenie',
-    trackingBody: 'Baldurion nie używa żadnej analityki. Brak Google Analytics, brak pikseli, brak śledzenia.',
-    trackingStatus: 'Nie dotyczy',
+    trackingTitle: 'Analityka',
+    trackingBody:
+      'Używamy Google Analytics 4, aby liczyć wizyty i wiedzieć, które artykuły są czytane. Działa wyłącznie za twoją zgodą i do momentu jej wyrażenia nie zapisuje żadnych plików cookie. Nie zbieramy danych reklamowych ani remarketingowych.',
+    trackingAccept: 'Akceptuję analitykę',
+    trackingReject: 'Odrzucam analitykę',
+    trackingGranted: 'Zaakceptowana',
+    trackingDenied: 'Odrzucona',
+    trackingPending: 'Nie wybrano',
     rightsTitle: 'Twoje prawa RODO',
     rightsBody:
       'Możesz skorzystać z praw dostępu, sprostowania, usunięcia, sprzeciwu i przenoszenia danych, pisząc na adres contact.smartgymapp@gmail.com. Odpowiadamy w ciągu 30 dni.',

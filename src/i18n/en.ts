@@ -309,8 +309,9 @@ export const en: Translations = {
   banner: {
     eyebrow: 'Privacy',
     title: 'About your privacy',
-    body: "We don't use analytics, tracking, or marketing cookies. We only store your theme and language locally. Third-party embeds load only when you activate them.",
-    primaryAction: 'Got it',
+    body: "We'd like to use Google Analytics to see which articles get read. It only runs if you accept, and until then it sets no cookies. Your theme and language are always kept locally, and third-party embeds load only when you activate them.",
+    acceptAction: 'Accept',
+    rejectAction: 'Reject',
     secondaryAction: 'Learn more',
   },
   legal: {
@@ -330,10 +331,14 @@ export const en: Translations = {
       'YouTube, Spotify, Twitter and Instagram only load when you manually activate them in an article. Your list of activated embeds is stored locally so we do not ask again.',
     embedsClear: 'Clear embeds',
     embedsCleared: 'Embed list cleared.',
-    trackingTitle: 'Analytics & tracking',
+    trackingTitle: 'Analytics',
     trackingBody:
-      'Baldurion uses no analytics whatsoever. No Google Analytics, no pixels, no tracking.',
-    trackingStatus: 'Not applicable',
+      'We use Google Analytics 4 to count visits and see which articles get read. It runs only with your consent and sets no cookies until you accept. No advertising or remarketing data is collected.',
+    trackingAccept: 'Accept analytics',
+    trackingReject: 'Reject analytics',
+    trackingGranted: 'Accepted',
+    trackingDenied: 'Rejected',
+    trackingPending: 'Not chosen',
     rightsTitle: 'Your GDPR rights',
     rightsBody:
       'You can exercise your rights of access, rectification, erasure, objection and portability by writing to contact.smartgymapp@gmail.com. We respond within 30 days.',

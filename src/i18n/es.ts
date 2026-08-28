@@ -316,8 +316,9 @@
   banner: {
     eyebrow: "Privacidad",
     title: "Sobre tu privacidad",
-    body: "No usamos analítica, tracking ni cookies de marketing. Solo guardamos tu tema y tu idioma localmente. Los embebidos de terceros se cargan sólo cuando tú los activas.",
-    primaryAction: "Entendido",
+    body: "Nos gustaría usar Google Analytics para saber qué artículos se leen. Solo se activa si lo aceptas y, hasta entonces, no instala ninguna cookie. Tu tema y tu idioma se guardan siempre en local, y los embebidos de terceros se cargan sólo cuando tú los activas.",
+    acceptAction: "Aceptar",
+    rejectAction: "Rechazar",
     secondaryAction: "Más información",
   },
   legal: {
@@ -337,10 +338,14 @@
       "YouTube, Spotify, Twitter e Instagram cargan solo cuando los activas manualmente en cada artículo. Tu lista de embebidos ya activados se guarda localmente para no volver a pedírtelo.",
     embedsClear: "Limpiar embebidos",
     embedsCleared: "Lista de embebidos limpiada.",
-    trackingTitle: "Analítica y tracking",
+    trackingTitle: "Analítica",
     trackingBody:
-      "Baldurion no usa analítica de ningún tipo. No hay Google Analytics, no hay píxeles, no hay tracking.",
-    trackingStatus: "No aplica",
+      "Usamos Google Analytics 4 para contar visitas y saber qué artículos se leen. Solo funciona con tu consentimiento y no instala ninguna cookie hasta que lo aceptas. No recogemos datos de publicidad ni de remarketing.",
+    trackingAccept: "Aceptar analítica",
+    trackingReject: "Rechazar analítica",
+    trackingGranted: "Aceptada",
+    trackingDenied: "Rechazada",
+    trackingPending: "Sin elegir",
     rightsTitle: "Tus derechos GDPR",
     rightsBody:
       "Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición y portabilidad escribiendo a contact.smartgymapp@gmail.com. Respondemos en un máximo de 30 días.",

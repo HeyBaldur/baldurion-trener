@@ -54,14 +54,26 @@ const t = useTranslations(locale);
       </div>
 
       <div class="rounded-2xl border border-[var(--color-border)] p-5">
-        <div class="flex items-start justify-between gap-4">
+        <div class="flex items-start justify-between gap-4 mb-4">
           <div class="flex-1">
             <h2 class="font-display text-lg mb-1">{t.preferences.trackingTitle.toUpperCase()}</h2>
             <p class="text-sm text-[var(--color-text-muted)]">{t.preferences.trackingBody}</p>
           </div>
-          <span class="shrink-0 text-xs font-bold px-3 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)]">
-            {t.preferences.trackingStatus}
-          </span>
+          <span
+            id="analytics-status"
+            class="shrink-0 text-xs font-bold px-3 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)]"
+            data-granted={t.preferences.trackingGranted}
+            data-denied={t.preferences.trackingDenied}
+            data-pending={t.preferences.trackingPending}
+          >{t.preferences.trackingPending}</span>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <button id="analytics-accept" class="text-sm font-bold px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-text)] transition-colors duration-150">
+            {t.preferences.trackingAccept}
+          </button>
+          <button id="analytics-reject" class="text-sm font-bold px-4 py-2 rounded-full border border-[var(--color-border)] hover:border-[var(--color-text)] transition-colors duration-150">
+            {t.preferences.trackingReject}
+          </button>
         </div>
       </div>
 
@@ -89,5 +101,35 @@ clearBtn?.addEventListener('click', () => {
   clearAllEmbeds(); updateCount();
   confirmEl?.classList.remove('hidden');
   setTimeout(() => confirmEl?.classList.add('hidden'), 3000);
+});
+
+import { getAnalyticsConsent, setAnalyticsConsent } from '../scripts/analytics';
+
+const statusEl = document.getElementById('analytics-status');
+
+function renderConsent() {
+  if (!statusEl) return;
+  const consent = getAnalyticsConsent();
+  const labels = statusEl.dataset;
+  statusEl.textContent =
+    (consent === 'granted' ? labels.granted
+      : consent === 'denied' ? labels.denied
+      : labels.pending) ?? '';
+  // Highlight the accepted state the same way the "site preferences" pill is.
+  const on = consent === 'granted';
+  statusEl.style.backgroundColor = on ? '#D4E84A' : '';
+  statusEl.style.color = on ? '#0A0A0A' : '';
+  statusEl.style.borderColor = on ? 'transparent' : '';
+}
+
+renderConsent();
+
+document.getElementById('analytics-accept')?.addEventListener('click', () => {
+  setAnalyticsConsent('granted');
+  renderConsent();
+});
+document.getElementById('analytics-reject')?.addEventListener('click', () => {
+  setAnalyticsConsent('denied');
+  renderConsent();
 });
 </script>

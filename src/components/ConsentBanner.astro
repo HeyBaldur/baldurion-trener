@@ -42,16 +42,24 @@ const cookiesHref = `${lp}cookies/`;
     {t.banner.body}
   </p>
 
-  <div class="flex justify-between items-center gap-[12px] mt-[20px] max-[639px]:flex-col-reverse max-[639px]:items-stretch">
-    <button
-      id="consent-dismiss"
-      class="rounded-full bg-lime text-dark border-none px-[20px] py-[10px] font-bold text-[13px] cursor-pointer transition-opacity duration-150 hover:opacity-85 whitespace-nowrap"
-    >
-      {t.banner.primaryAction}
-    </button>
+  <div class="flex flex-col gap-[12px] mt-[20px]">
+    <div class="flex items-center gap-[10px] max-[639px]:flex-col max-[639px]:items-stretch">
+      <button
+        id="consent-accept"
+        class="flex-1 rounded-full bg-lime text-dark border-none px-[20px] py-[10px] font-bold text-[13px] cursor-pointer transition-opacity duration-150 hover:opacity-85 whitespace-nowrap"
+      >
+        {t.banner.acceptAction}
+      </button>
+      <button
+        id="consent-reject"
+        class="flex-1 rounded-full bg-transparent px-[20px] py-[10px] font-bold text-[13px] cursor-pointer transition-colors duration-150 whitespace-nowrap border border-[#DDDDDD] dark:border-[#333333] text-dark dark:text-white hover:border-dark dark:hover:border-white"
+      >
+        {t.banner.rejectAction}
+      </button>
+    </div>
     <a
       href={cookiesHref}
-      class="text-[13px] no-underline transition-[text-decoration,opacity] duration-150 text-dark dark:text-white hover:underline hover:opacity-70 max-[639px]:text-center"
+      class="text-[13px] text-center no-underline transition-[text-decoration,opacity] duration-150 text-[#555555] dark:text-[#999999] hover:underline hover:opacity-70"
     >
       {t.banner.secondaryAction}
     </a>
@@ -59,11 +67,14 @@ const cookiesHref = `${lp}cookies/`;
 </div>
 
 <script>
+import { setAnalyticsConsent, hasDecidedAnalytics } from '../scripts/analytics';
+
 const banner = document.getElementById('consent-banner') as HTMLElement | null;
-const dismissBtn = document.getElementById('consent-dismiss');
+const acceptBtn = document.getElementById('consent-accept');
+const rejectBtn = document.getElementById('consent-reject');
 const closeBtn = document.getElementById('consent-close');
 
-function dismiss() {
+function hide() {
   if (!banner) return;
   banner.classList.remove('is-visible');
   banner.classList.add('is-hiding');
@@ -71,10 +82,15 @@ function dismiss() {
     banner.style.display = 'none';
     banner.classList.remove('is-hiding');
   }, 250);
-  localStorage.setItem('baldurion_banner_dismissed', 'true');
 }
 
-if (banner && localStorage.getItem('baldurion_banner_dismissed') !== 'true') {
+function decide(consent: 'granted' | 'denied') {
+  setAnalyticsConsent(consent);
+  hide();
+}
+
+// Only ask visitors who have not made a choice yet.
+if (banner && !hasDecidedAnalytics()) {
   setTimeout(() => {
     banner.style.display = 'block';
     banner.getBoundingClientRect(); // force reflow before transition
@@ -82,11 +98,13 @@ if (banner && localStorage.getItem('baldurion_banner_dismissed') !== 'true') {
   }, 1200);
 }
 
-dismissBtn?.addEventListener('click', dismiss);
-closeBtn?.addEventListener('click', dismiss);
+acceptBtn?.addEventListener('click', () => decide('granted'));
+// Closing without choosing is never consent, so it is recorded as a refusal.
+rejectBtn?.addEventListener('click', () => decide('denied'));
+closeBtn?.addEventListener('click', () => decide('denied'));
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && banner?.style.display === 'block') dismiss();
+  if (e.key === 'Escape' && banner?.style.display === 'block') decide('denied');
 });
 </script>
 

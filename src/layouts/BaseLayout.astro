@@ -207,6 +207,29 @@ const graph = {
 
     <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
+    <!-- Google tag (gtag.js) — Consent Mode v2, everything denied until accepted -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      var storedConsent = null;
+      try { storedConsent = localStorage.getItem('baldurion_consent_analytics'); } catch (e) {}
+
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: storedConsent === 'granted' ? 'granted' : 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+
+      gtag('js', new Date());
+      gtag('config', 'G-B543SXCHWQ');
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-B543SXCHWQ"></script>
+
     <script is:inline>
       (function() {
         var stored = localStorage.getItem('theme');

@@ -8,6 +8,7 @@ const lastUpdated = new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: '
 const toc = [
   { id: 'que-son', label: '¿Qué son las cookies?' },
   { id: 'usa-cookies', label: '¿Usa Baldurion cookies?' },
+  { id: 'analitica', label: 'Cookies de analítica' },
   { id: 'localstorage', label: 'Qué guarda Baldurion en tu navegador' },
   { id: 'embebidos', label: 'Los embebidos de terceros' },
 ];
@@ -15,7 +16,7 @@ const toc = [
 
 <LegalLayout
   title="Política de Cookies"
-  description="Baldurion no usa cookies. Descubre qué guardamos en tu navegador y por qué."
+  description="Baldurion solo instala cookies de analítica, y solo si las aceptas. Descubre qué guardamos en tu navegador y por qué."
   locale={locale}
   lastUpdated={lastUpdated}
   toc={toc}
@@ -24,7 +25,23 @@ const toc = [
   <p>Las cookies son pequeños archivos que algunos sitios web guardan en tu navegador para recordar información (preferencias, sesiones, tracking). Hay distintos tipos según su finalidad y duración.</p>
 
   <h2 id="usa-cookies">¿Usa Baldurion cookies?</h2>
-  <p><strong>No usamos cookies de ningún tipo.</strong> Ni propias ni de terceros. Ni necesarias, ni de tracking, ni de marketing.</p>
+  <p><strong>Solo cookies de analítica, y solo si las aceptas.</strong> No instalamos cookies de publicidad, remarketing ni elaboración de perfiles, ni propias ni de terceros.</p>
+  <p>Google Analytics se carga en todas las páginas con el consentimiento <em>denegado</em> por defecto, así que no escribe nada en tu navegador. Solo empieza a instalar cookies después de que pulses <em>Aceptar</em> en el banner de privacidad. Si rechazas, o simplemente no eliges, no se crea ninguna cookie de analítica. Y si aceptas y luego cambias de opinión, borramos las que ya se hubieran creado.</p>
+
+  <h2 id="analitica">Cookies de analítica</h2>
+  <p>Estas solo existen después de que hayas dado tu consentimiento:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cookie</th><th>Proveedor</th><th>Duración</th><th>Finalidad</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>_ga</code></td><td>Google Analytics 4</td><td>2 años</td><td>Distinguir a un visitante de otro</td></tr>
+      <tr><td><code>_ga_B543SXCHWQ</code></td><td>Google Analytics 4</td><td>2 años</td><td>Mantener el estado de tu sesión</td></tr>
+    </tbody>
+  </table>
+
+  <p>Puedes retirar tu consentimiento cuando quieras desde la <a href={`${base}es/preferencias/`}>página de preferencias</a>: la analítica se detiene al momento y estas cookies se borran.</p>
 
   <h2 id="localstorage">¿Qué guarda Baldurion en tu navegador?</h2>
   <p>Usamos <code>localStorage</code>, que <strong>NO es una cookie</strong>. Es una API moderna del navegador que permite guardar preferencias sin enviarlas a ningún servidor.</p>
@@ -37,7 +54,7 @@ const toc = [
       <tr><td><code>baldurion_theme</code></td><td>"light" o "dark"</td><td>Recordar tu tema preferido</td></tr>
       <tr><td><code>baldurion_locale</code></td><td>"es", "en" o "pl"</td><td>Recordar tu idioma</td></tr>
       <tr><td><code>baldurion_loaded_embeds</code></td><td>JSON con IDs</td><td>No volver a pedir activación de embebidos</td></tr>
-      <tr><td><code>baldurion_banner_dismissed</code></td><td>"true"</td><td>No mostrar el banner informativo de nuevo</td></tr>
+      <tr><td><code>baldurion_consent_analytics</code></td><td>"granted" o "denied"</td><td>Recordar tu decisión sobre la analítica para no volver a preguntarte</td></tr>
     </tbody>
   </table>
 

@@ -8,6 +8,7 @@ const lastUpdated = new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: '
 const toc = [
   { id: 'czym', label: 'Czym są pliki cookie?' },
   { id: 'uzywa', label: 'Czy Baldurion używa cookies?' },
+  { id: 'analityka', label: 'Pliki cookie analityczne' },
   { id: 'localstorage', label: 'Co Baldurion przechowuje w przeglądarce' },
   { id: 'osadzone', label: 'Osadzone treści zewnętrzne' },
 ];
@@ -15,7 +16,7 @@ const toc = [
 
 <LegalLayout
   title="Polityka Cookies"
-  description="Baldurion nie używa plików cookie. Dowiedz się, co przechowujemy w Twojej przeglądarce i dlaczego."
+  description="Baldurion zapisuje wyłącznie analityczne pliki cookie i tylko za Twoją zgodą. Dowiedz się, co przechowujemy w Twojej przeglądarce i dlaczego."
   locale={locale}
   lastUpdated={lastUpdated}
   toc={toc}
@@ -24,7 +25,23 @@ const toc = [
   <p>Pliki cookie to małe pliki, które niektóre strony internetowe przechowują w Twojej przeglądarce, aby zapamiętać informacje (preferencje, sesje, śledzenie).</p>
 
   <h2 id="uzywa">Czy Baldurion używa cookies?</h2>
-  <p><strong>Nie używamy żadnych plików cookie.</strong> Ani własnych, ani zewnętrznych. Ani niezbędnych, ani śledzących, ani marketingowych.</p>
+  <p><strong>Tylko analityczne pliki cookie i wyłącznie wtedy, gdy wyrazisz na nie zgodę.</strong> Nie zapisujemy plików cookie reklamowych, remarketingowych ani profilujących — ani własnych, ani zewnętrznych.</p>
+  <p>Google Analytics ładuje się na każdej stronie z domyślnie <em>odmówioną</em> zgodą, więc nie zapisuje niczego w Twojej przeglądarce. Pliki cookie zaczyna zapisywać dopiero po kliknięciu <em>Akceptuję</em> w banerze prywatności. Jeśli odrzucisz zgodę lub po prostu nie dokonasz wyboru, żaden analityczny plik cookie nie powstanie. A jeśli zaakceptujesz i później zmienisz zdanie, usuwamy te już zapisane.</p>
+
+  <h2 id="analityka">Pliki cookie analityczne</h2>
+  <p>Istnieją wyłącznie po wyrażeniu przez Ciebie zgody:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cookie</th><th>Dostawca</th><th>Czas przechowywania</th><th>Cel</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>_ga</code></td><td>Google Analytics 4</td><td>2 lata</td><td>Odróżnienie jednego użytkownika od drugiego</td></tr>
+      <tr><td><code>_ga_B543SXCHWQ</code></td><td>Google Analytics 4</td><td>2 lata</td><td>Utrzymanie stanu sesji</td></tr>
+    </tbody>
+  </table>
+
+  <p>Zgodę możesz wycofać w dowolnym momencie na <a href={`${base}pl/preferencje/`}>stronie preferencji</a>: analityka zatrzymuje się natychmiast, a te pliki cookie są usuwane.</p>
 
   <h2 id="localstorage">Co Baldurion przechowuje w Twojej przeglądarce</h2>
   <p>Używamy <code>localStorage</code>, który <strong>NIE jest plikiem cookie</strong>. To nowoczesne API przeglądarki pozwalające przechowywać preferencje bez wysyłania ich na serwer.</p>
@@ -37,7 +54,7 @@ const toc = [
       <tr><td><code>baldurion_theme</code></td><td>"light" lub "dark"</td><td>Zapamiętanie preferowanego motywu</td></tr>
       <tr><td><code>baldurion_locale</code></td><td>"es", "en" lub "pl"</td><td>Zapamiętanie języka</td></tr>
       <tr><td><code>baldurion_loaded_embeds</code></td><td>JSON z identyfikatorami</td><td>Nie pytać ponownie o aktywację osadzeń</td></tr>
-      <tr><td><code>baldurion_banner_dismissed</code></td><td>"true"</td><td>Nie wyświetlać ponownie baneru informacyjnego</td></tr>
+      <tr><td><code>baldurion_consent_analytics</code></td><td>"granted" lub "denied"</td><td>Zapamiętanie Twojej decyzji o analityce, aby nie pytać ponownie</td></tr>
     </tbody>
   </table>
 
