@@ -44,10 +44,10 @@ const legalPaths = {
         </p>
         <nav class="flex flex-col gap-[12px]">
           <a href={lp} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.home}</a>
-          <a href={`${lp}coaching/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.coaching}</a>
-          <a href={`${lp}sobre/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.about}</a>
+          <a href={`${lp}${routeSlugs.coaching[locale]}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.coaching}</a>
+          <a href={`${lp}${routeSlugs.about[locale]}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.about}</a>
           <a href={`${lp}${routeSlugs.researches[locale]}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.researches}</a>
-          <a href={`${lp}contacto/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.contact}</a>
+          <a href={`${lp}${routeSlugs.contact[locale]}/`} class="text-[14px] font-semibold no-underline transition-colors duration-200 text-[rgba(0,0,0,0.6)] dark:text-[rgba(255,255,255,0.6)] hover:text-dark dark:hover:text-lime">{t.nav.contact}</a>
         </nav>
       </div>
 

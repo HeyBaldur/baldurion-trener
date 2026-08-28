@@ -1,5 +1,6 @@
 ---
 import type { Locale } from '../i18n/index';
+import { routeSlugs } from '../i18n/index';
 interface Props {
   t: {
     heroTitle: string;
@@ -86,13 +87,13 @@ const lp = locale === 'en' ? base : `${base}${locale}/`;
     </div>
     <div class="flex gap-[12px] shrink-0 max-[900px]:flex-col">
       <a
-        href={`${lp}coaching/`}
+        href={`${lp}${routeSlugs.coaching[locale]}/`}
         class="font-body rounded-full bg-dark text-lime px-[32px] py-[18px] font-extrabold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-dark transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-transparent hover:text-dark"
       >
         {t.cta.primaryAction}
       </a>
       <a
-        href={`${lp}contacto/`}
+        href={`${lp}${routeSlugs.contact[locale]}/`}
         class="font-body rounded-full bg-transparent text-dark px-[32px] py-[18px] font-bold text-[13px] tracking-[0.05em] uppercase no-underline border-2 border-dark transition-[background,color] duration-200 whitespace-nowrap text-center hover:bg-dark hover:text-lime"
       >
         {t.cta.secondaryAction}

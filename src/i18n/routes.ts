@@ -11,6 +11,9 @@ export const routeDefaultLocale: RouteLocale = 'en';
  * translation catalogue.
  */
 export const routeSlugs = {
+  about: { es: 'sobre-mi', en: 'about', pl: 'o-mnie' },
+  coaching: { es: 'coaching', en: 'coaching', pl: 'coaching' },
+  contact: { es: 'contacto', en: 'contact', pl: 'kontakt' },
   researches: { es: 'investigaciones', en: 'researches', pl: 'badania' },
   privacy: { es: 'privacidad', en: 'privacy', pl: 'prywatnosc' },
   cookies: { es: 'cookies', en: 'cookies', pl: 'cookies' },

@@ -3,7 +3,7 @@ import ThemeToggle from './ThemeToggle.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import Logo from './Logo.astro';
 import type { Locale } from '../i18n/index';
-import { useTranslations } from '../i18n/index';
+import { useTranslations, routeSlugs } from '../i18n/index';
 
 interface Props {
   locale: Locale;
@@ -17,9 +17,9 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const lp = locale === 'en' ? base : `${base}${locale}/`;
 const navLinks = [
   { href: lp, label: t.nav.home },
-  { href: `${lp}coaching/`, label: t.nav.coaching },
-  { href: `${lp}sobre/`, label: t.nav.about },
-  { href: `${lp}contacto/`, label: t.nav.contact },
+  { href: `${lp}${routeSlugs.coaching[locale]}/`, label: t.nav.coaching },
+  { href: `${lp}${routeSlugs.about[locale]}/`, label: t.nav.about },
+  { href: `${lp}${routeSlugs.contact[locale]}/`, label: t.nav.contact },
 ];
 ---
 
